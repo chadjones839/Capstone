@@ -1,8 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500&display=swap');
+
+.statusBar{
+  position: -webkit-sticky;
+  position: sticky; top: 0px;
+}
+
 .discoveryContainer {
-  padding: 30px 10px 10px 
+  padding: 0px 10px 10px 
 }
 .discoveryHeader {
   font-family: 'Comfortaa', cursive;
+  padding-top: 20px;
+  padding-bottom: 15px;
+  background: linear-gradient(to bottom, #FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF, transparent);
+  position: -webkit-sticky;
+  position: sticky; top: 19px;
+  margin-bottom: 10px;
+}
+
+.employerCard__image {
+  width: 100%;
+  height: auto;
+}
+
+.employerCard__image > img {
+  width: 100%;
+  height: auto;
+}
+
+.employerCard__name {
+  font-family: 'Roboto', sans-serif;
+  margin: 10px 0 5px 0;
+}
+
+.employerCard__industry {
+  font-family: 'Roboto', sans-serif;
+  margin: 5px 0 20px 0;
+}
+
+.employerCard__body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.interestButtons {
+  width: 100%;
+  position: fixed;
+  bottom: 60px;
+  background: linear-gradient(to top, #FFFFFF, #FFFFFF, transparent);
+}
+
+.interestButtons__container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.interestBtn__false,
+.interestBtn__true {
+  width: 90px;
+  height: auto;
+}
+
+.interestBtn {
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.interestBtn > img {
+  width: 100%;
+  height: auto;
 }
