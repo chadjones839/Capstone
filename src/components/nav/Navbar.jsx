@@ -2,7 +2,7 @@ import React from "react";
 // import { withRouter } from 'react-router-dom';
 import { Link } from "react-router-dom";
 
-const NavBar = props => {
+const NavBar = () => {
 
   return (
     <nav>

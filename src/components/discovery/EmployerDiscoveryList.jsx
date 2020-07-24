@@ -8,7 +8,6 @@ const Discovery = props => {
   const [users, setUsers] = useState([]);
 
   const getUsers = () => {
-
     return UserManager.getAllUsers().then(usersFromAPI => {
       setUsers(usersFromAPI)
     });

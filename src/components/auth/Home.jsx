@@ -1,9 +1,8 @@
-import React, { useState } from "react"
+import React from "react"
 import { Link } from "react-router-dom";
 
 
 const Home = props => {
-
 
   return (
     <div className="limiter">
@@ -18,7 +17,6 @@ const Home = props => {
             </div>
           </div>
         </div>
-
         <div className="loginBox">
           <div className="authButtons">
             <div className="loginButton">
@@ -37,8 +35,7 @@ const Home = props => {
         </div>
 
       </div>
-    </div>
-            
+    </div>     
   );
   };
 

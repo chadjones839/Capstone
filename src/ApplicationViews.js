@@ -9,27 +9,36 @@ import EmployerProfileCard from "./components/profile/EmployerProfileCard.jsx";
 import Chat from "./components/chat/ChatList.jsx";
 
 const ApplicationViews = (props) => {
+
+  const hasUser = props.hasUser;
+  const setUser = props.setUser;
+
   return (
     <React.Fragment>
       <Route 
         exact
         path="/" 
         render={props => {
-          return <Home {...props} />
+          return <Home />
       }} 
       />
       <Route 
         exact
         path="/login" 
         render={props => {
-          return <Login {...props} />
+          return <Login setUser={setUser} {...props} />
       }} 
       />
       <Route 
         exact
         path="/profile" 
         render={props => {
-          return <EmployerProfileCard {...props} />
+          if (hasUser) {
+            return <EmployerProfileCard {...props} />
+          }
+          else {
+            return <Redirect to="/" />
+          }
       }} 
       />
       
@@ -37,7 +46,12 @@ const ApplicationViews = (props) => {
         exact
         path="/discovery" 
         render={props => {
-          return <EmployerDiscovery {...props} />
+          if (hasUser) {
+            return <EmployerDiscovery {...props} />
+          }
+          else {
+            return <Redirect to="/" />
+          }
       }} 
       />
       
@@ -45,7 +59,12 @@ const ApplicationViews = (props) => {
         exact
         path="/chat" 
         render={props => {
-          return <Chat {...props} />
+          if (hasUser) {
+            return <Chat {...props} />
+          }
+          else {
+            return <Redirect to="/" />
+          }
       }} 
       />
     </React.Fragment>

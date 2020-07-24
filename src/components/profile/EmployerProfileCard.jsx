@@ -1,26 +1,31 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
 
 const EmployerProfileCard = props => {
 
+  const sessionUser = JSON.parse(sessionStorage.getItem("user"))
   
-  // const sessionUser = JSON.parse(sessionStorage.getItem("user"))
+  const clearUser = () => {
+    sessionStorage.clear()
+    setHasUser(sessionUser)
+  }
   
-  // const clearUser = () => {
-  //   sessionStorage.clear()
-  //   setHasUser(sessionUser)
-  // }
-  
-  // const [hasUser, setHasUser] = useState(sessionUser !== null);
-  
+  const [hasUser, setHasUser] = useState(sessionUser !== null);
 
   return (
     <React.Fragment>
         <section className="profileHeader">
           <div className="logoutButton">
-            <button type="submit" className="registerLogout">
-              <img src="./logoutButton.png" alt="logout" />
-            </button>
+            <Link to="/login">
+              <button 
+                type="submit" 
+                className="registerLogout"
+                onClick={clearUser}
+              >
+                <img src="./logoutButton.png" alt="logout" />
+              </button>
+            </Link>
           </div>
           <div className="userProfile__image">
             <div className="userImage__container">

@@ -2,38 +2,33 @@ import React, { useState } from "react"
 import LoginManager from "../modules/LoginManager";
 import { Link } from "react-router-dom";
 
-let activeSession = {}
 
 const Login = props => {
 
-  const [user, setUser] = useState({email: "", password: ""});
-
+  const [credentials, setCredentials] = useState({email: "", password: ""});
+  
   // Update state whenever an input field is edited
   const handleFieldChange = (evt) => {
-    const stateToChange = { ...user};
+    const stateToChange = { ...credentials};
     stateToChange[evt.target.id] = evt.target.value;
-    setUser(stateToChange);
-    
+    setCredentials(stateToChange);   
   };
 
-    const handleLogin = (e) => {
-      e.preventDefault();
-      let email = document.querySelector("#email").value
-      let password = document.querySelector("#password").value
-      LoginManager.getAll()
-      .then(users => {
-        users.find(user => {
+  const handleLogin = (e) => {
+    e.preventDefault();
+    let email = document.querySelector("#email").value
+    let password = document.querySelector("#password").value
+    LoginManager.getAll()
+    .then(users => {
+      users.find(user => {
         if (user.email === email && user.password === password) {
           sessionStorage.setItem('user', JSON.stringify(user))
-          setUser(user);
-          activeSession = user;
-          props.history.push("/discovery");
+          setCredentials(user);
         } 
-        }
-        )
       })
-    }
-
+    })
+    .then(()=>props.history.push("/discovery"))
+  }
 
   return (
     <React.Fragment>
