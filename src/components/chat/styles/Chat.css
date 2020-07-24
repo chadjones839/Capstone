@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500&display=swap');
+
+.statusBar{
+  position: -webkit-sticky;
+  position: sticky; top: 0px;
+}
+
+.chatContainer {
+  padding: 0px 10px 10px 
+}
+.chatHeader {
+  font-family: 'Comfortaa', cursive;
+  padding-top: 20px;
+  padding-bottom: 15px;
+  background: linear-gradient(to bottom, #FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF, transparent);
+  position: -webkit-sticky;
+  position: sticky; top: 19px;
+  margin-bottom: 10px;
+}
+
