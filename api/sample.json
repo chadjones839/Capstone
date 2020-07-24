@@ -1,0 +1,82 @@
+{
+"users": [
+  {
+    "email": "charlie@paddyspub.com",
+    "password": "nitecroller",
+    "id": 1
+  },
+  {
+    "email": "warren.vidic@abstergo.com",
+    "password": "nitecroller",
+    "id": 2
+  },
+  {
+    "email": "RogerSterling@sterlingcooper.com",
+    "password": "luckystrike",
+    "id": 3
+  },
+  {
+    "email": "harveyslotnick@gmail.com",
+    "password": "bigchungus",
+    "id": 4
+  }
+],
+"user_employers": [
+  {
+    "userId": 2,
+    "employerId": 1
+  },
+  {
+    "userId": 3,
+    "employerId": 2
+  }
+],
+"employers": [
+  {
+    "employerId": 1,
+    "companyName": "",
+    "industry": "",
+    "companyLocation": "",
+    "discoverCandidates": true,
+    "discoverEmployers": false
+  },
+  {
+    "employerId": 2,
+    "companyName": "",
+    "industry": "",
+    "companyLocation": "",
+    "discoverCandidates": true,
+    "discoverEmployers": false
+  }
+],
+"user_candidates": [
+  {
+    "userId": 1,
+    "candidateId": 1
+  },
+  {
+    "userId": 4,
+    "candidateId": 2
+  }
+],
+"candidates": [
+  {
+    "candidateId": 1,
+    "firstName": "",
+    "lastName": "",
+    "userLocation": "",
+    "jobTitle": "",
+    "industry": "",
+    "discoverEmployers": true,
+    "discoverCandidates": false
+  },
+  {
+    "employerId": 2,
+    "companyName": "",
+    "industry": "",
+    "companyLocation": "",
+    "discoverCandidates": true,
+    "discoverEmployers": false
+  }
+]
+}

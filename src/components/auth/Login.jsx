@@ -1,40 +1,84 @@
 import React, { useState } from "react"
+import LoginManager from "../modules/LoginManager";
 import { Link } from "react-router-dom";
 
+let activeSession = {}
 
 const Login = props => {
 
-  return (
-    <div className="limiter">
-      <div className="loginBoxContainer">
-        <div className ="loginImages">
-          <div className ="loginMain">
-            <img src="./techBack.jpg" alt="logo" />
-            <div className ="loginLogo">
-              <div className="logoContainer">
-                <img src="./techtok.png" alt="logo" />
-              </div>
-            </div>
-          </div>
-        </div>
+  const [user, setUser] = useState({email: "", password: ""});
 
-        <div className="loginBox">
-          <div className="authButtons">
-            <div className="loginButton">
-              <button type="submit" className="login-btn">
+  // Update state whenever an input field is edited
+  const handleFieldChange = (evt) => {
+    const stateToChange = { ...user};
+    stateToChange[evt.target.id] = evt.target.value;
+    setUser(stateToChange);
+    
+  };
+
+    const handleLogin = (e) => {
+      e.preventDefault();
+      let email = document.querySelector("#email").value
+      let password = document.querySelector("#password").value
+      LoginManager.getAll()
+      .then(users => {
+        users.find(user => {
+        if (user.email === email && user.password === password) {
+          sessionStorage.setItem('user', JSON.stringify(user))
+          setUser(user);
+          activeSession = user;
+          props.history.push("/discovery");
+        } 
+        }
+        )
+      })
+    }
+
+
+  return (
+    <React.Fragment>
+      <div className="statusBar">
+        <img src="./statusbar.png" alt="status"/>
+      </div>
+      <div className="backButton">
+        <Link className="nav-link" to="/">
+          <button type="submit" className="backbutton">
+            <img src="./backarrow.png" alt="back" />
+          </button>
+        </Link>
+      </div>
+      <main className="loginContainer">
+        <h1 className="loginHeader">Login</h1>       
+
+        <form className="loginForm" onSubmit={handleLogin}>
+
+          <div className="form-input">
+            <input onChange={handleFieldChange} 
+              className="inputField" 
+              type="text" 
+              id="email" 
+              placeholder="Email" />
+          </div>
+
+          <div className="form-input">
+            <input onChange={handleFieldChange}
+              className="inputField" 
+              type="password" 
+              id="password" 
+              placeholder="Password" />
+          </div>
+
+          <div className="container-login-form-btn">
+            <div className="wrap-login-form-btn">
+              <div className="login-form-btn"></div>
+              <button type="submit" className="loginBtn">
                 Login
               </button>
             </div>
-            <div className="registerButton">
-              <button type="submit" className="register-btn">
-                Register
-              </button>
-            </div>
           </div>
-        </div>
-
-      </div>
-    </div>
+        </form>
+      </main>
+    </React.Fragment>
             
   );
   };

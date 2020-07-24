@@ -1,3 +1,6 @@
+@import "./components/auth/styles/Home.css";
 @import "./components/auth/styles/Login.css";
 @import "./components/discovery/styles/Discovery.css";
 @import "./components/nav/styles/Navbar.css";
+@import "./components/chat/styles/Chat.css";
+@import "./components/profile/styles/EmployerUserProfile.css";
