@@ -8,7 +8,7 @@ export default {
   getAll() {
       return fetch(`${remoteURL}/users`).then(result => result.json())
   },
-  post(newUser) {
+  postUser(newUser) {
       return fetch(`${remoteURL}/users`, {
           method: "POST",
           headers: {

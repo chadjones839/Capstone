@@ -2,6 +2,8 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
 import Home from "./components/auth/Home.jsx";
+import Register from "./components/auth/Register.jsx";
+import RegisterEmployer from "./components/auth/RegisterEmployer.jsx";
 import Login from "./components/auth/Login.jsx";
 
 import EmployerDiscovery from "./components/discovery/EmployerDiscoveryList.jsx";
@@ -20,6 +22,20 @@ const ApplicationViews = (props) => {
         path="/" 
         render={props => {
           return <Home />
+      }} 
+      />
+      <Route 
+        exact
+        path="/register" 
+        render={props => {
+          return <Register {...props} />
+      }} 
+      />
+      <Route 
+        exact
+        path="/register-employer" 
+        render={props => {
+          return <RegisterEmployer {...props} />
       }} 
       />
       <Route 
