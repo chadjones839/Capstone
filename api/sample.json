@@ -1,82 +1,92 @@
 {
-"users": [
-  {
-    "email": "charlie@paddyspub.com",
-    "password": "nitecroller",
-    "id": 1
-  },
-  {
-    "email": "warren.vidic@abstergo.com",
-    "password": "nitecroller",
-    "id": 2
-  },
-  {
-    "email": "RogerSterling@sterlingcooper.com",
-    "password": "luckystrike",
-    "id": 3
-  },
-  {
-    "email": "harveyslotnick@gmail.com",
-    "password": "bigchungus",
-    "id": 4
-  }
-],
-"user_employers": [
-  {
-    "userId": 2,
-    "employerId": 1
-  },
-  {
-    "userId": 3,
-    "employerId": 2
-  }
-],
-"employers": [
-  {
-    "employerId": 1,
-    "companyName": "",
-    "industry": "",
-    "companyLocation": "",
-    "discoverCandidates": true,
-    "discoverEmployers": false
-  },
-  {
-    "employerId": 2,
-    "companyName": "",
-    "industry": "",
-    "companyLocation": "",
-    "discoverCandidates": true,
-    "discoverEmployers": false
-  }
-],
-"user_candidates": [
-  {
-    "userId": 1,
-    "candidateId": 1
-  },
-  {
-    "userId": 4,
-    "candidateId": 2
-  }
-],
-"candidates": [
-  {
-    "candidateId": 1,
-    "firstName": "",
-    "lastName": "",
-    "userLocation": "",
-    "jobTitle": "",
-    "industry": "",
-    "discoverEmployers": true,
-    "discoverCandidates": false
-  },
-  {
-    "employerId": 2,
-    "companyName": "",
-    "industry": "",
-    "companyLocation": "",
-    "discoverCandidates": true,
-    "discoverEmployers": false
-  }
-]
+  "users": [
+    {
+      "id": 1,
+      "email": "charlie@paddyspub.com",
+      "password": "nitecroller",
+      "accountType": "candidate",
+      "discoverEmployers": true,
+      "discoverCandidates": false,
+      "employerDetails": {
+        "companyName": "",
+        "industry": "",
+        "companyLocation": "",
+        "bio": ""
+      },
+      "candidateDetails": {
+        "firstName": "Charlie",
+        "lastName": "Kelly",
+        "userLocation": "Nashville, TN",
+        "jobTitle": "Full Stack Developer",
+        "industry": "Restaurant",
+        "bio": ""
+      }
+    },
+    {
+      "id": 2,
+      "email": "warren.vidic@abstergo.com",
+      "password": "nitecroller",
+      "accountType": "employer",
+      "discoverEmployers": false,
+      "discoverCandidates": true,
+      "employerDetails": {
+        "companyName": "Abstergo Industries",
+        "industry": "World Domination",
+        "companyLocation": "Nashville, TN",
+        "bio": "The destruction of the Assassin Order, the procurement of advanced technologies originally created by the First Civilization, and establishing a New World Order is our primary goal. Then on Fridays, we have our Hawaiian shirt days. If you want to you can go ahead and wear a Hawaiian shirt and jeans."
+      },
+      "candidateDetails": {
+        "firstName": "",
+        "lastName": "",
+        "userLocation": "",
+        "jobTitle": "",
+        "industry": "",
+        "bio": ""
+      }
+    },
+    {
+      "id": 3,
+      "email": "RogerSterling@sterlingcooper.com",
+      "password": "luckystrike",
+      "accountType": "employer",
+      "discoverEmployers": false,
+      "discoverCandidates": true,
+      "employerDetails": {
+        "companyName": "Sterling Cooper",
+        "industry": "Advertising",
+        "companyLocation": "Nashville, TN",
+        "bio": ""
+      },
+      "candidateDetails": {
+        "firstName": "",
+        "lastName": "",
+        "userLocation": "",
+        "jobTitle": "",
+        "industry": "",
+        "bio": ""
+      }
+    },
+    {
+      "id": 4,
+      "email": "harveyslotnick@gmail.com",
+      "password": "bigchungus",
+      "accountType": "candidate",
+      "discoverEmployers": true,
+      "discoverCandidates": false,
+      "employerDetails": {
+        "companyName": "",
+        "industry": "",
+        "companyLocation": "",
+        "bio": ""
+      },
+      "candidateDetails": {
+        "firstName": "Harvey",
+        "lastName": "Slotnick",
+        "userLocation": "Nashville, TN",
+        "jobTitle": "Full Stack Developer",
+        "industry": "Healthcare",
+        "bio": ""
+      }
+    }
+  ]
 }

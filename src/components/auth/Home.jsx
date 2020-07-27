@@ -20,16 +20,18 @@ const Home = props => {
         <div className="loginBox">
           <div className="authButtons">
             <div className="loginButton">
-            <Link className="nav-link" to="/login"> 
-              <button type="submit" className="login-btn">
-                Login
-              </button>
-            </Link>
+              <Link to="/login"> 
+                <button type="submit" className="login-btn">
+                  Login
+                </button>
+              </Link>
             </div>
             <div className="registerButton">
-              <button type="submit" className="register-btn">
-                Register
-              </button>
+              <Link className="nav-link" to="/register">
+                <button type="submit" className="register-btn">
+                  Register
+                </button>
+              </Link>
             </div>
           </div>
         </div>

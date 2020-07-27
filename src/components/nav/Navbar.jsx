@@ -13,7 +13,7 @@ const NavBar = () => {
           </Link>
         </li>
         <li>
-          <Link className="nav-link" to="/"> 
+          <Link className="nav-link" to="/discovery"> 
             <button type="submit" className="discoveryNavButton">
               +
             </button> 

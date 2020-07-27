@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 
 
-const EmployerProfileCard = props => {
+const EmployerProfile = props => {
 
   const sessionUser = JSON.parse(sessionStorage.getItem("user"))
   
@@ -11,10 +11,11 @@ const EmployerProfileCard = props => {
     setHasUser(sessionUser)
   }
   
-  const [hasUser, setHasUser] = useState(sessionUser !== null);
+  const [ hasUser, setHasUser ] = useState(sessionUser !== null);
 
-  return (
-    <React.Fragment>
+  if (sessionUser.id === props.user.id) {
+    return (
+      <React.Fragment>
         <section className="profileHeader">
           <div className="logoutButton">
             <Link to="/login">
@@ -29,7 +30,7 @@ const EmployerProfileCard = props => {
           </div>
           <div className="userProfile__image">
             <div className="userImage__container">
-              <img src="./abstergo.jpg" alt="logo" />
+              <img src={require(`../images/users/${props.user.image}`)} alt={props.user.companyName} />
             </div>
           </div>
           <div className="userProfile__right">
@@ -37,33 +38,41 @@ const EmployerProfileCard = props => {
         </section>
         <section className="userProfile__details">
           <div className="userProfile__name">
-            <h2>Abstergo Industries</h2>
+            <h2>{props.user.companyName}</h2>
           </div>
           <div className="userProfile__location">
-            Nashville, TN
+          {props.user.userLocation}
           </div>
         </section>
         <section className="editProfileButton">
           <div className="editBtnContainer">
-            <button type="submit" className="blackBtn">
-              Edit Profile
-            </button>
+              <button 
+                onClick={() => props.history.push(`/users/${props.user.id}/edit`)}
+                className="blackBtn"
+                type="button"
+                >
+                  Edit Profile
+              </button>
           </div>
         </section>
         <section className="profileDetails">
           <dl>
             <dt>Company Name</dt>
-              <dd>Abstergo Industries</dd>
+              <dd>{props.user.companyName}</dd>
             <dt>Industry</dt>
-              <dd>World Domination</dd>
+              <dd>{props.user.industry}</dd>
             <dt>Location</dt>
-              <dd>Nashville, TN</dd>
+              <dd>{props.user.userLocation}</dd>
             <dt>Bio</dt>
-              <dd>The destruction of the Assassin Order, the procurement of advanced technologies originally created by the First Civilization, and establishing a New World Order is our primary goal. Then on Fridays, we have our Hawaiian shirt days. If you want to you can go ahead and wear a Hawaiian shirt and jeans.</dd>
+              <dd>{props.user.bio}</dd>
           </dl>
         </section>
-      </React.Fragment>
-)}
+    </React.Fragment>
+  )}
+  else {
+    return null
+  }
+}
 
 
-export default EmployerProfileCard;
+export default EmployerProfile;

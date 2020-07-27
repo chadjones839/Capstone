@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from "../nav/Navbar.jsx"
 import UserManager from "../modules/UserManager";
-import EmployerDiscoveryCard from "../discovery/EmployerDiscoveryCard";
+import CandidateDiscoveryCard from "../discovery/CandidateDiscoveryCard";
 
-const EmployerDiscovery = props => {
+const CandidateDiscovery = props => {
 
   const [users, setUsers] = useState([]);
 
@@ -24,11 +24,11 @@ const EmployerDiscovery = props => {
       </div>
       <main className="discoveryContainer">
         <h1 className="discoveryHeader">Discovery</h1>
-          {users.map(user =>
-            <EmployerDiscoveryCard 
-              key={user.id} 
-              user={user}
-              {...props} />
+          {users.map(user => 
+            <CandidateDiscoveryCard 
+            key={user.id} 
+            user={user}
+            {...props} />
           )}
       </main>
 
@@ -54,4 +54,4 @@ const EmployerDiscovery = props => {
   );
 };
 
-export default EmployerDiscovery;
+export default CandidateDiscovery;

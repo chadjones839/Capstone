@@ -3,6 +3,7 @@ import LoginManager from "../modules/LoginManager";
 import { Link } from "react-router-dom";
 
 
+
 const Login = props => {
 
   const [credentials, setCredentials] = useState({email: "", password: ""});
@@ -27,8 +28,14 @@ const Login = props => {
         } 
       })
     })
-    .then(()=>props.history.push("/discovery"))
-  }
+    .then(() => 
+    props.history.push("/discovery")
+    )
+    .then(() => 
+    window.location.reload(true)
+  )
+}
+
 
   return (
     <React.Fragment>
