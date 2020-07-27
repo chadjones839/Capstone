@@ -9,7 +9,7 @@ const Register = props => {
       <h1>Type of Account</h1>
           <div className="typeButtons">
             <div className="candidateButton">
-              <Link to="/login"> 
+              <Link to="/register-candidate"> 
                 <button type="submit" className="reg-candidateBtn">
                   Looking for Work
                 </button>

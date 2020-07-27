@@ -12,7 +12,7 @@ const TechTok = () => {
     sessionStorage.setItem("user", JSON.stringify(user));
     setHasUser(isAuthenticated());
   };
-console.log(hasUser)
+
   return (
     <>
       <ApplicationViews hasUser={hasUser} setUser={setUser} />

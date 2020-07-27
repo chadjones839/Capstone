@@ -2,14 +2,14 @@ import React, {useState} from "react";
 import LoginManager from "../modules/LoginManager";
 
 
-const RegisterCandidate = props => {
+const RegisterEmployer = props => {
   const [user, setUser] = useState({
     email:"", 
     password:"", 
-    accountType: "employer",
-    image: "companyicon.png",
-    discoverCandidates: true,
-    discoverEmployers: false, 
+    accountType: "candidate",
+    image: "usericon.png",
+    discoverCandidates: false,
+    discoverEmployers: true,
     companyName: "",
     industry: "",
     userLocation: "",
@@ -17,7 +17,7 @@ const RegisterCandidate = props => {
     lastName: "",
     jobTitle: "",
     bio: ""
-    })
+  })
 
   const [isLoading, setIsLoading]= useState(false);
 
@@ -31,7 +31,7 @@ const RegisterCandidate = props => {
     evt.preventDefault();
     let password2= document.querySelector("#password2").value
     if (user.email === "" || user.password === "") {
-      window.alert("Please fill all fields out before creating a new account")
+      window.alert("Missing fields")
     } 
     else if (user.password !== password2) {
       window.alert("Your password does not match")
@@ -41,7 +41,9 @@ const RegisterCandidate = props => {
       sessionStorage.setItem("user", JSON.stringify(user))
       setUser(user)
       LoginManager.postUser(user)
-      .then(()=>props.history.push("/discovery"));
+      .then(()=> 
+        window.location.reload(true),
+        props.history.push("/discovery"));
     }
   };
 
@@ -100,4 +102,4 @@ const RegisterCandidate = props => {
   );
 };
 
-export default RegisterCandidate;
+export default RegisterEmployer;
