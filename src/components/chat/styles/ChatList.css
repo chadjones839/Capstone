@@ -1,0 +1,58 @@
+.statusBar{
+  position: -webkit-sticky;
+  position: sticky; top: 0px;
+}
+
+.chatHeader {
+  font-family: 'Roboto', cursive;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid black;
+  text-align: center;
+  background: #ececec;
+  position: -webkit-sticky;
+  position: sticky; top: 19px;
+  margin-bottom: 15px;
+}
+
+.chatCard {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 15px;
+  border-bottom: 1px #373737 solid;
+  justify-content: center;
+  margin: 0 10px 15px 10px
+}
+
+.chatHeader > h3 {
+  margin: 10px 0;
+}
+
+.userImageContainer {
+  width: 20%;
+  height: auto;
+  align-items: center;
+}
+
+.userImage > img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+
+.messageDetailsContainer {
+  width: 100%
+}
+
+.messageUserName > h4 {
+  margin: 0 0 0 10px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600px;
+}
+
+.messagePreview {
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  margin: 2px 0 0px 10px;
+  padding-right: 10px;
+}

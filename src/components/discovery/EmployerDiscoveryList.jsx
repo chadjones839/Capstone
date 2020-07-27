@@ -31,22 +31,6 @@ const EmployerDiscovery = props => {
               {...props} />
           )}
       </main>
-
-      {/* <section className="interestButtons">
-        <div className="interestButtons__container">
-          <div className="interestBtn__false">
-            <button type="submit" className="interestBtn">
-              <img src="./X-icon.png" alt="profile" />
-            </button> 
-          </div>
-          <div className="interestBtn__true">
-            <button type="submit" className="interestBtn">
-              <img src="./check-icon.png" alt="profile" />
-            </button> 
-          </div>
-        </div>
-      </section> */}
-
       <div className="navpanel">
         <Navbar />
       </div>

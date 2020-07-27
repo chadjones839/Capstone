@@ -46,29 +46,59 @@
 
 .interestButtons {
   width: 100%;
-  position: fixed;
-  bottom: 60px;
-  background: linear-gradient(to top, #FFFFFF, #FFFFFF, transparent);
 }
 
 .interestButtons__container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .interestBtn__false,
 .interestBtn__true {
-  width: 90px;
+  width: 48%;
   height: auto;
 }
 
-.interestBtn {
-  border: none;
-  background: none;
-  outline: none;
-}
-
-.interestBtn > img {
+.falseBtn {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 15px;
+  line-height: 0px;
+  color: #000000;
+  font-family: 'Roboto', sans-serif;
   width: 100%;
-  height: auto;
+  height: 60px;
+  font-size: 24px;
+  font-weight: 500;
+  padding: 13px;
+  background-color: #FFFFFF;
+  border: solid #000000 2px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+}
+
+.trueBtn {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 15px;
+  line-height: 0px;
+  color: #FFFFFF;
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+  height: 60px;
+  font-size: 24px;
+  font-weight: 500;
+  padding: 13px;
+  background-color: #1b6609;
+  border: solid #1b6609 2px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+}
+
+.cardBreak {
+  border-bottom: 2px #373737 solid;
 }

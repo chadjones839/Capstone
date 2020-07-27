@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 import Navbar from "../nav/Navbar.jsx"
 
@@ -9,10 +9,7 @@ const CandidateProfile = props => {
   
   const clearUser = () => {
     sessionStorage.clear()
-    setHasUser(sessionUser)
   }
-  
-  const [ hasUser, setHasUser ] = useState(sessionUser !== null);
 
   if (sessionUser.id === props.user.id) {
     return (

@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import ChatManager from "../modules/ChatManager";
 import Navbar from "../nav/Navbar.jsx"
+import ChatCard from "../chat/ChatCard";
 
-const Chat = () => {
+const ChatList = props => {
+
+  const [chats, setChats] = useState([]);
+  const [users, setusers] = useState([]);
+
+  const getChats = () => {
+    return ChatManager.getAllChats()
+      .then(chatsFromAPI => {
+        setChats(chatsFromAPI)
+        setusers(chatsFromAPI.users)
+      });
+    };
+
+  useEffect(() => {
+    getChats();
+  }, []);
 
   return (
     <React.Fragment>
@@ -9,8 +26,14 @@ const Chat = () => {
           <img src="./statusbar.png" alt="status"/>
       </div>
       <main className="chatContainer">
-        <h1 className="chatHeader">Chat</h1>
-
+        <div className="chatHeader">
+          <h3>Chats</h3>
+        </div>
+        {chats.map(chat => 
+          <ChatCard 
+            key={chat.id} 
+            chat={chat}
+            {...props} />)}     
       </main>
 
       <div className="navpanel">
@@ -20,4 +43,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export default ChatList;
