@@ -5,20 +5,23 @@ import ChatCard from "../chat/ChatCard";
 
 const ChatList = props => {
 
-  const [chats, setChats] = useState([]);
-  const [users, setusers] = useState([]);
+  const sessionUser = JSON.parse(sessionStorage.getItem("user"))
 
-  const getChats = () => {
-    return ChatManager.getAllChats()
-      .then(chatsFromAPI => {
-        setChats(chatsFromAPI)
-        setusers(chatsFromAPI.users)
-      });
-    };
+  // const [users, setUsers] = useState([]);
+  const [chats, setChats] = useState([]);
+
+  const getChats =() => {
+    return ChatManager.getWithUsers()
+      .then(APIresults => {
+        setChats(APIresults)
+      })
+  }
 
   useEffect(() => {
     getChats();
   }, []);
+
+
 
   return (
     <React.Fragment>
@@ -27,20 +30,23 @@ const ChatList = props => {
       </div>
       <main className="chatContainer">
         <div className="chatHeader">
-          <h3>Chats</h3>
+          <h3>Title</h3>
         </div>
+          
         {chats.map(chat => 
           <ChatCard 
             key={chat.id} 
             chat={chat}
-            {...props} />)}     
+            {...props}
+          />
+        )} 
       </main>
 
       <div className="navpanel">
         <Navbar />
       </div>
     </React.Fragment>
-  );
+  )
 };
 
 export default ChatList;

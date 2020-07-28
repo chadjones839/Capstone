@@ -18,7 +18,7 @@ export default {
       }).then(result=>result.json())
   },
   getWithUsers(id) {
-    return fetch(`${remoteURL}/chats/${id}?_embed=users`)
+    return fetch(`${remoteURL}/chats?_expand=user`)
             .then(result => result.json())
   }
 }

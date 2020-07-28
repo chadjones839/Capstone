@@ -21,17 +21,25 @@ const EmployerDiscoveryCard = props => {
         <section className="interestButtons">
         <div className="interestButtons__container">
           <div className="interestBtn__false">
-            <button type="submit" className="interestBtn">
-              <img src="./X-icon.png" alt="profile" />
+            <button type="submit" className="falseBtn">
+              Hard Pass
             </button> 
           </div>
           <div className="interestBtn__true">
-            <button type="submit" className="interestBtn">
-              <img src="./check-icon.png" alt="profile" />
+            <button 
+              type="submit" 
+              className="trueBtn" 
+              onClick={()=> props.createMatch(props.user.id)}>
+              Let's Talk
             </button> 
           </div>
         </div>
       </section>
+      <br />
+      <br />
+      <div className="cardBreak"></div>
+      <br />
+      <br />
     </React.Fragment>
     )}
     else if (props.user.accountType !== "employer") {
