@@ -12,5 +12,9 @@ export default {
   getWithChats(id) {
     return fetch(`${remoteURL}/users/${id}?_embed=chats`)
       .then(result => result.json())
+  },
+  getWithMatches() {
+    return fetch(`${remoteURL}/users?_embed=matches`)
+      .then(result => result.json())
   }
 }

@@ -17,8 +17,12 @@ export default {
           body: JSON.stringify(newChat)
       }).then(result=>result.json())
   },
-  getWithUsers(id) {
+  getWithUsers() {
     return fetch(`${remoteURL}/chats?_expand=user`)
+            .then(result => result.json())
+  },
+  getWithUsersMessages() {
+    return fetch(`${remoteURL}/chats?_expand=user&_embed=messages`)
             .then(result => result.json())
   }
 }

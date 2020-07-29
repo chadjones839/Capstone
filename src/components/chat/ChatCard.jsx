@@ -3,6 +3,7 @@ import React from "react";
 const ChatCard = props => {
 
   const sessionUser = JSON.parse(sessionStorage.getItem("user"));
+  console.log('CONSOLED MESSAGE', props.chat.messages[0])
 
   if (sessionUser.id === props.chat.userId) {
     return (
@@ -18,7 +19,7 @@ const ChatCard = props => {
               <h4>{props.chat.user.companyName}</h4>
             </div>
             <p className="messagePreview">
-              Are you ready to join the Templar Brotherhood and rid the world of the Assassins order?
+            {props.chat.messages.content}
             </p>
           </div>
         </section>
@@ -38,7 +39,7 @@ const ChatCard = props => {
               <h4>{props.chat.user.companyName}</h4>
             </div>
             <p className="messagePreview">
-              Are you ready to join the Templar Brotherhood and rid the world of the Assassins order?
+              {props.chat.messages.content}
             </p>
           </div>
         </section>

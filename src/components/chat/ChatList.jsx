@@ -5,13 +5,10 @@ import ChatCard from "../chat/ChatCard";
 
 const ChatList = props => {
 
-  const sessionUser = JSON.parse(sessionStorage.getItem("user"))
-
-  // const [users, setUsers] = useState([]);
   const [chats, setChats] = useState([]);
 
   const getChats =() => {
-    return ChatManager.getWithUsers()
+    return ChatManager.getWithUsersMessages()
       .then(APIresults => {
         setChats(APIresults)
       })
@@ -21,8 +18,6 @@ const ChatList = props => {
     getChats();
   }, []);
 
-
-
   return (
     <React.Fragment>
       <div className="statusBar">
@@ -30,7 +25,7 @@ const ChatList = props => {
       </div>
       <main className="chatContainer">
         <div className="chatHeader">
-          <h3>Title</h3>
+          <h3>Chats</h3>
         </div>
           
         {chats.map(chat => 

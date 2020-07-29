@@ -25,5 +25,16 @@ export default {
         },
         body: JSON.stringify(editedMatch)
     }).then(data => data.json());
+  },
+  getWithUser(id) {
+    return fetch(`${remoteURL}/matches/?userId=${id}&_expand=user`)
+      .then(result => result.json())
   }
 }
+
+// const editedMatch = {
+//     userId: props.user.id,
+//     matchUserId: sessionUser.id,
+//     mutualInterest: true,
+//     id: props.user.matches.id
+//   };
