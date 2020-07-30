@@ -1,43 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from "../nav/Navbar.jsx"
 import UserManager from "../modules/UserManager";
-import MatchManager from "../modules/MatchManager.jsx";
 import EmployerDiscoveryCard from "../discovery/EmployerDiscoveryCard";
 
 const EmployerDiscovery = props => {
 
-  const sessionUser = JSON.parse(sessionStorage.getItem("user"))
-
   const [users, setUsers] = useState([]);
-  const [match, setMatch] = useState({ 
-    userId: "", 
-    matchUserId: "", 
-    mutualInterest: false})
+
 
   const getUsers = () => {
-    return UserManager.getWithMatches()
+    return UserManager.getWithFriends()
   };
-
-  const getMatch = () => {
-    return MatchManager.getMatch()
-  };
-
-  const createMatch = (id) => {
-      match.userId = sessionUser.id
-      match.matchUserId = id
-      match.mutualInterest = false
-      MatchManager.postMatch(match)
-      console.log('NEW MATCH', match)
-    }
 
   useEffect(() => {
     getUsers()
     .then((userResponse) => {
-      getMatch()   
-      .then((matchResponse) => {
-        setUsers(userResponse)
-        setMatch(matchResponse)
-      })
+      setUsers(userResponse)
     })
   }, [])
 
@@ -52,7 +30,6 @@ const EmployerDiscovery = props => {
             <EmployerDiscoveryCard 
               key={user.id} 
               user={user}
-              createMatch={createMatch}
               {...props} />
           )}
       </main>

@@ -13,8 +13,8 @@ export default {
     return fetch(`${remoteURL}/users/${id}?_embed=chats`)
       .then(result => result.json())
   },
-  getWithMatches() {
-    return fetch(`${remoteURL}/users?_embed=matches`)
+  getWithFriends() {
+    return fetch(`${remoteURL}/users?_embed=friends`)
       .then(result => result.json())
   }
 }

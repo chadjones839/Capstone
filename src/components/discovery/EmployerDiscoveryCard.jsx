@@ -1,102 +1,73 @@
 import React, { useState, useEffect } from 'react';
-import MatchManager from "../modules/MatchManager.jsx";
-
+import FriendManager from "../modules/FriendManager.jsx";
 
 const EmployerDiscoveryCard = props => {
   
-  const sessionUser = JSON.parse(sessionStorage.getItem("user"))  
-  const [match, setMatch] = useState([]);
- 
+  const sessionUser = JSON.parse(sessionStorage.getItem("user")) 
+  const [friends, setFriends] = useState([]) 
+  const [friend, setFriend] = useState({ 
+    userId: "", 
+    activeUserId: "", 
+    mutualInterest: false})
 
-  const getMatch = () => {
-    return MatchManager.getMatch()
-  };
-
-  
-  const updateMatch = (id) => { 
-    
-    const editedMatch = {
+  const friendHandler = (id) => { 
+    console.log('CLICKED FRIEND HANDLER')
+    const editedFriend = {
       userId: props.user.id,
-      matchUserId: sessionUser.id,
+      activeUserId: sessionUser.id,
       mutualInterest: true,
-      id: id
+      id: friends.id
     };
-    MatchManager.editMatch(editedMatch)
-    console.log('EDIT MATCH', editedMatch)
+    console.log('FRIENDS', friends)
+    
+    friends.findIndex(friend => {
+      if (friend.userId === props.user.id && friend.activeUserId === sessionUser.id) {
+        console.log(friend)
+        editedFriend.id = friends.id
+        FriendManager.editFriend(editedFriend)
+        console.log('EDIT friend', editedFriend)
+        return friend 
+      } 
+      else if (friend.userId !== sessionUser.id && friend.activeUserId !== props.user.id && friend.userId !== props.user.id && friend.activeUserId !== sessionUser.id) {
+        console.log('CREATE FRIEND')
+        createFriend(props.user.id)
+        return friend
+      }
+    })    
+  }
+  
+  const createFriend = (id) => {
+    friend.userId = sessionUser.id
+    friend.activeUserId = id
+    friend.mutualInterest = false
+    FriendManager.postFriend(friend)
+    console.log('NEW FRIEND', friend)
   }
   
   useEffect(() => {
-    getMatch()
-      .then((matchResponse) => {
-        setMatch(matchResponse)
-
+    FriendManager.getAllFriends()
+      .then((response) => {
+        setFriends(response)
     })
   }, [])
 
-  // props.user.matches[0].matchUserId
-
   if (props.user.accountType === "employer") {
-    if (props.user.matches.length > 0) {
-      if (props.user.matches[0].matchUserId) {
-        return (
-          <React.Fragment>
-            <section className="employerCard">
-              <div className="employerCard__image">
-                <img src={require(`../images/users/${props.user.image}`)}  alt={props.user.companyName} className="employerCard__logo"/>
-              </div>
-              <div className="employerDetails">
-                <h2 className="employerCard__name">{props.user.companyName}</h2>
-                <h4 className="employerCard__industry">{props.user.industry}</h4>
-              </div>
-              <div className="employerCard__body">
-                {props.user.bio}
-              </div>
-              <br />
-            </section>
-            <section className="interestButtons">
-            <div className="interestButtons__container">
-              <div className="interestBtn__false">
-                <button type="submit" className="falseBtn">
-                  Hard Pass
-                </button> 
-              </div>
-              <div className="interestBtn__true">
-                <button 
-                  type="submit" 
-                  className="trueBtn" 
-                  onClick={()=>updateMatch(props.user.matches[0].id)}>
-                    Let's Talk
-                </button> 
-              </div>
-            </div>
-          </section>
+    return (
+      <React.Fragment>
+        <section className="employerCard">
+          <div className="employerCard__image">
+            <img src={require(`../images/users/${props.user.image}`)}  alt={props.user.companyName} className="employerCard__logo"/>
+          </div>
+          <div className="employerDetails">
+            <h2 className="employerCard__name">{props.user.companyName}</h2>
+            <h4 className="employerCard__industry">{props.user.industry}</h4>
+          </div>
+          <div className="employerCard__body">
+            {props.user.bio}
+          </div>
           <br />
-          <br />
-          <div className="cardBreak"></div>
-          <br />
-          <br />
-        </React.Fragment>
-        
-      )}
-    }
-    else {
-      console.log('CREATE')
-      return (
-        <React.Fragment>
-          <section className="employerCard">
-            <div className="employerCard__image">
-              <img src={require(`../images/users/${props.user.image}`)}  alt={props.user.companyName} className="employerCard__logo"/>
-            </div>
-            <div className="employerDetails">
-              <h2 className="employerCard__name">{props.user.companyName}</h2>
-              <h4 className="employerCard__industry">{props.user.industry}</h4>
-            </div>
-            <div className="employerCard__body">
-              {props.user.bio}
-            </div>
-            <br />
-          </section>
-          <section className="interestButtons">
+        </section>
+        <section className="interestButtons">
           <div className="interestButtons__container">
             <div className="interestBtn__false">
               <button type="submit" className="falseBtn">
@@ -107,7 +78,7 @@ const EmployerDiscoveryCard = props => {
               <button 
                 type="submit" 
                 className="trueBtn" 
-                onClick={()=>props.createMatch(props.user.id)}>
+                onClick={friendHandler}>
                   Let's Talk
               </button> 
             </div>
@@ -119,12 +90,12 @@ const EmployerDiscoveryCard = props => {
         <br />
         <br />
       </React.Fragment>
-      )}
-    }
-    else if (props.user.accountType !== "employer") {
-      return null
-    }
+    )
   }
+  else {
+    return null
+  }
+}
 
 
 export default EmployerDiscoveryCard;
