@@ -114,56 +114,56 @@ const EditEmployer = props => {
               <h3 className="editProfileHeader">Profile Details</h3>
 
               <label 
-                className="editEmployerLabel" 
+                className="editLabel" 
                 htmlFor="companyName">
                   Company Name
               </label>
               <input 
                 type="text"
                 required
-                className="editEmployerInput"  
+                className="editInput"  
                 onChange={handleFieldChange}
                 id="companyName"
                 value={user.companyName}
               />
 
               <label 
-                className="editEmployerLabel" 
+                className="editLabel" 
                 htmlFor="industry">
                   Industry
               </label>
               <input 
                 type="text"
                 required
-                className="editEmployerInput"   
+                className="editInput"   
                 onChange={handleFieldChange}
                 id="industry"
                 value={user.industry}
               />
 
               <label 
-                className="editEmployerLabel" 
+                className="editLabel" 
                 htmlFor="userLocation">
                   Location
               </label>
               <input 
                 type="text"
                 required
-                className="editEmployerInput"  
+                className="editInput"  
                 onChange={handleFieldChange}
                 id="userLocation"
                 value={user.userLocation}
               />
 
               <label 
-                className="editEmployerLabel" 
+                className="editLabel" 
                 htmlFor="bio">
                   Bio
               </label>
               <textarea  
                 type="text"
                 required
-                className="editEmployerInput"  
+                className="editInput"  
                 onChange={handleFieldChange}
                 id="bio"
                 value={user.bio}
@@ -173,42 +173,42 @@ const EditEmployer = props => {
               <h3 className="editProfileHeader">Account Details</h3>
 
               <label 
-                className="editEmployerLabel" 
+                className="editLabel" 
                 htmlFor="email">
                   Email
               </label>
               <input 
                 type="email"
                 required
-                className="editEmployerInput"  
+                className="editInput"  
                 onChange={handleFieldChange}
                 id="email"
                 value={user.email}
               />
 
               <label 
-                className="editEmployerLabel" 
+                className="editLabel" 
                 htmlFor="password">
                   New Password
               </label>
               <input 
                 type="password"
                 required
-                className="editEmployerInput"  
+                className="editInput"  
                 onChange={handleFieldChange}
                 id="password"
                 value={user.password}
               />
 
               <label 
-                className="editEmployerLabel" 
+                className="editLabel" 
                 htmlFor="passwordConfirm">
                   Confirm New Password
               </label>
               <input  
                 type="password"
                 required
-                className="editEmployerInput"  
+                className="editInput"  
                 onChange={handleFieldChange}
                 id="passwordConfirm"
                 />

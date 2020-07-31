@@ -2,9 +2,19 @@ const remoteURL = "http://localhost:5002"
 
 export default {
   getUser(id) {
-    return fetch(`${remoteURL}/users/${id}`).then(result => result.json())
+    return fetch(`${remoteURL}/users/${id}`)
+      .then(result => result.json())
   },
   getAllUsers() {
-    return fetch(`${remoteURL}/users`).then(result => result.json())
+    return fetch(`${remoteURL}/users`)
+      .then(result => result.json())
+  },
+  getWithChats(id) {
+    return fetch(`${remoteURL}/users/${id}?_embed=chats`)
+      .then(result => result.json())
+  },
+  getWithFriends() {
+    return fetch(`${remoteURL}/users?_embed=friends`)
+      .then(result => result.json())
   }
 }

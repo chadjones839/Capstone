@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from "../nav/Navbar.jsx"
-import UserManager from "../modules/UserManager";
-import EmployerDiscoveryCard from "../discovery/EmployerDiscoveryCard";
+import ChatManager from "../modules/ChatManager";
+import MessageCard from "../messages/MessageCard";
 
-const EmployerDiscovery = props => {
+const MessageList = props => {
 
-  const [users, setUsers] = useState([]);
+  const [chats, setChats] = useState([]);
 
 
-  const getUsers = () => {
-    return UserManager.getWithFriends()
+  const getChats = () => {
+    return ChatManager.getWithMessages()
   };
 
   useEffect(() => {
-    getUsers()
+    getChats()
     .then((userResponse) => {
-      setUsers(userResponse)
+      setChats(userResponse)
     })
   }, [])
 
@@ -26,10 +26,10 @@ const EmployerDiscovery = props => {
       </div>
       <main className="discoveryContainer">
         <h1 className="discoveryHeader">Discovery</h1>
-          {users.map(user =>
-            <EmployerDiscoveryCard 
-              key={user.id} 
-              user={user}
+          {chats.map(message =>
+            <MessageCard 
+              key={message.id} 
+              message={message}
               {...props} />
           )}
       </main>
@@ -40,4 +40,4 @@ const EmployerDiscovery = props => {
   );
 };
 
-export default EmployerDiscovery;
+export default MessageList;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 
 
@@ -8,10 +8,7 @@ const EmployerProfile = props => {
   
   const clearUser = () => {
     sessionStorage.clear()
-    setHasUser(sessionUser)
   }
-  
-  const [ hasUser, setHasUser ] = useState(sessionUser !== null);
 
   if (sessionUser.id === props.user.id) {
     return (
