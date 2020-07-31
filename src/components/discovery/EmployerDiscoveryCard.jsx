@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import FriendManager from "../modules/FriendManager.jsx";
+import ChatManager from "../modules/ChatManager.jsx";
 
 const EmployerDiscoveryCard = props => {
   
@@ -10,30 +11,59 @@ const EmployerDiscoveryCard = props => {
     activeUserId: "", 
     mutualInterest: false})
 
-  const friendHandler = (id) => { 
+  const friendHandler = () => { 
     console.log('CLICKED FRIEND HANDLER')
+
     const editedFriend = {
       userId: props.user.id,
       activeUserId: sessionUser.id,
-      mutualInterest: true,
-      id: friends.id
+      mutualInterest: true
     };
+
+    const newChat = {
+      activeUserId: sessionUser.id,
+      userId: props.user.id
+    }
+
     console.log('FRIENDS', friends)
-    
-    friends.findIndex(friend => {
-      if (friend.userId === props.user.id && friend.activeUserId === sessionUser.id) {
-        console.log(friend)
-        editedFriend.id = friends.id
-        FriendManager.editFriend(editedFriend)
-        console.log('EDIT friend', editedFriend)
-        return friend 
+
+    friends.find(friend => {
+      console.log('BEFORE', friend)
+      if (
+        friend.userId === props.user.id &&
+        friend.activeUserId === sessionUser.id &&
+        friend.mutualInterest === false
+        ) {
+          console.log('FRIEND TO EDIT', friend)
+          editedFriend.id = friend.id
+          FriendManager.editFriend(editedFriend)
+          .then(()=> {
+            ChatManager.postChat(newChat)
+            console.log('EDITED FRIEND', editedFriend)
+            return friend
+        })
       } 
-      else if (friend.userId !== sessionUser.id && friend.activeUserId !== props.user.id && friend.userId !== props.user.id && friend.activeUserId !== sessionUser.id) {
-        console.log('CREATE FRIEND')
-        createFriend(props.user.id)
-        return friend
+      else if (
+        props.user.id
+        // friend.userId !== props.user.id &&
+        // friend.userId !== sessionUser.id &&
+        // friend.activeUserId !== props.user.id &&
+        // friend.activeUserId !== sessionUser.id &&
+        // friend.mutualInterest !== false &&
+        // friend.mutualInterest !== true
+        ) {
+          console.log('CREATE FRIEND')
+          createFriend(props.user.id)
+          return friend
+        }
+      else {
+        return null
       }
-    })    
+    })
+
+      // createFriend(id)
+      // return friend
+
   }
   
   const createFriend = (id) => {
@@ -41,7 +71,10 @@ const EmployerDiscoveryCard = props => {
     friend.activeUserId = id
     friend.mutualInterest = false
     FriendManager.postFriend(friend)
-    console.log('NEW FRIEND', friend)
+    .then(()=> {
+      console.log('NEW FRIEND', friend)
+      return friend
+    })
   }
   
   useEffect(() => {
@@ -78,7 +111,7 @@ const EmployerDiscoveryCard = props => {
               <button 
                 type="submit" 
                 className="trueBtn" 
-                onClick={friendHandler}>
+                onClick={() => friendHandler(props.user.id)}>
                   Let's Talk
               </button> 
             </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ChatCard = props => {
 
@@ -8,6 +9,7 @@ const ChatCard = props => {
   if (sessionUser.id === props.chat.userId) {
     return (
       <React.Fragment>
+        <Link to="/messages">
         <section className="chatCard">
           <div className="userImageContainer">
             <div className="userImage">
@@ -23,11 +25,13 @@ const ChatCard = props => {
             </p>
           </div>
         </section>
+        </Link>
       </React.Fragment>
   )}
   else if (sessionUser.id === props.chat.activeUserId) {
     return (
       <React.Fragment>
+        <Link to="/messages">
         <section className="chatCard">
           <div className="userImageContainer">
             <div className="userImage">
@@ -43,6 +47,7 @@ const ChatCard = props => {
             </p>
           </div>
         </section>
+        </Link>
       </React.Fragment>
   )}
   else {

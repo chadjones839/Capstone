@@ -21,7 +21,8 @@
   padding-bottom: 15px;
   border-bottom: 1px #373737 solid;
   justify-content: center;
-  margin: 0 10px 15px 10px
+  margin: 0 10px 15px 10px;
+  text-decoration: none;
 }
 
 .chatHeader > h3 {
@@ -48,6 +49,7 @@
   margin: 0 0 0 10px;
   font-family: "Roboto", sans-serif;
   font-weight: 600px;
+  
 }
 
 .messagePreview {

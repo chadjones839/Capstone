@@ -8,7 +8,7 @@ export default {
   getAllChats() {
       return fetch(`${remoteURL}/chats`).then(result => result.json())
   },
-  postChats(newChat) {
+  postChat(newChat) {
       return fetch(`${remoteURL}/chats`, {
           method: "POST",
           headers: {
@@ -19,10 +19,10 @@ export default {
   },
   getWithUsers() {
     return fetch(`${remoteURL}/chats?_expand=user`)
-            .then(result => result.json())
+        .then(result => result.json())
   },
-  getWithUsersMessages() {
-    return fetch(`${remoteURL}/chats?_expand=user&_embed=messages`)
-            .then(result => result.json())
+  getWithMessages() {
+    return fetch(`${remoteURL}/chats?_embed=messages`)
+        .then(result => result.json())
   }
 }

@@ -14,6 +14,7 @@ import EditEmployer from "./components/profile/EditEmployerProfile.jsx";
 import CandidateProfileRender from "./components/profile/CandidateProfileRender.jsx";
 import EditCandidate from "./components/profile/EditCandidateProfile.jsx";
 import Chat from "./components/chat/ChatList.jsx";
+import MessageList from "./components/messages/MessageList.jsx";
 
 const ApplicationViews = (props) => {
 
@@ -110,6 +111,18 @@ const ApplicationViews = (props) => {
         render={props => {
           if (hasUser) {
             return <Chat {...props} />
+          }
+          else {
+            return <Redirect to="/" />
+          }
+      }} 
+      />
+      <Route 
+        exact
+        path="/messages" 
+        render={props => {
+          if (hasUser) {
+            return <MessageList {...props} />
           }
           else {
             return <Redirect to="/" />

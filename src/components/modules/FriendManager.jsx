@@ -31,10 +31,3 @@ export default {
       .then(result => result.json())
   }
 }
-
-// const editedFriend = {
-//     userId: props.user.id,
-//     FriendUserId: sessionUser.id,
-//     mutualInterest: true,
-//     id: props.user.Friendes.id
-//   };

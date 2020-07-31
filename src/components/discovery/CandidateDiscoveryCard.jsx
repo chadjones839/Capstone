@@ -5,7 +5,7 @@ const CandidateDiscoveryCard = props => {
   
   const sessionUser = JSON.parse(sessionStorage.getItem("user")) 
   const [friends, setFriends] = useState([]) 
-  const [friend, setFriend] = useState({ 
+  const [newFriend, setNewFriend] = useState({ 
     userId: "", 
     activeUserId: "", 
     mutualInterest: false})
@@ -20,12 +20,13 @@ const CandidateDiscoveryCard = props => {
     };
     console.log('FRIENDS', friends)
     
-    friends.findIndex(friend => {
+    friends.filter(friend => {
       if (
         friend.userId === props.user.id && 
-        friend.activeUserId === sessionUser.id) {
+        friend.activeUserId === sessionUser.id &&
+        friend.mutualInterest === false) {
           console.log(friend)
-          editedFriend.id = friends.id
+          editedFriend.id = friend.id
           FriendManager.editFriend(editedFriend)
           console.log('EDIT friend', editedFriend)
           return friend 
@@ -34,20 +35,21 @@ const CandidateDiscoveryCard = props => {
         friend.userId !== sessionUser.id && 
         friend.userId !== props.user.id && 
         friend.activeUserId !== sessionUser.id && 
-        friend.activeUserId !== props.user.id) {
+        friend.activeUserId !== props.user.id &&
+        friend.mutualInterest === undefined) {
           console.log('CREATE FRIEND')
           createFriend(props.user.id)
-          return friend
+          return newFriend
       }
     })    
   }
   
   const createFriend = (id) => {
-    friend.userId = sessionUser.id
-    friend.activeUserId = id
-    friend.mutualInterest = false
-    FriendManager.postFriend(friend)
-    console.log('NEW FRIEND', friend)
+    newFriend.userId = sessionUser.id
+    newFriend.activeUserId = id
+    newFriend.mutualInterest = false
+    FriendManager.postFriend(newFriend)
+    console.log('NEW FRIEND', newFriend)
   }
   
   useEffect(() => {
