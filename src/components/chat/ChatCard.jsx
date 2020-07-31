@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 
 const ChatCard = props => {
 
-  const sessionUser = JSON.parse(sessionStorage.getItem("user"));
-  console.log('CONSOLED MESSAGE', props.chat.messages[0])
+  const sessionUser = JSON.parse(sessionStorage.getItem("user"))
 
   if (sessionUser.id === props.chat.userId) {
     return (
@@ -21,7 +20,7 @@ const ChatCard = props => {
               <h4>{props.chat.user.companyName}</h4>
             </div>
             <p className="messagePreview">
-            {props.chat.messages.content}
+            {/* {props.chat.messages.content} */}
             </p>
           </div>
         </section>
@@ -43,7 +42,7 @@ const ChatCard = props => {
               <h4>{props.chat.user.companyName}</h4>
             </div>
             <p className="messagePreview">
-              {props.chat.messages.content}
+              {/* {props.chat.messages.content} */}
             </p>
           </div>
         </section>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import FriendManager from "../modules/FriendManager.jsx";
+import ChatManager from "../modules/ChatManager.jsx";
 
 const CandidateDiscoveryCard = props => {
   
@@ -12,36 +13,45 @@ const CandidateDiscoveryCard = props => {
 
   const friendHandler = () => { 
     console.log('CLICKED FRIEND HANDLER')
+
     const editedFriend = {
       userId: props.user.id,
       activeUserId: sessionUser.id,
-      mutualInterest: true,
-      id: friends.id
+      mutualInterest: true
     };
+
+    const newChat = {
+      activeUserId: sessionUser.id,
+      userId: props.user.id
+    }
+
     console.log('FRIENDS', friends)
-    
-    friends.filter(friend => {
-      if (
-        friend.userId === props.user.id && 
+
+    const friend = friends.find(friend => {
+      if (props.user.id === friend.userId && sessionUser.id === friend.activeUserId) {
+        return friend
+      }
+    })
+    console.log('BEFORE', friend)
+      
+      if (friend === undefined) {
+        createFriend(props.user.id)
+        return newFriend
+      }
+      else if (friend.userId === props.user.id && friend.mutualInterest !== true) {
+        if (friend.userId === props.user.id &&
         friend.activeUserId === sessionUser.id &&
-        friend.mutualInterest === false) {
-          console.log(friend)
+        friend.mutualInterest === false
+        ) {
+          console.log('FRIEND TO EDIT', friend)
           editedFriend.id = friend.id
           FriendManager.editFriend(editedFriend)
-          console.log('EDIT friend', editedFriend)
-          return friend 
-      } 
-      else if (
-        friend.userId !== sessionUser.id && 
-        friend.userId !== props.user.id && 
-        friend.activeUserId !== sessionUser.id && 
-        friend.activeUserId !== props.user.id &&
-        friend.mutualInterest === undefined) {
-          console.log('CREATE FRIEND')
-          createFriend(props.user.id)
-          return newFriend
-      }
-    })    
+          .then(()=> {
+            ChatManager.postChat(newChat)
+            console.log('EDITED FRIEND', editedFriend)
+            return friend
+        })}
+      }     
   }
   
   const createFriend = (id) => {

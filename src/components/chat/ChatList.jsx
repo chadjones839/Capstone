@@ -8,7 +8,7 @@ const ChatList = props => {
   const [chats, setChats] = useState([]);
 
   const getChats =() => {
-    return ChatManager.getWithUsersMessages()
+    return ChatManager.getWithUsers()
       .then(APIresults => {
         setChats(APIresults)
       })

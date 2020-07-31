@@ -6,7 +6,7 @@ const EmployerDiscoveryCard = props => {
   
   const sessionUser = JSON.parse(sessionStorage.getItem("user")) 
   const [friends, setFriends] = useState([]) 
-  const [friend, setFriend] = useState({ 
+  const [newFriend, setNewFriend] = useState({ 
     userId: "", 
     activeUserId: "", 
     mutualInterest: false})
@@ -27,10 +27,19 @@ const EmployerDiscoveryCard = props => {
 
     console.log('FRIENDS', friends)
 
-    friends.find(friend => {
-      console.log('BEFORE', friend)
-      if (
-        friend.userId === props.user.id &&
+    const friend = friends.find(friend => {
+      if (props.user.id === friend.userId && sessionUser.id === friend.activeUserId) {
+        return friend
+      }
+    })
+    console.log('BEFORE', friend)
+      
+      if (friend === undefined) {
+        createFriend(props.user.id)
+        return newFriend
+      }
+      else if (friend.userId === props.user.id && friend.mutualInterest !== true) {
+        if (friend.userId === props.user.id &&
         friend.activeUserId === sessionUser.id &&
         friend.mutualInterest === false
         ) {
@@ -41,39 +50,18 @@ const EmployerDiscoveryCard = props => {
             ChatManager.postChat(newChat)
             console.log('EDITED FRIEND', editedFriend)
             return friend
-        })
-      } 
-      else if (
-        props.user.id
-        // friend.userId !== props.user.id &&
-        // friend.userId !== sessionUser.id &&
-        // friend.activeUserId !== props.user.id &&
-        // friend.activeUserId !== sessionUser.id &&
-        // friend.mutualInterest !== false &&
-        // friend.mutualInterest !== true
-        ) {
-          console.log('CREATE FRIEND')
-          createFriend(props.user.id)
-          return friend
-        }
-      else {
-        return null
-      }
-    })
-
-      // createFriend(id)
-      // return friend
-
+        })}
+      }     
   }
   
   const createFriend = (id) => {
-    friend.userId = sessionUser.id
-    friend.activeUserId = id
-    friend.mutualInterest = false
-    FriendManager.postFriend(friend)
+    newFriend.userId = sessionUser.id
+    newFriend.activeUserId = id
+    newFriend.mutualInterest = false
+    FriendManager.postFriend(newFriend)
     .then(()=> {
-      console.log('NEW FRIEND', friend)
-      return friend
+      console.log('NEW FRIEND', newFriend)
+      return newFriend
     })
   }
   
@@ -132,3 +120,17 @@ const EmployerDiscoveryCard = props => {
 
 
 export default EmployerDiscoveryCard;
+
+// ,
+//     {
+//       "userId": 1,
+//       "activeUserId": 5,
+//       "mutualInterest": false,
+//       "id": 2
+//     },
+//     {
+//       "userId": 5,
+//       "activeUserId": 4,
+//       "mutualInterest": false,
+//       "id": 3
+//     }
