@@ -4,15 +4,26 @@ import ChatManager from "../modules/ChatManager.jsx";
 
 const EmployerDiscoveryCard = props => {
   
-  const sessionUser = JSON.parse(sessionStorage.getItem("user")) 
-  const [friends, setFriends] = useState([]) 
+  const sessionUser = JSON.parse(sessionStorage.getItem("user"));
+  const [friends, setFriends] = useState([]);
   const [newFriend, setNewFriend] = useState({ 
     userId: "", 
     activeUserId: "", 
-    mutualInterest: false})
+    mutualInterest: false});
+
+  const mapFriend = friends.find(obj => {
+    if ((props.user.id === obj.userId && sessionUser.id === obj.activeUserId && obj.mutualInterest === true) || (props.user.id === obj.activeUserId && sessionUser.id === obj.userId && obj.mutualInterest === true))  {
+      return obj
+    }
+  });
+ 
+  const halfFriend = friends.find(obj => {
+    if (props.user.id === obj.activeUserId && sessionUser.id === obj.userId && obj.mutualInterest === false) {
+      return obj
+    }
+  });
 
   const friendHandler = () => { 
-    console.log('CLICKED FRIEND HANDLER')
 
     const editedFriend = {
       userId: props.user.id,
@@ -23,36 +34,32 @@ const EmployerDiscoveryCard = props => {
     const newChat = {
       activeUserId: sessionUser.id,
       userId: props.user.id
-    }
-
-    console.log('FRIENDS', friends)
+    };
 
     const friend = friends.find(friend => {
       if (props.user.id === friend.userId && sessionUser.id === friend.activeUserId) {
         return friend
       }
-    })
-    console.log('BEFORE', friend)
+    });
       
-      if (friend === undefined) {
-        createFriend(props.user.id)
-        return newFriend
-      }
-      else if (friend.userId === props.user.id && friend.mutualInterest !== true) {
-        if (friend.userId === props.user.id &&
-        friend.activeUserId === sessionUser.id &&
-        friend.mutualInterest === false
-        ) {
-          console.log('FRIEND TO EDIT', friend)
-          editedFriend.id = friend.id
-          FriendManager.editFriend(editedFriend)
-          .then(()=> {
-            ChatManager.postChat(newChat)
-            console.log('EDITED FRIEND', editedFriend)
-            return friend
-        })}
-      }     
-  }
+    if (friend === undefined) {
+      createFriend(props.user.id)
+      window.location.reload(true);
+      return newFriend
+    }
+    else if (
+    friend.userId === props.user.id && 
+    friend.mutualInterest !== true &&
+    friend.activeUserId === sessionUser.id ) {
+      editedFriend.id = friend.id
+      FriendManager.editFriend(editedFriend)
+      .then(()=> {
+        ChatManager.postChat(newChat)
+        window.location.reload(true);
+        return friend
+      })
+    };     
+  };
   
   const createFriend = (id) => {
     newFriend.userId = sessionUser.id
@@ -60,10 +67,31 @@ const EmployerDiscoveryCard = props => {
     newFriend.mutualInterest = false
     FriendManager.postFriend(newFriend)
     .then(()=> {
-      console.log('NEW FRIEND', newFriend)
       return newFriend
     })
   }
+
+  // const unmatchHandler = (userId) => {
+  //   const unmatchFriend = {
+  //     userId: userId,
+  //     activeUserId: sessionUser.id,
+  //     mutualInterest: false,
+  //     id: mapFriend.id
+  //   };
+
+  //   const deletedChat = {
+  //     activeUserId: sessionUser.id,
+  //     userId: props.user.id,
+  //     id: props.match.params.chatId
+  //   }
+
+  //   console.log('FRIEND TO UNMATCH', unmatchFriend)
+  //   FriendManager.editFriend(unmatchFriend)
+  //   .then(()=> {
+  //     ChatManager.deleteChat(deletedChat)
+  //     console.log('DELETED CHAT', deletedChat)
+  //   })
+  // }
   
   useEffect(() => {
     FriendManager.getAllFriends()
@@ -72,7 +100,13 @@ const EmployerDiscoveryCard = props => {
     })
   }, [])
 
-  if (props.user.accountType === "employer") {
+  if (props.user.accountType === "employer" && mapFriend) {
+    return null
+  }
+  else if (props.user.accountType === "employer" && halfFriend) {
+    return null
+  }
+  else if (props.user.accountType === "employer") {
     return (
       <React.Fragment>
         <section className="employerCard">
@@ -89,21 +123,21 @@ const EmployerDiscoveryCard = props => {
           <br />
         </section>
         <section className="interestButtons">
-          <div className="interestButtons__container">
-            <div className="interestBtn__false">
+          {/* <div className="interestButtons__container"> */}
+            {/* <div className="interestBtn__false">
               <button type="submit" className="falseBtn">
                 Hard Pass
               </button> 
-            </div>
-            <div className="interestBtn__true">
+            </div> */}
+            {/* <div className="interestBtn__true"> */}
               <button 
                 type="submit" 
                 className="trueBtn" 
                 onClick={() => friendHandler(props.user.id)}>
                   Let's Talk
               </button> 
-            </div>
-          </div>
+            {/* </div> */}
+          {/* </div> */}
         </section>
         <br />
         <br />
@@ -116,21 +150,6 @@ const EmployerDiscoveryCard = props => {
   else {
     return null
   }
-}
-
+};
 
 export default EmployerDiscoveryCard;
-
-// ,
-//     {
-//       "userId": 1,
-//       "activeUserId": 5,
-//       "mutualInterest": false,
-//       "id": 2
-//     },
-//     {
-//       "userId": 5,
-//       "activeUserId": 4,
-//       "mutualInterest": false,
-//       "id": 3
-//     }

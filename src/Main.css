@@ -5,3 +5,4 @@
 @import "./components/nav/styles/Navbar.css";
 @import "./components/chat/styles/Chat.css";
 @import "./components/profile/styles/Profile.css";
+@import "./components/messages/styles/Message.css";

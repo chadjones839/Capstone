@@ -42,7 +42,7 @@
 }
 
 .messageDetailsContainer {
-  width: 100%
+  width: 100%;
 }
 
 .messageUserName > h4 {
@@ -57,4 +57,31 @@
   font-size: 13px;
   margin: 2px 0 0px 10px;
   padding-right: 10px;
+}
+
+.chatButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chatBtn {
+  -webkit-border-radius: 12;
+  -moz-border-radius: 12;
+  margin-bottom: 0;
+  border-radius: 12px;
+  font-family: 'Roboto';
+  font-weight: 600;
+  color: #000000;
+  font-size: 14px;
+  background: #ffffff;
+  padding: 8px 10px 8px 10px;
+  border: solid #000000 2px;
+  text-decoration: none;
+}
+
+.chatBtn:active {
+  background: #000000;
+  text-decoration: none;
+  color: #FFFFFF;
 }

@@ -119,6 +119,16 @@ const ApplicationViews = (props) => {
       />
       <Route 
         exact
+        path="/chats/:chatId(\d+)" 
+        render={props => {
+          return <MessageList 
+            chatId={parseInt(props.match.params.chatId)}
+            {...props} />
+      }} 
+      />
+
+      <Route 
+        exact
         path="/messages" 
         render={props => {
           if (hasUser) {

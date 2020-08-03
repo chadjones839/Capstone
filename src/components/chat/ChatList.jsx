@@ -5,17 +5,17 @@ import ChatCard from "../chat/ChatCard";
 
 const ChatList = props => {
 
-  const [chats, setChats] = useState([]);
-
+  const [chats, setChats] = useState([]); 
+  
   const getChats =() => {
     return ChatManager.getWithUsers()
-      .then(APIresults => {
-        setChats(APIresults)
-      })
   }
 
   useEffect(() => {
-    getChats();
+    getChats()
+    .then((chatResponse) => {
+      setChats(chatResponse)
+    })
   }, []);
 
   return (
@@ -35,8 +35,8 @@ const ChatList = props => {
             {...props}
           />
         )} 
-      </main>
 
+      </main>
       <div className="navpanel">
         <Navbar />
       </div>
