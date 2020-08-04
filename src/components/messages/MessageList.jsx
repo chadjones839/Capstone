@@ -24,14 +24,13 @@ const MessageList = props => {
   const postNewMessage = event => {
       event.preventDefault();
       if (message.content === "") {
-        window.alert("Write something first")
+        window.alert("There's nothing to send")
       } 
       else {
         setIsLoading(true);
         MessageManager.postMessage(message)
         .then(() => {
-          props.history.push(`/chats/${props.match.params.chatId}`)
-          window.location.reload(true)
+          document.querySelector("#content").value = ""
         })
       }   
     }
@@ -45,7 +44,7 @@ const MessageList = props => {
     .then((response) => {
       setMessages(response)
     })
-  }, [])
+  }, [messages])
   
   return (
     <>

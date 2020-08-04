@@ -3,28 +3,29 @@ import React, {useState} from "react";
 import UserManager from "../modules/UserManager";
 
 
-const RegisterEmployer = props => {
+const RegisterCandidate = props => {
 
-  const [user, setUser] = useState({
+  const [user, setNewUser] = useState({
     email:"", 
     password:"", 
     accountType: "candidate",
     image: "https://res.cloudinary.com/dhduglm4j/image/upload/v1596490031/icons/profileNav_lord6y.png",
     companyName: "",
-    industry: "default",
+    industry: "",
     userLocation: "",
     firstName: "",
     lastName: "",
-    jobTitle: "default",
-    bio: "default"
+    jobTitle: "",
+    bio: "d"
   })
 
+  const setUser = props.setUser
   const [isLoading, setIsLoading]= useState(false);
 
   const handleFieldChange = evt => {
     const stateToChange = { ...user };
     stateToChange[evt.target.id] = evt.target.value;
-    setUser(stateToChange);
+    setNewUser(stateToChange);
   };
 
   const constructNewUser = evt => {
@@ -39,6 +40,7 @@ const RegisterEmployer = props => {
     else {
       setIsLoading(true);
       sessionStorage.setItem("user", JSON.stringify(user))
+      setNewUser(user)
       setUser(user)
       UserManager.postUser(user)
       .then(() =>{
@@ -47,6 +49,8 @@ const RegisterEmployer = props => {
           arr.find(obj => {
             if (obj.email === user.email) {
               sessionStorage.setItem("user", JSON.stringify(obj))
+              setNewUser(obj)
+              setUser(obj)
             }
           })
         })
@@ -54,19 +58,24 @@ const RegisterEmployer = props => {
       .then(()=> {
         props.history.push("/discovery")
       })
-      .then(() => {
-        window.location.reload(true)
-      })
     }
   };
 
   return (
     <React.Fragment>
       <div className="statusBar">
-        <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
+          <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
+      </div>
+      <div className="backButton">
+        <button 
+          type="submit" 
+          className="backbutton"
+          onClick={()=> props.history.push("/register")}>
+          <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490014/icons/backarrow_lfdpzw.png" className="backToHome" alt="back" />
+        </button>
       </div>
       <main className="registerContainer">
-        <h1 className="registerHeader">Create Account</h1>
+        <h1 className="registerHeader">New Account</h1>
           <div className="registerBox">
             <form>
 
@@ -128,15 +137,14 @@ const RegisterEmployer = props => {
                   placeholder="Confirm Password"
                   id="passwordConfirm" />
               </div>
-
-              <div className="container-login-form-btn">
-                <div className="wrap-login-form-btn">
-                  <div className="login-form-bgbtn"></div>
-                  <button type="submit" className="createAcctBtn" disabled={isLoading}
+              <div className="createAccountBtn">
+                <button 
+                  type="submit" 
+                  className="loginBtn" 
+                  disabled={isLoading}
                   onClick={constructNewUser}>
                     Create Account
-                  </button>
-                </div>
+                </button>
               </div>
             </form>
           </div>
@@ -145,4 +153,4 @@ const RegisterEmployer = props => {
   );
 };
 
-export default RegisterEmployer;
+export default RegisterCandidate;

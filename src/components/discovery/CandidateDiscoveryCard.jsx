@@ -1,8 +1,9 @@
 /* eslint-disable array-callback-return */
-/******/ import React, { useState, useEffect } from 'react';
-/******/ import FriendManager from "../modules/FriendManager.jsx";
-/******/ import ChatManager from "../modules/ChatManager.jsx";
-/******************************************************************/
+import React, { useState, useEffect } from 'react';
+import FriendManager from "../modules/FriendManager.jsx";
+import ChatManager from "../modules/ChatManager.jsx";
+
+/*END IMPORTS*****************************************************************/
 
 const CandidateDiscoveryCard = props => {
   
@@ -47,7 +48,6 @@ const CandidateDiscoveryCard = props => {
     if (friend === undefined) {
       createFriend(props.user.id)
       setNewFriend()
-      window.location.reload(true);
       return newFriend
     }
     else if (
@@ -58,7 +58,6 @@ const CandidateDiscoveryCard = props => {
       FriendManager.editFriend(editedFriend)
       .then(()=> {
         ChatManager.postChat(newChat)
-        window.location.reload(true);
         return friend
       })
     };     
@@ -76,7 +75,7 @@ const CandidateDiscoveryCard = props => {
       .then((response) => {
         setFriends(response)
     })
-  }, [])
+  }, [friends])
   
   if (props.user.accountType === "candidate") {
     if (mapFriend) {
@@ -90,10 +89,10 @@ const CandidateDiscoveryCard = props => {
         <React.Fragment>
           <section className="employerCard">
             <div className="employerCard__image">
-              <img src={props.user.image} alt={props.user.companyName} className="employerCard__logo"/>
+              <img src={props.user.image} alt={props.user.firstName} className="employerCard__logo"/>
             </div>
             <div className="employerDetails">
-              <h2 className="employerCard__name">{props.user.companyName}</h2>
+              <h2 className="employerCard__name">{props.user.firstName}</h2>
               <h4 className="employerCard__industry">{props.user.industry}</h4>
             </div>
             <div className="employerCard__body">
@@ -102,25 +101,15 @@ const CandidateDiscoveryCard = props => {
             <br />
           </section>
           <section className="interestButtons">
-            {/* <div className="interestButtons__container"> */}
-              {/* <div className="interestBtn__false">
-                <button type="submit" className="falseBtn">
-                  Hard Pass
-                </button> 
-              </div> */}
-              {/* <div className="interestBtn__true"> */}
-                <button 
-                  type="submit" 
-                  className="trueBtn" 
-                  onClick={() => friendHandler(props.user.id)}>
-                    Let's Talk
-                </button> 
-              {/* </div> */}
-            {/* </div> */}
+            <button 
+              type="submit" 
+              className="trueBtn" 
+              onClick={() => friendHandler(props.user.id)}>
+                Let's Talk
+            </button> 
           </section>
           <br />
           <br />
-          <div className="cardBreak"></div>
           <br />
           <br />
         </React.Fragment>

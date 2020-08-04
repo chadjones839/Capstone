@@ -8,12 +8,13 @@
   display: flex;
   justify-content: space-evenly;
   padding: 10px;
-  height: 5%;
+  height: 6%;
   width: 95%;
-  background: #f1f1f1;
+  background: #FFFFFF;
   margin: 10px 0 0 0;
   position: fixed;
   bottom: 0;
+  box-shadow: 0 -2px 5px -2px #333;
 }
 
 .navContainer > li {
@@ -46,9 +47,9 @@
   -moz-transition: all 0.4s;
   transition: all 0.4s;
   background: #6a7dfe;
-  background: -webkit-linear-gradient(to left, #f37746, #b60b0b);
-  background: -o-linear-gradient(to left, #f37746, #b60b0b);
-  background: -moz-linear-gradient(to left, #f37746, #b60b0b);
-  background: linear-gradient(to left, #f37746, #b60b0b);
+  background: -webkit-linear-gradient(to left, #1DBBD6, #0D253F);
+  background: -o-linear-gradient(to left, #1DBBD6, #0D253F);
+  background: -moz-linear-gradient(to left, #1DBBD6, #0D253F);
+  background: linear-gradient(to left, #1DBBD6, #0D253F);
 }
 

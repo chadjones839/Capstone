@@ -121,7 +121,6 @@ const EmployerDiscoveryCard = props => {
         </section>
         <br />
         <br />
-        <div className="cardBreak"></div>
         <br />
         <br />
       </React.Fragment>

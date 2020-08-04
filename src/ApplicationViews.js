@@ -43,21 +43,27 @@ const ApplicationViews = (props) => {
         exact
         path="/register-employer" 
         render={props => {
-          return <RegisterEmployer {...props} />
+          return <RegisterEmployer 
+            setUser={setUser} 
+            {...props} />
       }} 
       />
       <Route 
         exact
         path="/register-candidate" 
         render={props => {
-          return <RegisterCandidate {...props} />
+          return <RegisterCandidate 
+            setUser={setUser} 
+            {...props} />
       }} 
       />
       <Route 
         exact
         path="/login" 
         render={props => {
-          return <Login setUser={setUser} {...props} />
+          return <Login 
+            setUser={setUser} 
+            {...props} />
       }} 
       />
       <Route 

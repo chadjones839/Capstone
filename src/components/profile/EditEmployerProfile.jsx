@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useEffect } from 'react';
 import LoginManager from "../modules/LoginManager";
 import { Link } from "react-router-dom";
@@ -6,6 +7,9 @@ import Navbar from "../nav/Navbar.jsx"
 
 const EditEmployer = props => {
   
+  const [image, setImage] = useState("")
+  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
     email:"", 
     password:"",
@@ -22,7 +26,25 @@ const EditEmployer = props => {
     bio: ""
   })
   
-  const [isLoading, setIsLoading] = useState(false);
+  const uploadImage = async e => {
+    const files = e.target.files
+    const data = new FormData()
+    data.append('file', files[0])
+    data.append('upload_preset', 'techtok')
+    setLoading(true)
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/dhduglm4j/image/upload',
+      {
+        method: 'POST',
+        body: data
+      }
+    )
+    const file = await res.json()
+
+    setImage(file.secure_url)
+    setLoading(false)
+    user.image = file.secure_url
+  }
 
   const handleFieldChange = event => {
       const stateToChange = {...user};
@@ -111,8 +133,35 @@ const EditEmployer = props => {
           </section>
           <form className="editProfileForm">
             <fieldset>
-              <h3 className="editProfileHeader">Profile Details</h3>
 
+            <div className="imageUpload">
+                <div className="imageUploadInput">
+                  <label 
+                    className="editLabel" 
+                    htmlFor="uploadImage">
+                      Upload Profile Image
+                  </label>
+                  <input 
+                    type="file"
+                    className="editInput"  
+                    onChange={uploadImage}
+                    id="uploadImage"
+                  />
+                </div>
+                <div className="imageUploadField">
+                  {loading ? (
+                    <div className="imageLoading">
+                      <h4 className="imageLoading">loading...</h4>
+                    </div>
+                  ): (
+                    <div className="uploadComplete">
+                      <img src={image} style={{width: '50px'}} />
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <h3 className="editProfileHeader">Profile Details</h3>
               <label 
                 className="editLabel" 
                 htmlFor="companyName">

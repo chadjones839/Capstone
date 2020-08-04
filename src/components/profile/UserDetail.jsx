@@ -1,9 +1,13 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable eqeqeq */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import Navbar from "../nav/Navbar.jsx"
 import UserManager from "../modules/UserManager";
 import ChatManager from "../modules/ChatManager";
 import FriendManager from "../modules/FriendManager";
+
+/*END IMPORTS*****************************************************************/
 
 const UserDetail = props => {
 
@@ -27,20 +31,25 @@ const UserDetail = props => {
   };
 
   chats.find(obj => {
-    if (obj.userId === sessionUser.id && obj.activeUserId === props.match.params.userId) {
+    if ((obj.userId == sessionUser.id && obj.activeUserId == props.match.params.userId) || (obj.userId == props.match.params.userId && obj.activeUserId == sessionUser.id)) {
       chat = obj
       return obj
     }
   })
-  console.log(chat)
-  
+
+  friends.find(obj => {
+    if ((obj.userId == sessionUser.id && obj.activeUserId == props.match.params.userId) || (obj.userId == props.match.params.userId && obj.activeUserId == sessionUser.id)) {
+      friend = obj
+      return obj
+    }
+  })  
 
   const deleteMatch = id => {
-    if (window.confirm("Are you sure you want to delete your account? This cannot be undone.")) {
+    if (window.confirm(`Are you sure you want to unmatch with ${user.companyName}${user.firstName}?.`)) {
       ChatManager.deleteChat(chat.id)
         .then(() => {
-          FriendManager.deleteFriend(id)
-          window.location.reload(true)
+          FriendManager.deleteFriend(friend.id)
+          props.history.push("/chat")
         })
     }
   };

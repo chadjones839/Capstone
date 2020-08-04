@@ -1,7 +1,6 @@
 /* eslint-disable eqeqeq */
 import React, { useState, useEffect } from 'react';
 import UserManager from "../modules/UserManager";
-import { Link } from "react-router-dom";
 
 const MessageCard = props => {
 
@@ -21,7 +20,7 @@ const MessageCard = props => {
     else {
       return null
     }
-  })
+  });
 
   useEffect(() => {
     getUsers()
@@ -57,15 +56,19 @@ const MessageCard = props => {
         <React.Fragment>
           <main className="outboundUser">
             <div className="userContainer">
-              <div className="userDetails">
-                <div className="outboundUserMessage">
-                  {props.message.content}
-                </div>
-                <Link to="/profile">
-                  <div className="userImage">
-                    <img src={user.image} alt="userIcon" />
+              <div className="outboundUserDetails">
+                <div className="userDetailsContainer">
+                  <div className="outboundUserMessage">
+                    {props.message.content}
                   </div>
-                </Link>
+                  <div className="outboundUserImage">
+                    <img 
+                    src={user.image} 
+                    alt="userIcon" 
+                    onClick={() => props.history.push(`/profile`)}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </main>  

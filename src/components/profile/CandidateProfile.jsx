@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from "../nav/Navbar.jsx"
 import UserManager from "../modules/UserManager";
-import { Link } from "react-router-dom";
 
 const CandidateProfile = props => {
 
@@ -15,6 +14,7 @@ const CandidateProfile = props => {
   
   const clearUser = () => {
     sessionStorage.clear()
+    props.history.push("/")
   }
 
   const deleteAccount = id => {
@@ -31,7 +31,7 @@ const CandidateProfile = props => {
     .then(usersFromAPI => {
       setUser(usersFromAPI)
     })
-  }, []);
+  }, [user, sessionUser]);
 
   return (
     <>
@@ -41,7 +41,6 @@ const CandidateProfile = props => {
       <main className="profileContainer">
         <section className="profileHeader">
           <div className="logoutButton">
-            <Link to="/login">
               <button 
                 type="submit" 
                 className="registerLogout"
@@ -49,7 +48,6 @@ const CandidateProfile = props => {
               >
                 <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490026/icons/logoutButton_g0ouwe.png" alt="logout" />
               </button>
-            </Link>
           </div>
           <div className="userProfile__image">
             <div className="userImage__container">

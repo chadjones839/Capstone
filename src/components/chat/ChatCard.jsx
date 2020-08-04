@@ -75,7 +75,8 @@ const ChatCard = props => {
             <Link to={`/chats/${props.chat.id}`}>
               <button 
                 type="submit" 
-                className="chatBtn">
+                className="chatBtn"
+                >
                   Chat
               </button>
             </Link> 
@@ -103,13 +104,15 @@ const ChatCard = props => {
             </p>
           </div>
           <div className="chatButton">
-            <Link to={`/chats/${props.chat.id}`}>
+            {/* <Link to={`/chats/${props.chat.id}` {...props}}> */}
               <button 
                 type="submit" 
-                className="chatBtn">
+                className="chatBtn"
+                onClick={()=> props.history.push(`/chats/${props.chat.id}`)}
+                >
                   Chat
               </button>
-            </Link>  
+            {/* </Link>   */}
           </div>
         </section>
       </React.Fragment>

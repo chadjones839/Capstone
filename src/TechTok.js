@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ApplicationViews from "./ApplicationViews.js";
 import "./Main.css";
 
+/*END IMPORTS*****************************************************************/
+
 const TechTok = () => {
 
   const isAuthenticated = () => sessionStorage.getItem("user") !== null;

@@ -1,13 +1,13 @@
 /* eslint-disable array-callback-return */
 import React, { useState } from "react"
 import LoginManager from "../modules/LoginManager";
-import { Link } from "react-router-dom";
-
 
 
 const Login = props => {
 
   const [credentials, setCredentials] = useState({email: "", password: ""});
+
+  const setUser = props.setUser
   
   // Update state whenever an input field is edited
   const handleFieldChange = (evt) => {
@@ -26,16 +26,14 @@ const Login = props => {
         if (user.email === email && user.password === password) {
           sessionStorage.setItem('user', JSON.stringify(user))
           setCredentials(user);
+          setUser(user)
         } 
       })
     })
     .then(() => 
     props.history.push("/discovery")
     )
-    .then(() => 
-    window.location.reload(true)
-  )
-}
+  }
 
 
   return (
@@ -44,11 +42,12 @@ const Login = props => {
         <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
       </div>
       <div className="backButton">
-        <Link className="nav-link" to="/">
-          <button type="submit" className="backbutton">
-            <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490014/icons/backarrow_lfdpzw.png" alt="back" />
-          </button>
-        </Link>
+        <button 
+          type="submit" 
+          className="backbutton"
+          onClick={()=> props.history.push("/")}>
+          <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490014/icons/backarrow_lfdpzw.png" className="backToHome" alt="back" />
+        </button>
       </div>
       <main className="loginContainer">
         <h1 className="loginHeader">Login</h1>       
@@ -73,9 +72,10 @@ const Login = props => {
 
           <div className="container-login-form-btn">
             <div className="wrap-login-form-btn">
-              <div className="login-form-btn"></div>
-              <button type="submit" className="loginBtn">
-                Login
+              <button 
+                type="submit" 
+                className="loginBtn">
+                  Login
               </button>
             </div>
           </div>
