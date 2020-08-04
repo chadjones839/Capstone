@@ -70,20 +70,20 @@ const EditEmployer = props => {
   return (
     <React.Fragment>
         <div className="statusBar">
-          <img src="./statusbar.png" alt="status"/>
+          <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
         </div>
         <main className="profileContainer">
           <section className="profileHeader">
             <div className="logoutButton">
               <Link className="nav-link" to="/profile">
                 <button type="submit" className="backbutton">
-                  <img src="./backarrow.png" alt="back" />
+                  <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490014/icons/backarrow_lfdpzw.png" alt="back" />
                 </button>
               </Link>
             </div>
             <div className="userProfile__image">
               <div className="userImage__container">
-                <img src={`../images/users/${user.image}`}  alt="logo" />
+                <img src={user.image}  alt="logo" />
               </div>
             </div>
             <div className="userProfile__right">

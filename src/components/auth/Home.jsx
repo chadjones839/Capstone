@@ -9,10 +9,12 @@ const Home = props => {
       <div className="loginBoxContainer">
         <div className ="loginImages">
           <div className ="loginMain">
-            <img src="./techBack.jpg" alt="logo" />
+            <div className="backgroundImg">
+              <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596503838/icons/background_kdv7df.jpg" alt="logo" />
+            </div>
             <div className ="loginLogo">
               <div className="logoContainer">
-                <img src="./techtok.png" alt="logo" />
+                <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/techtok_c7ptxj.png" alt="logo" />
               </div>
             </div>
           </div>

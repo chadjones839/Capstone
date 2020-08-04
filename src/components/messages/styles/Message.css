@@ -1,3 +1,30 @@
+.chatHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.backButton,
+.rightChat {
+  width: 15%;
+  padding: 0;
+  margin: 0;
+}
+
+.backButton > img {
+  width: 25px;
+  height: auto;
+  padding: 10px 10px 0;
+}
+
+.chatName { 
+  width: 70%;
+}
+
+.chatName > h3 { 
+  margin: 10px  0;
+}
+
 .messageInput {
   display: flex;
   flex-direction: row;
@@ -26,7 +53,7 @@
   border: none;
 }
 
-textarea {
+.messageForm__content {
   width: 95%;
   height: 30px;
   padding: 5px;

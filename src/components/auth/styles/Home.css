@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 html {
   height: 100%;
   width: 100%;
@@ -7,13 +9,22 @@ html {
   padding: 0;
 }
 
+.loginImages {
+  width: 100%;
+}
+
 .loginMain {
   width: 100%;
   height: 715px;
 }
 
-.loginMain > img {
-  width: 110%;
+.backgroundImg {
+  width: 100%;
+  height: 715px;
+}
+
+.backgroundImg > img {
+  width: 100%;
   height: 100%;
 }
 
@@ -27,7 +38,7 @@ html {
 }
 
 .logoContainer {
-  width: 50%;
+  width: 70%;
   height: auto;
 }
 
@@ -55,15 +66,18 @@ html {
   -moz-border-radius: 3px;
   border-radius: 15px;
   line-height: 0px;
-  color: #000000;
-  font-family: 'Roboto', sans-serif;
+  color: #0D253F;
+  font-family: 'Inter', sans-serif;
   width: 100%;
   height: 60px;
   font-size: 24px;
   font-weight: 500;
   padding: 13px;
-  background-color: #FFFFFF;
-  border: solid #000000 2px;
+  background-color: #A8A8B7;
+  border: solid #A8A8B7 2px;
+  box-shadow: 3px 3px 8px #000000;
+  -webkit-box-shadow: 3px 3px 8px #000000;
+  -moz-box-shadow: 3px 3px 8px #000000;
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
@@ -82,14 +96,17 @@ html {
   border-radius: 15px;
   line-height: 0px;
   color: #FFFFFF;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   width: 100%;
   height: 60px;
   font-size: 24px;
   font-weight: 500;
   padding: 13px;
-  background-color: #000000;
-  border: solid#000000 2px;
+  background-color: #0D253F;
+  box-shadow: 3px 3px 8px #000000;
+  -webkit-box-shadow: 3px 3px 8px #000000;
+  -moz-box-shadow: 3px 3px 8px #000000;
+  border: solid#0D253F 2px;
   text-decoration: none;
   display: inline-block;
   cursor: pointer;

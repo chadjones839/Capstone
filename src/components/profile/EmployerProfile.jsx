@@ -1,18 +1,45 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react';
+import Navbar from "../nav/Navbar.jsx"
+import UserManager from "../modules/UserManager";
 import { Link } from "react-router-dom";
-
 
 const EmployerProfile = props => {
 
   const sessionUser = JSON.parse(sessionStorage.getItem("user"))
+  const [user, setUser] = useState({});
+  
+  const getUsers = () => {
+    return UserManager.getUser(sessionUser.id)
+  };
   
   const clearUser = () => {
     sessionStorage.clear()
   }
 
-  if (sessionUser.id === props.user.id) {
-    return (
-      <React.Fragment>
+  const deleteAccount = id => {
+    if (window.confirm("Are you sure you want to delete your account? This cannot be undone.")) {
+      UserManager.deleteUser(id)
+        .then(() => {
+          clearUser()
+          window.location.reload(true)
+        })
+    }
+  };
+
+  useEffect(() => {
+    getUsers()
+    .then(usersFromAPI => {
+      setUser(usersFromAPI)
+    })
+  }, []);
+
+  return (
+    <>
+      <div className="statusBar">
+        <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
+      </div>
+      <main className="profileContainer">
         <section className="profileHeader">
           <div className="logoutButton">
             <Link to="/login">
@@ -21,13 +48,13 @@ const EmployerProfile = props => {
                 className="registerLogout"
                 onClick={clearUser}
               >
-                <img src="./logoutButton.png" alt="logout" />
+                <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490026/icons/logoutButton_g0ouwe.png" alt="logout" />
               </button>
             </Link>
           </div>
           <div className="userProfile__image">
             <div className="userImage__container">
-              <img src={require(`../images/users/${props.user.image}`)} alt={props.user.companyName} />
+              <img src={user.image} alt={user.companyName} />
             </div>
           </div>
           <div className="userProfile__right">
@@ -35,16 +62,16 @@ const EmployerProfile = props => {
         </section>
         <section className="userProfile__details">
           <div className="userProfile__name">
-            <h2>{props.user.companyName}</h2>
+            <h2>{user.companyName}</h2>
           </div>
           <div className="userProfile__location">
-          {props.user.userLocation}
+          {user.userLocation}
           </div>
         </section>
         <section className="editProfileButton">
           <div className="editBtnContainer">
               <button 
-                onClick={() => props.history.push(`/users/${props.user.id}/edit`)}
+                onClick={() => props.history.push(`/users/${user.id}/edit`)}
                 className="blackBtn"
                 type="button"
                 >
@@ -55,21 +82,34 @@ const EmployerProfile = props => {
         <section className="profileDetails">
           <dl>
             <dt>Company Name</dt>
-              <dd>{props.user.companyName}</dd>
+              <dd>{user.companyName}</dd>
             <dt>Industry</dt>
-              <dd>{props.user.industry}</dd>
+              <dd>{user.industry}</dd>
             <dt>Location</dt>
-              <dd>{props.user.userLocation}</dd>
+              <dd>{user.userLocation}</dd>
             <dt>Bio</dt>
-              <dd>{props.user.bio}</dd>
+              <dd>{user.bio}</dd>
           </dl>
         </section>
-    </React.Fragment>
-  )}
-  else {
-    return null
-  }
-}
-
+        <div className="deleteBtnContainer">
+          <button 
+            onClick={() => deleteAccount(user.id)}
+            className="deleteBtn"
+            type="button"
+            >
+              Delete Account
+          </button>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+      </main>
+      <div className="navpanel">
+        <Navbar />
+      </div>
+    </>
+  );
+};
 
 export default EmployerProfile;

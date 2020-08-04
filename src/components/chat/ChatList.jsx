@@ -21,12 +21,12 @@ const ChatList = props => {
   return (
     <React.Fragment>
       <div className="statusBar">
-          <img src="./statusbar.png" alt="status"/>
+          <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
       </div>
-      <main className="chatContainer">
         <div className="chatHeader">
           <h3>Chats</h3>
         </div>
+        <main className="chatContainer">
           
         {chats.map(chat => 
           <ChatCard 

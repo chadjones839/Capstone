@@ -36,7 +36,7 @@
   color: #FFFFFF;
   border-radius: 30px;
   align-items: center;
-  height: 45px;
+  height: 48px;
   width: 80px;
   border: none;
   padding-right: 5px;
@@ -46,9 +46,9 @@
   -moz-transition: all 0.4s;
   transition: all 0.4s;
   background: #6a7dfe;
-  background: -webkit-linear-gradient(to left, #21d4fd, #b721ff);
-  background: -o-linear-gradient(to left, #21d4fd, #b721ff);
-  background: -moz-linear-gradient(to left, #21d4fd, #b721ff);
-  background: linear-gradient(to left, #21d4fd, #b721ff);
+  background: -webkit-linear-gradient(to left, #f37746, #b60b0b);
+  background: -o-linear-gradient(to left, #f37746, #b60b0b);
+  background: -moz-linear-gradient(to left, #f37746, #b60b0b);
+  background: linear-gradient(to left, #f37746, #b60b0b);
 }
 

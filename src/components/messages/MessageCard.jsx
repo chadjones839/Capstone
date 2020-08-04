@@ -1,39 +1,56 @@
-import React from 'react';
+/* eslint-disable eqeqeq */
+import React, { useState, useEffect } from 'react';
+import UserManager from "../modules/UserManager";
 import { Link } from "react-router-dom";
-import ChatCard from '../chat/ChatCard';
-
-// function importAll(r) {
-//   let images = {};
-//   r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
-//   return images;
-// }
-
-// const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/));
-
 
 const MessageCard = props => {
 
   const sessionUser = JSON.parse(sessionStorage.getItem("user"));
+  const [users, setUsers] = useState([]);
+  let user = {}
   
+  const getUsers = () => {
+    return UserManager.getWithFriends()
+  };
+
+  users.find(obj => {
+    if (props.message.userId === obj.id) {
+      user = obj
+      return obj
+    }
+    else {
+      return null
+    }
+  })
+
+  useEffect(() => {
+    getUsers()
+    .then((userResponse) => {
+      setUsers(userResponse)
+    })
+  }, [])
   
   if (props.match.params.chatId == props.message.chatId) {
     if (props.message.userId !== sessionUser.id) {
-    return (
-      <React.Fragment>
-        <main className="inboundUser">
-          <div className="userContainer">
-            <div className="userDetails">
-              <div className="userImage">
-                <img src={require(`../images/users/userIcon.png`)} alt="userIcon" />
-              </div>
-              <div className="inboundUserMessage">
-                {props.message.content}
+      return (
+        <React.Fragment>
+          <main className="inboundUser">
+            <div className="userContainer">
+              <div className="userDetails">
+                  <div className="userImage">
+                    <img 
+                    src={user.image} 
+                    alt="userIcon"
+                    onClick={() => props.history.push(`/users/${props.message.userId}/details`)} />
+                  </div>
+                <div className="inboundUserMessage">
+                  {props.message.content}
+                </div>
               </div>
             </div>
-          </div>
-        </main>  
-      </React.Fragment>
-    )
+          </main>  
+        </React.Fragment>
+      )
     }
     else {
       return (
@@ -44,9 +61,11 @@ const MessageCard = props => {
                 <div className="outboundUserMessage">
                   {props.message.content}
                 </div>
-                <div className="userImage">
-                  <img src={require(`../images/users/userIcon.png`)} alt="userIcon" />
-                </div>
+                <Link to="/profile">
+                  <div className="userImage">
+                    <img src={user.image} alt="userIcon" />
+                  </div>
+                </Link>
               </div>
             </div>
           </main>  

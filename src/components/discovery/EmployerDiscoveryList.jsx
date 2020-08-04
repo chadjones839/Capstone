@@ -6,8 +6,7 @@ import EmployerDiscoveryCard from "../discovery/EmployerDiscoveryCard";
 const EmployerDiscovery = props => {
 
   const [users, setUsers] = useState([]);
-
-
+  
   const getUsers = () => {
     return UserManager.getWithFriends()
   };
@@ -22,7 +21,7 @@ const EmployerDiscovery = props => {
   return (
     <>
       <div className="statusBar">
-        <img src="./statusbar.png" alt="status"/>
+        <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
       </div>
       <main className="discoveryContainer">
         <h1 className="discoveryHeader">Discovery</h1>

@@ -16,5 +16,19 @@ export default {
   getWithFriends() {
     return fetch(`${remoteURL}/users?_embed=friends`)
       .then(result => result.json())
+  },
+  deleteUser(userId) {
+    return fetch(`${remoteURL}/users/${userId}`, {
+      method: "DELETE"
+    }).then(result => result.json())
+  },
+  postUser(newUser) {
+      return fetch(`${remoteURL}/users`, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify(newUser)
+      }).then(result=>result.json())
   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /******/ import React, { useState, useEffect } from 'react';
 /******/ import FriendManager from "../modules/FriendManager.jsx";
 /******/ import ChatManager from "../modules/ChatManager.jsx";
@@ -68,7 +69,6 @@ const CandidateDiscoveryCard = props => {
     newFriend.activeUserId = id
     newFriend.mutualInterest = false
     FriendManager.postFriend(newFriend)
-    console.log('NEW FRIEND', newFriend)
   }
   
   useEffect(() => {
@@ -90,7 +90,7 @@ const CandidateDiscoveryCard = props => {
         <React.Fragment>
           <section className="employerCard">
             <div className="employerCard__image">
-              <img src={require(`../images/users/${props.user.image}`)}  alt={props.user.companyName} className="employerCard__logo"/>
+              <img src={props.user.image} alt={props.user.companyName} className="employerCard__logo"/>
             </div>
             <div className="employerDetails">
               <h2 className="employerCard__name">{props.user.companyName}</h2>
