@@ -5,28 +5,28 @@ import ChatCard from "../chat/ChatCard";
 
 const ChatList = props => {
 
-  const [chats, setChats] = useState([]);
-
+  const [chats, setChats] = useState([]); 
+  
   const getChats =() => {
-    return ChatManager.getWithUsersMessages()
-      .then(APIresults => {
-        setChats(APIresults)
-      })
+    return ChatManager.getWithUsers()
   }
 
   useEffect(() => {
-    getChats();
+    getChats()
+    .then((chatResponse) => {
+      setChats(chatResponse)
+    })
   }, []);
 
   return (
     <React.Fragment>
       <div className="statusBar">
-          <img src="./statusbar.png" alt="status"/>
+          <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
       </div>
-      <main className="chatContainer">
         <div className="chatHeader">
           <h3>Chats</h3>
         </div>
+        <main className="chatContainer">
           
         {chats.map(chat => 
           <ChatCard 
@@ -35,8 +35,8 @@ const ChatList = props => {
             {...props}
           />
         )} 
-      </main>
 
+      </main>
       <div className="navpanel">
         <Navbar />
       </div>

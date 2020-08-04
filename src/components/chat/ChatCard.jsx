@@ -1,57 +1,122 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import UserManager from "../modules/UserManager.jsx";
+import MessageManager from "../modules/MessageManager.jsx";
 
 const ChatCard = props => {
 
-  const sessionUser = JSON.parse(sessionStorage.getItem("user"));
-  console.log('CONSOLED MESSAGE', props.chat.messages[0])
+  const sessionUser = JSON.parse(sessionStorage.getItem("user"))
+  const [users, setUsers] = useState([]); 
+  const [messages, setMessages] = useState([]); 
+  let user = {};
+  let message = {};
+
+  users.find(obj => {
+    if (obj.id === props.chat.activeUserId) {
+      user = obj
+      return obj
+    }
+    else {
+      return null
+    }
+  });
+
+  messages.find(obj => {
+    if (obj.chatId === props.chat.id) {
+      message = obj
+      return obj
+    }
+    else {
+      return null
+    }
+  })
+  
+  
+  const getUsers = () => {
+    return UserManager.getAllUsers()
+  }
+  const getMessages = () => {
+    return MessageManager.getAllMessages()
+  }
+
+  useEffect(() => {
+    getUsers()
+    .then((userResponse) => {
+      getMessages()
+      .then ((msgResponse) => {
+        const msgReverse = msgResponse.reverse()
+        setUsers(userResponse)
+        setMessages(msgReverse)
+      })
+    })
+  }, []);
 
   if (sessionUser.id === props.chat.userId) {
     return (
       <React.Fragment>
-        <Link to="/messages">
         <section className="chatCard">
           <div className="userImageContainer">
+            
             <div className="userImage">
-              <img src={require(`../images/users/${props.chat.user.image}`)}  alt="Abstergo" />
+              <img src={user.image} alt={user.companyName} />
             </div>
+            
           </div>
           <div className="messageDetailsContainer">
             <div className="messageUserName">
-              <h4>{props.chat.user.companyName}</h4>
+              <h4>{user.companyName}</h4>
+              <h4>{user.firstName}</h4>
             </div>
             <p className="messagePreview">
-            {props.chat.messages.content}
+            {message.content} 
             </p>
           </div>
+          <div className="chatButton">
+            <Link to={`/chats/${props.chat.id}`}>
+              <button 
+                type="submit" 
+                className="chatBtn">
+                  Chat
+              </button>
+            </Link> 
+          </div>
         </section>
-        </Link>
       </React.Fragment>
-  )}
+    )
+  }
   else if (sessionUser.id === props.chat.activeUserId) {
     return (
       <React.Fragment>
-        <Link to="/messages">
         <section className="chatCard">
           <div className="userImageContainer">
             <div className="userImage">
-              <img src={require(`../images/users/${props.chat.user.image}`)} alt="Abstergo" />
+              <img src={props.chat.user.image} alt="Abstergo" />
             </div>
           </div>
           <div className="messageDetailsContainer">
             <div className="messageUserName">
               <h4>{props.chat.user.companyName}</h4>
+              <h4>{props.chat.user.firstName}</h4>
             </div>
             <p className="messagePreview">
-              {props.chat.messages.content}
+              {message.content}
             </p>
           </div>
+          <div className="chatButton">
+            <Link to={`/chats/${props.chat.id}`}>
+              <button 
+                type="submit" 
+                className="chatBtn">
+                  Chat
+              </button>
+            </Link>  
+          </div>
         </section>
-        </Link>
       </React.Fragment>
-  )}
+    )
+  }
   else {
-    return null;
+    return <div className="empty"></div>;
   }
 };
 

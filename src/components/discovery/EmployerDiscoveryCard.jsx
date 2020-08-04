@@ -1,18 +1,31 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable array-callback-return */
 import React, { useState, useEffect } from 'react';
 import FriendManager from "../modules/FriendManager.jsx";
 import ChatManager from "../modules/ChatManager.jsx";
 
 const EmployerDiscoveryCard = props => {
   
-  const sessionUser = JSON.parse(sessionStorage.getItem("user")) 
-  const [friends, setFriends] = useState([]) 
-  const [friend, setFriend] = useState({ 
+  const sessionUser = JSON.parse(sessionStorage.getItem("user"));
+  const [friends, setFriends] = useState([]);
+  const [newFriend, setNewFriend] = useState({ 
     userId: "", 
     activeUserId: "", 
-    mutualInterest: false})
+    mutualInterest: false});
+
+  const mapFriend = friends.find(obj => {
+    if ((props.user.id === obj.userId && sessionUser.id === obj.activeUserId && obj.mutualInterest === true) || (props.user.id === obj.activeUserId && sessionUser.id === obj.userId && obj.mutualInterest === true))  {
+      return obj
+    }
+  });
+ 
+  const halfFriend = friends.find(obj => {
+    if (props.user.id === obj.activeUserId && sessionUser.id === obj.userId && obj.mutualInterest === false) {
+      return obj
+    }
+  });
 
   const friendHandler = () => { 
-    console.log('CLICKED FRIEND HANDLER')
 
     const editedFriend = {
       userId: props.user.id,
@@ -23,57 +36,40 @@ const EmployerDiscoveryCard = props => {
     const newChat = {
       activeUserId: sessionUser.id,
       userId: props.user.id
-    }
+    };
 
-    console.log('FRIENDS', friends)
-
-    friends.find(friend => {
-      console.log('BEFORE', friend)
-      if (
-        friend.userId === props.user.id &&
-        friend.activeUserId === sessionUser.id &&
-        friend.mutualInterest === false
-        ) {
-          console.log('FRIEND TO EDIT', friend)
-          editedFriend.id = friend.id
-          FriendManager.editFriend(editedFriend)
-          .then(()=> {
-            ChatManager.postChat(newChat)
-            console.log('EDITED FRIEND', editedFriend)
-            return friend
-        })
-      } 
-      else if (
-        props.user.id
-        // friend.userId !== props.user.id &&
-        // friend.userId !== sessionUser.id &&
-        // friend.activeUserId !== props.user.id &&
-        // friend.activeUserId !== sessionUser.id &&
-        // friend.mutualInterest !== false &&
-        // friend.mutualInterest !== true
-        ) {
-          console.log('CREATE FRIEND')
-          createFriend(props.user.id)
-          return friend
-        }
-      else {
-        return null
+    const friend = friends.find(friend => {
+      if (props.user.id === friend.userId && sessionUser.id === friend.activeUserId) {
+        return friend
       }
-    })
-
-      // createFriend(id)
-      // return friend
-
-  }
+    });
+      
+    if (friend === undefined) {
+      createFriend(props.user.id)
+      window.location.reload(true);
+      return newFriend
+    }
+    else if (
+    friend.userId === props.user.id && 
+    friend.mutualInterest !== true &&
+    friend.activeUserId === sessionUser.id ) {
+      editedFriend.id = friend.id
+      FriendManager.editFriend(editedFriend)
+      .then(()=> {
+        ChatManager.postChat(newChat)
+        window.location.reload(true);
+        return friend
+      })
+    };     
+  };
   
   const createFriend = (id) => {
-    friend.userId = sessionUser.id
-    friend.activeUserId = id
-    friend.mutualInterest = false
-    FriendManager.postFriend(friend)
+    newFriend.userId = sessionUser.id
+    newFriend.activeUserId = id
+    newFriend.mutualInterest = false
+    FriendManager.postFriend(newFriend)
     .then(()=> {
-      console.log('NEW FRIEND', friend)
-      return friend
+      return newFriend
     })
   }
   
@@ -84,12 +80,18 @@ const EmployerDiscoveryCard = props => {
     })
   }, [])
 
-  if (props.user.accountType === "employer") {
+  if (props.user.accountType === "employer" && mapFriend) {
+    return null
+  }
+  else if (props.user.accountType === "employer" && halfFriend) {
+    return null
+  }
+  else if (props.user.accountType === "employer") {
     return (
       <React.Fragment>
         <section className="employerCard">
           <div className="employerCard__image">
-            <img src={require(`../images/users/${props.user.image}`)}  alt={props.user.companyName} className="employerCard__logo"/>
+            <img src={props.user.image}  alt={props.user.companyName} className="employerCard__logo"/>
           </div>
           <div className="employerDetails">
             <h2 className="employerCard__name">{props.user.companyName}</h2>
@@ -101,21 +103,21 @@ const EmployerDiscoveryCard = props => {
           <br />
         </section>
         <section className="interestButtons">
-          <div className="interestButtons__container">
-            <div className="interestBtn__false">
+          {/* <div className="interestButtons__container"> */}
+            {/* <div className="interestBtn__false">
               <button type="submit" className="falseBtn">
                 Hard Pass
               </button> 
-            </div>
-            <div className="interestBtn__true">
+            </div> */}
+            {/* <div className="interestBtn__true"> */}
               <button 
                 type="submit" 
                 className="trueBtn" 
                 onClick={() => friendHandler(props.user.id)}>
                   Let's Talk
               </button> 
-            </div>
-          </div>
+            {/* </div> */}
+          {/* </div> */}
         </section>
         <br />
         <br />
@@ -128,7 +130,6 @@ const EmployerDiscoveryCard = props => {
   else {
     return null
   }
-}
-
+};
 
 export default EmployerDiscoveryCard;

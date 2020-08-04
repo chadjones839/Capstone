@@ -1,41 +1,107 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from "../nav/Navbar.jsx"
-import ChatManager from "../modules/ChatManager";
+import MessageManager from "../modules/MessageManager";
 import MessageCard from "../messages/MessageCard";
+import { Link } from "react-router-dom";
 
 const MessageList = props => {
 
-  const [chats, setChats] = useState([]);
+  const sessionUser = JSON.parse(sessionStorage.getItem("user"));
+  const [messages, setMessages] = useState([]);
+  const [isLoading, setIsLoading] = useState(false)
+  const [message, setMessage] = useState(
+    {
+      chatId: parseInt(props.match.params.chatId),
+      userId: sessionUser.id, 
+      content: ""
+    });
 
+  const handleFieldChange = event => {
+      const stateToChange = {...message}
+      stateToChange[event.target.id] = event.target.value
+      setMessage(stateToChange)
+  }
+  
+  const postNewMessage = event => {
+      event.preventDefault();
+      if (message.content === "") {
+        window.alert("Write something first")
+      } 
+      else {
+        setIsLoading(true);
+        MessageManager.postMessage(message)
+        .then(() => {
+          props.history.push(`/chats/${props.match.params.chatId}`)
+          window.location.reload(true)
+        })
+      }   
+    }
 
-  const getChats = () => {
-    return ChatManager.getWithMessages()
+  const getMessages = () => {
+    return MessageManager.getAllMessages()
   };
 
   useEffect(() => {
-    getChats()
-    .then((userResponse) => {
-      setChats(userResponse)
+    getMessages()
+    .then((response) => {
+      setMessages(response)
     })
   }, [])
-
+  
   return (
     <>
       <div className="statusBar">
-        <img src="./statusbar.png" alt="status"/>
+          <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
       </div>
-      <main className="discoveryContainer">
-        <h1 className="discoveryHeader">Discovery</h1>
-          {chats.map(message =>
+        <div className="chatHeader">
+          <Link className="nav-link" to="/chat">
+            <div className="backButton">
+              <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490014/icons/backarrow_lfdpzw.png" alt="back" />
+            </div>
+          </Link>
+          <div className="chatName">
+            <h3>Chat</h3>
+          </div>
+          <div className="rightChat">
+          </div>
+        </div>
+      <main className="chatContainer">
+          {messages.map(message =>
             <MessageCard 
               key={message.id} 
               message={message}
               {...props} />
           )}
-      </main>
-      <div className="navpanel">
-        <Navbar />
-      </div>
+      </main> 
+        <section className="messageInput">
+          <div className="messageInput__compose">
+            <form className="messageForm__form">
+              <fieldset className="messageForm__fieldset">
+                <textarea
+                  className="messageForm__content" 
+                  name="content"  
+                  type="text"
+                  required
+                  onChange={handleFieldChange}
+                  id="content"
+                  placeholder="Say something..."
+                  autoFocus
+                  spellCheck={true}
+                  />
+              </fieldset>
+            </form>
+          </div>
+          <div className="messageForm__button">
+            <button
+              className="messageForm__submit"
+              type="button"
+              id="msgSend"
+              disabled={isLoading}
+              onClick={postNewMessage}>
+              &#10148;
+            </button>                       
+          </div>
+        </section>
+         
     </>
   );
 };

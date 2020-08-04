@@ -9,10 +9,11 @@ import Login from "./components/auth/Login.jsx";
 
 import EmployerDiscovery from "./components/discovery/EmployerDiscoveryList.jsx";
 import CandidateDiscovery from "./components/discovery/CandidateDiscoveryList.jsx";
-import EmployerProfileRender from "./components/profile/EmployerProfileRender.jsx";
+import EmployerProfile from "./components/profile/EmployerProfile.jsx";
 import EditEmployer from "./components/profile/EditEmployerProfile.jsx";
-import CandidateProfileRender from "./components/profile/CandidateProfileRender.jsx";
+import CandidateProfile from "./components/profile/CandidateProfile.jsx";
 import EditCandidate from "./components/profile/EditCandidateProfile.jsx";
+import UserDetail from "./components/profile/UserDetail.jsx";
 import Chat from "./components/chat/ChatList.jsx";
 import MessageList from "./components/messages/MessageList.jsx";
 
@@ -64,10 +65,10 @@ const ApplicationViews = (props) => {
         path="/profile" 
         render={props => {
           if (hasUser && sessionUser.accountType === "employer") {
-            return <EmployerProfileRender {...props} />
+            return <EmployerProfile {...props} />
           } 
           if (hasUser && sessionUser.accountType === "candidate") {
-            return <CandidateProfileRender {...props} />
+            return <CandidateProfile {...props} />
           } 
           else {
             return <Redirect to="/" />
@@ -89,6 +90,15 @@ const ApplicationViews = (props) => {
                 userId={props.match.params.userId} />
             } 
       }}
+      />
+      <Route
+        exact
+          path="/users/:userId(\d+)/details"
+          render={props => {
+            return <UserDetail
+              {...props} 
+              userId={props.match.params.userId} />
+          }}
       />
       <Route 
         exact
@@ -117,6 +127,16 @@ const ApplicationViews = (props) => {
           }
       }} 
       />
+      <Route 
+        exact
+        path="/chats/:chatId(\d+)" 
+        render={props => {
+          return <MessageList 
+            chatId={parseInt(props.match.params.chatId)}
+            {...props} />
+      }} 
+      />
+
       <Route 
         exact
         path="/messages" 

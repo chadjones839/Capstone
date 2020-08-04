@@ -10,11 +10,14 @@
 
 .editLabel {
   font-family: 'Roboto', sans-serif;
+  font-weight: 600;
   margin-top: 10px;
+  padding-top: 10px;
 }
 
 .editInput {
   margin: 0;
+  margin-bottom: 10px;
   padding: 0.5rem 0.3rem;
   width: 95%;
   color: inherit;
@@ -27,7 +30,14 @@
 
 .editProfileHeader {
   font-family: 'Comfortaa', cursive;
+  font-weight: 700;
   margin-bottom: 10px;
+  color: #b60b0b;
+}
+
+.backbutton > img{
+  width: 40px;
+  height: auto;
 }
 
 #bio {

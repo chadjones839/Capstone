@@ -24,5 +24,10 @@ export default {
   getWithMessages() {
     return fetch(`${remoteURL}/chats?_embed=messages`)
         .then(result => result.json())
+  },
+  deleteChat(id) {
+    return fetch(`${remoteURL}/chats/${id}`, {
+      method: "DELETE"
+    }).then(result => result.json())
   }
 }

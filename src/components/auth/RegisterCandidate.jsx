@@ -1,22 +1,22 @@
+/* eslint-disable array-callback-return */
 import React, {useState} from "react";
-import LoginManager from "../modules/LoginManager";
+import UserManager from "../modules/UserManager";
 
 
 const RegisterEmployer = props => {
+
   const [user, setUser] = useState({
     email:"", 
     password:"", 
     accountType: "candidate",
-    image: "usericon.png",
-    discoverCandidates: false,
-    discoverEmployers: true,
+    image: "https://res.cloudinary.com/dhduglm4j/image/upload/v1596490031/icons/profileNav_lord6y.png",
     companyName: "",
-    industry: "",
+    industry: "default",
     userLocation: "",
     firstName: "",
     lastName: "",
-    jobTitle: "",
-    bio: ""
+    jobTitle: "default",
+    bio: "default"
   })
 
   const [isLoading, setIsLoading]= useState(false);
@@ -29,33 +29,76 @@ const RegisterEmployer = props => {
 
   const constructNewUser = evt => {
     evt.preventDefault();
-    let password2= document.querySelector("#password2").value
-    if (user.email === "" || user.password === "") {
+    let passwordConfirm= document.querySelector("#passwordConfirm").value
+    if (user.email === "" || user.password === "" || user.firstName === "" || user.lastName === "" || user.userLocation === "") {
       window.alert("Missing fields")
     } 
-    else if (user.password !== password2) {
+    else if (user.password !== passwordConfirm) {
       window.alert("Your password does not match")
     } 
     else {
       setIsLoading(true);
       sessionStorage.setItem("user", JSON.stringify(user))
       setUser(user)
-      LoginManager.postUser(user)
-      .then(()=> 
-        window.location.reload(true),
-        props.history.push("/discovery"));
+      UserManager.postUser(user)
+      .then(() =>{
+        UserManager.getAllUsers()
+        .then(arr => {
+          arr.find(obj => {
+            if (obj.email === user.email) {
+              sessionStorage.setItem("user", JSON.stringify(obj))
+            }
+          })
+        })
+      })
+      .then(()=> {
+        props.history.push("/discovery")
+      })
+      .then(() => {
+        window.location.reload(true)
+      })
     }
   };
 
   return (
     <React.Fragment>
       <div className="statusBar">
-        <img src="./statusbar.png" alt="status"/>
+        <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
       </div>
       <main className="registerContainer">
-        <h1 className="registerHeader">Type of Account</h1>
+        <h1 className="registerHeader">Create Account</h1>
           <div className="registerBox">
             <form>
+
+            <div className="form-input">
+                <input 
+                  required
+                  className="inputField" 
+                  id="firstName"
+                  type="text"
+                  placeholder="First Name"  
+                  onChange={handleFieldChange} />
+              </div>
+
+              <div className="form-input">
+                <input 
+                  required
+                  className="inputField" 
+                  id="lastName"
+                  type="text"
+                  placeholder="Last Name"  
+                  onChange={handleFieldChange} />
+              </div>
+
+              <div className="form-input">
+                <input 
+                  required
+                  className="inputField" 
+                  id="userLocation"
+                  type="text"
+                  placeholder="Location (i.e. Albany, NY)"  
+                  onChange={handleFieldChange} />
+              </div>
 
               <div className="form-input">
                 <input 
@@ -83,7 +126,7 @@ const RegisterEmployer = props => {
                   className="inputField" 
                   type="password" 
                   placeholder="Confirm Password"
-                  id="password2" />
+                  id="passwordConfirm" />
               </div>
 
               <div className="container-login-form-btn">

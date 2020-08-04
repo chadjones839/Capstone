@@ -2,13 +2,13 @@ const remoteURL = "http://localhost:5002";
 
 export default {
 
-  getChat(id) {
+  getMessage(id) {
       return fetch(`${remoteURL}/messages/${id}`).then(result=>result.json())
   },
   getAllMessages() {
       return fetch(`${remoteURL}/messages`).then(result => result.json())
   },
-  postMessages(newChat) {
+  postMessage(newChat) {
       return fetch(`${remoteURL}/messages`, {
           method: "POST",
           headers: {

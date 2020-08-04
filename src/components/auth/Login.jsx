@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React, { useState } from "react"
 import LoginManager from "../modules/LoginManager";
 import { Link } from "react-router-dom";
@@ -40,12 +41,12 @@ const Login = props => {
   return (
     <React.Fragment>
       <div className="statusBar">
-        <img src="./statusbar.png" alt="status"/>
+        <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
       </div>
       <div className="backButton">
         <Link className="nav-link" to="/">
           <button type="submit" className="backbutton">
-            <img src="./backarrow.png" alt="back" />
+            <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490014/icons/backarrow_lfdpzw.png" alt="back" />
           </button>
         </Link>
       </div>
