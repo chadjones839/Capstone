@@ -26,8 +26,16 @@ import JobForm from "./components/jobs/JobForm.jsx";
 import CandidateJobListings from "./components/jobs/CandidateJobListings.jsx";
 
 import UserResume from "./components/resumes/UserResume.jsx";
+import ViewResume from "./components/resumes/ViewResume.jsx";
 import ResumeList from "./components/resumes/ResumeList.jsx";
 import WorkHistory from "./components/resumes/WorkHistoryForm.jsx";
+import WorkHistoryEdit from "./components/resumes/WorkHistoryEdit.jsx";
+
+import SkillForm from "./components/resumes/SkillForm.jsx";
+import SkillsEdit from "./components/resumes/SkillsEdit.jsx";
+
+import SchoolForm from "./components/resumes/SchoolForm.jsx";
+import SchoolEdit from "./components/resumes/SchoolEdit.jsx";
 
 const ApplicationViews = (props) => {
 
@@ -237,6 +245,58 @@ const ApplicationViews = (props) => {
         render={props => {
           return <WorkHistory
             {...props} />
+        }} 
+      />
+      <Route
+        exact
+        path="/work-history/:jobId(\d+)/edit"
+        render={props => {
+          return <WorkHistoryEdit 
+            {...props} 
+            jobId={props.match.params.jobId} />
+        }} 
+      />
+      <Route
+        exact
+        path="/skills/new"
+        render={props => {
+          return <SkillForm
+            {...props} />
+        }} 
+      />
+      <Route
+        exact
+        path="/skills/:skillId(\d+)/edit"
+        render={props => {
+          return <SkillsEdit 
+            {...props} 
+            skillId={props.match.params.skillId} />
+        }} 
+      />
+      <Route
+        exact
+        path="/schools/new"
+        render={props => {
+          return <SchoolForm
+            {...props} />
+        }} 
+      />
+      <Route
+        exact
+        path="/schools/:schoolId(\d+)/edit"
+        render={props => {
+          return <SchoolEdit 
+            {...props} 
+            schoolId={props.match.params.schoolId} />
+        }} 
+      />
+      <Route
+        exact
+        path="/user-resume/:resumeId(\d+)"
+        render={props => {
+          return <ViewResume 
+            {...props} 
+            resumeId={props.match.params.resumeId} />
         }} 
       />
     </React.Fragment>

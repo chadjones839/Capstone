@@ -1,52 +1,48 @@
 import React, { useState } from 'react';
 import ResumeManager from '../modules/ResumeManager';
 
-const WorkHistory = props => {
+const SchoolForm = props => {
 
   const sessionUser = JSON.parse(sessionStorage.getItem("user"))
   const [isLoading, setIsLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-  const [job, setJob] = useState({
+  const [school, setSchool] = useState({
     userId: sessionUser.id,
-    jobTitle: "",
-    company: "",
+    schoolName: "",
+    field: "",
+    degree: "",
     startMonth: "",
     startYear: "",
     endMonth: "",
     endYear: "",
-    current: isChecked,
-    description: "",
+    current: isChecked
   });
 
   const checkBoxValue = evt => {
     if (!isChecked) {
-      job.current= true
-      job.endMonth=""
-      job.endYear=""
-      document.querySelector("#endDateFields").style.display = "none"
+      school.current= true
       setIsChecked(true);
     }
     else {
-      job.current = false
-      document.querySelector("#endDateFields").style.display = "flex"
+      school.current = false
       setIsChecked(false)
     }
   }
 
 
   const handleFieldChange = evt => {
-    const stateToChange = { ...job };
+    const stateToChange = { ...school };
     stateToChange[evt.target.id] = evt.target.value;
-    setJob(stateToChange);
+    setSchool(stateToChange);
   };
 
-  const createJob = evt => {
+  const createSchool = evt => {
     evt.preventDefault();
-    if (job.jobTitle === "" || job.company === "" || job.startMonth === "" || job.startYear === "" || job.description === "") {
+    if (school.schoolName === "" || school.startMonth === "" || school.startYear === "") {
       window.alert("Hold up boss, you're missing a field or two!");
     } else {
       setIsLoading(true);
-      ResumeManager.postJob(job)
+      ResumeManager.postSchool(school)
         .then(() => props.history.push("/resume"));
     }
   };
@@ -58,7 +54,7 @@ const WorkHistory = props => {
       </div>
       <div className="listingHeader">
         <div className="jobListing__header">
-          <h2>Add Work History</h2>
+          <h2>Add School</h2>
         </div> 
       </div>
       <section className="editJobListing">
@@ -67,28 +63,39 @@ const WorkHistory = props => {
             
             <label 
               className="editLabel" 
-              htmlFor="jobTitle">
-                Job Title *
+              htmlFor="schoolName">
+                School Name *
             </label>
             <input 
               type="text"
               required
               className="editInput"  
               onChange={handleFieldChange}
-              id="jobTitle"
+              id="schoolName"
             />
             
             <label 
               className="editLabel" 
-              htmlFor="company">
-                Company *
+              htmlFor="field">
+                Field
             </label>
             <input 
               type="text"
-              required
               className="editInput"  
               onChange={handleFieldChange}
-              id="company"
+              id="field"
+            />
+
+            <label 
+              className="editLabel" 
+              htmlFor="degree">
+                Degree
+            </label>
+            <input
+              type="text"
+              className="editInput"  
+              onChange={handleFieldChange}
+              id="degree"
             />
 
             <div className="dateFields">
@@ -154,29 +161,15 @@ const WorkHistory = props => {
               className="editInputs"  
               onChange={checkBoxValue}
               checked={isChecked}
-              // value={job.current}
               id="current"
             />
             <label 
               className="editLabel" 
               htmlFor="current">
-                I am currently employed here.
+                I am currently a student here.
             </label>
             <br />
             <br />
-
-            <label 
-              className="editLabel" 
-              htmlFor="description">
-                Job Description *
-            </label>
-            <textarea 
-              type="text"
-              required
-              className="editInputTextarea"  
-              onChange={handleFieldChange}
-              id="description"
-            />
 
           </fieldset>
         </form>
@@ -187,7 +180,7 @@ const WorkHistory = props => {
           className="blackBtn"
           id="submitBtn"
           disabled={isLoading}
-          onClick={createJob}>
+          onClick={createSchool}>
             Save
         </button> 
       </div>
@@ -195,4 +188,4 @@ const WorkHistory = props => {
   )   
 };
 
-export default WorkHistory
+export default SchoolForm

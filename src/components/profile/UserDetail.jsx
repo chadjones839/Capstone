@@ -45,7 +45,7 @@ const UserDetail = props => {
   })  
 
   const deleteMatch = id => {
-    if (window.confirm(`Are you sure you want to unmatch with ${user.companyName}${user.firstName}?.`)) {
+    if (window.confirm(`Are you sure you want to unmatch with ${user.companyName}${user.firstName}?`)) {
       ChatManager.deleteChat(chat.id)
         .then(() => {
           FriendManager.deleteFriend(friend.id)

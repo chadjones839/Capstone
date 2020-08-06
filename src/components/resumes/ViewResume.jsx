@@ -10,7 +10,7 @@ import SchoolsCard from "../resumes/SchoolsCard";
 
 /*END IMPORTS*****************************************************************/
 
-const UserResume = props => {
+const ViewResume = props => {
 
   const sessionUser = JSON.parse(sessionStorage.getItem("user"))
   const [user, setUser] = useState({})
@@ -85,31 +85,8 @@ const UserResume = props => {
           </div>
         </section>
         <main className="resumeContainer">
-          <section className="editProfileButton">
-            <div className="editBtnContainer">
-              <button 
-                onClick={() => props.history.push(`/user-resume/${user.id}`)}
-                className="viewResBtn"
-                type="button"
-                >
-                  View Resume
-              </button>
-            </div>
-          </section>
-
           <h2 className="sectionTitle">Work History</h2>
           <section className="workHistory">
-
-            <div className="addWorkHistory">
-              <button 
-                onClick={() => props.history.push(`/work-history/new`)}
-                className="addButton"
-                type="button"
-                >
-                  + Add Job
-              </button>
-            </div>
-
             {jobs.map(job =>
               <WorkHistoryCard
                 key={job.id} 
@@ -117,49 +94,20 @@ const UserResume = props => {
                 {...props} />
             )}
           </section>
-
           <h2 className="sectionTitle">Skills</h2>
           <section className="skills">
-            {(skill.userId !== sessionUser.id)
-            ?  <div className="addSkills">
-                <button 
-                  onClick={() => props.history.push(`/skills/new`)}
-                  className="addButton"
-                  type="button"
-                  >
-                    + Add Skills
-                </button>
-              </div>
-              : <><div className="addSkills">
-              <button 
-                onClick={() => props.history.push(`/skills/${skill.id}/edit`)}
-                className="addButton"
-                type="button"
-                >
-                  Edit Skills
-              </button>
-            </div>
-            <section className="skillsList">
-              <h2>{skill.skill1}</h2>
-              <h2>{skill.skill2}</h2>
-              <h2>{skill.skill3}</h2>
-              <h2>{skill.skill4}</h2>
-              <h2>{skill.skill5}</h2>
-            </section></>}
+            {(skill.userId === sessionUser.id)
+            ? <section className="skillsList">
+                <h2>{skill.skill1}</h2>
+                <h2>{skill.skill2}</h2>
+                <h2>{skill.skill3}</h2>
+                <h2>{skill.skill4}</h2>
+                <h2>{skill.skill5}</h2>
+              </section>
+              : null}
           </section>
-
           <h2 className="sectionTitle">Schools</h2>
           <section className="schools">
-
-            <div className="addWorkHistory">
-              <button 
-                onClick={() => props.history.push(`/schools/new`)}
-                className="addButton"
-                type="button"
-                >
-                  + Add School
-              </button>
-            </div>
             {schools.map(school =>
               <SchoolsCard
                 key={school.id} 
@@ -177,6 +125,6 @@ const UserResume = props => {
         <br /> 
     </React.Fragment>
   )   
-};
+}
 
-export default UserResume;
+export default ViewResume

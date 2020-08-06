@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ResumeManager from '../modules/ResumeManager';
 
-const WorkHistory = props => {
+const WorkHistoryEdit = props => {
 
   const sessionUser = JSON.parse(sessionStorage.getItem("user"))
   const [isLoading, setIsLoading] = useState(false);
@@ -15,7 +15,7 @@ const WorkHistory = props => {
     endMonth: "",
     endYear: "",
     current: isChecked,
-    description: "",
+    description: ""
   });
 
   const checkBoxValue = evt => {
@@ -33,23 +33,42 @@ const WorkHistory = props => {
     }
   }
 
-
   const handleFieldChange = evt => {
     const stateToChange = { ...job };
     stateToChange[evt.target.id] = evt.target.value;
     setJob(stateToChange);
   };
 
-  const createJob = evt => {
-    evt.preventDefault();
-    if (job.jobTitle === "" || job.company === "" || job.startMonth === "" || job.startYear === "" || job.description === "") {
-      window.alert("Hold up boss, you're missing a field or two!");
-    } else {
-      setIsLoading(true);
-      ResumeManager.postJob(job)
-        .then(() => props.history.push("/resume"));
-    }
-  };
+  const updateJob = event => {
+    event.preventDefault();
+    setIsLoading(true)
+
+  const editedJob = {
+    id: props.match.params.jobId,
+    userId: sessionUser.id,
+    jobTitle: job.jobTitle,
+    company: job.company,
+    startMonth: job.startMonth,
+    startYear: job.startYear,
+    endMonth: job.endMonth,
+    endYear: job.endYear,
+    current: job.current,
+    description: job.description
+  }
+
+  ResumeManager.editJob(editedJob)
+    .then(() => {
+      props.history.push("/resume")
+    })
+  }
+
+  useEffect(() => {
+    ResumeManager.getJob(props.match.params.jobId)
+    .then((job) => {
+        setJob(job)
+        setIsLoading(false)
+    } )    
+}, [props.match.params.jobId]);
 
   return (
     <React.Fragment>
@@ -76,6 +95,7 @@ const WorkHistory = props => {
               className="editInput"  
               onChange={handleFieldChange}
               id="jobTitle"
+              value={job.jobTitle}
             />
             
             <label 
@@ -89,6 +109,7 @@ const WorkHistory = props => {
               className="editInput"  
               onChange={handleFieldChange}
               id="company"
+              value={job.company}
             />
 
             <div className="dateFields">
@@ -103,6 +124,7 @@ const WorkHistory = props => {
                   className="editInput"  
                   onChange={handleFieldChange}
                   id="startMonth"
+                  value={job.startMonth}
                 />
               </div>
               <div className="start2">
@@ -116,11 +138,12 @@ const WorkHistory = props => {
                   className="editInput"  
                   onChange={handleFieldChange}
                   id="startYear"
+                  value={job.startYear}
                 />
               </div>
             </div>
 
-            <div className="dateFields">
+            <div className="dateFields" id="endDateFields">
               <div className="end1">
                 <label 
                   className="editLabel" 
@@ -132,6 +155,7 @@ const WorkHistory = props => {
                   className="editInput"  
                   onChange={handleFieldChange}
                   id="endMonth"
+                  value={job.endMonth}
                 />
               </div>
               <div className="end2">
@@ -145,6 +169,7 @@ const WorkHistory = props => {
                   className="editInput"  
                   onChange={handleFieldChange}
                   id="endYear"
+                  value={job.endYear}
                 />
               </div>
             </div>
@@ -154,8 +179,8 @@ const WorkHistory = props => {
               className="editInputs"  
               onChange={checkBoxValue}
               checked={isChecked}
-              // value={job.current}
               id="current"
+              value={job.current}
             />
             <label 
               className="editLabel" 
@@ -176,6 +201,7 @@ const WorkHistory = props => {
               className="editInputTextarea"  
               onChange={handleFieldChange}
               id="description"
+              value={job.description}
             />
 
           </fieldset>
@@ -187,12 +213,12 @@ const WorkHistory = props => {
           className="blackBtn"
           id="submitBtn"
           disabled={isLoading}
-          onClick={createJob}>
-            Save
+          onClick={updateJob}>
+            Save Changes
         </button> 
       </div>
     </React.Fragment>
   )   
 };
 
-export default WorkHistory
+export default WorkHistoryEdit

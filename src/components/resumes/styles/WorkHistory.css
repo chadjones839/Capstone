@@ -10,5 +10,68 @@
 
 .start2,
 .end2 {
-  width: 35%;
+  width: 30%;
+  padding-right: 10px;
+}
+
+.experienceCard {
+  border: 1px solid black;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 3px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.jobTitle > h2 {
+  font-family: "Comfortaa", sans-serif;
+  font-weight: 700;
+  margin: 0;
+  padding: 5px 0 0 0;
+}
+
+.bodyContainer > h3 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  margin: 5px 0;
+}
+
+.bodyContainer > h4 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  margin: 20px 0 0 0 ;
+}
+
+.bodyContainer > p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  margin: 5px 0;
+}
+
+.bodyContainer > h5 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  margin: 5px 0;
+  font-style: italic;
+}
+
+.skillsList {
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 3px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.skillsList > h2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  margin: 5px 0;
 }

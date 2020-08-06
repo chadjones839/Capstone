@@ -54,14 +54,12 @@ const EditEmployer = props => {
       event.preventDefault();
       setIsLoading(true)
 
-  const editedUser = {
+    const editedUser = {
       id: props.match.params.userId,
       email: user.email, 
       password: user.password, 
       accountType: "employer",
       image: user.image,
-      discoverEmployers: false,
-      discoverCandidates: true,
       companyName: user.companyName, 
       industry: user.industry, 
       userLocation: user.userLocation, 
@@ -69,14 +67,12 @@ const EditEmployer = props => {
       lastName: "",
       jobTitle: "",
       bio: user.bio
-  }
-
-      
+    }
+ 
     LoginManager.editUser(editedUser)
     .then(() => {
         props.history.push("/profile")
     })
-
   }
 
   useEffect(() => {

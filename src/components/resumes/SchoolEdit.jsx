@@ -1,33 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ResumeManager from '../modules/ResumeManager';
 
-const WorkHistory = props => {
+const SchoolForm = props => {
 
   const sessionUser = JSON.parse(sessionStorage.getItem("user"))
   const [isLoading, setIsLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-  const [job, setJob] = useState({
+  const [school, setSchool] = useState({
     userId: sessionUser.id,
-    jobTitle: "",
-    company: "",
+    schoolName: "",
+    field: "",
+    degree: "",
     startMonth: "",
     startYear: "",
     endMonth: "",
     endYear: "",
-    current: isChecked,
-    description: "",
+    current: isChecked
   });
 
   const checkBoxValue = evt => {
     if (!isChecked) {
-      job.current= true
-      job.endMonth=""
-      job.endYear=""
+      school.current= true
+      school.endMonth=""
+      school.endYear=""
       document.querySelector("#endDateFields").style.display = "none"
       setIsChecked(true);
     }
     else {
-      job.current = false
+      school.current = false
       document.querySelector("#endDateFields").style.display = "flex"
       setIsChecked(false)
     }
@@ -35,21 +35,41 @@ const WorkHistory = props => {
 
 
   const handleFieldChange = evt => {
-    const stateToChange = { ...job };
+    const stateToChange = { ...school };
     stateToChange[evt.target.id] = evt.target.value;
-    setJob(stateToChange);
+    setSchool(stateToChange);
   };
 
-  const createJob = evt => {
-    evt.preventDefault();
-    if (job.jobTitle === "" || job.company === "" || job.startMonth === "" || job.startYear === "" || job.description === "") {
-      window.alert("Hold up boss, you're missing a field or two!");
-    } else {
-      setIsLoading(true);
-      ResumeManager.postJob(job)
-        .then(() => props.history.push("/resume"));
-    }
-  };
+  const updateSchool = event => {
+    event.preventDefault();
+    setIsLoading(true)
+
+  const editedSchool = {
+    userId: sessionUser.id,
+    schoolName: school.schoolName,
+    field: school.field,
+    degree: school.degree,
+    startMonth: school.startMonth,
+    startYear: school.startYear,
+    endMonth: school.endMonth,
+    endYear: school.endYear,
+    current: isChecked,
+    id: props.match.params.schoolId
+  }
+
+  ResumeManager.editSchool(editedSchool)
+    .then(() => {
+      props.history.push("/resume")
+    })
+  }
+
+  useEffect(() => {
+    ResumeManager.getSchool(props.match.params.schoolId)
+    .then((school) => {
+        setSchool(school)
+        setIsLoading(false)
+    } )    
+}, [props.match.params.schoolId]);
 
   return (
     <React.Fragment>
@@ -58,7 +78,7 @@ const WorkHistory = props => {
       </div>
       <div className="listingHeader">
         <div className="jobListing__header">
-          <h2>Add Work History</h2>
+          <h2>Add School</h2>
         </div> 
       </div>
       <section className="editJobListing">
@@ -67,28 +87,42 @@ const WorkHistory = props => {
             
             <label 
               className="editLabel" 
-              htmlFor="jobTitle">
-                Job Title *
+              htmlFor="schoolName">
+                School Name *
             </label>
             <input 
               type="text"
               required
               className="editInput"  
               onChange={handleFieldChange}
-              id="jobTitle"
+              id="schoolName"
+              value={school.schoolName}
             />
             
             <label 
               className="editLabel" 
-              htmlFor="company">
-                Company *
+              htmlFor="field">
+                Field
             </label>
             <input 
               type="text"
-              required
               className="editInput"  
               onChange={handleFieldChange}
-              id="company"
+              id="field"
+              value={school.field}
+            />
+
+            <label 
+              className="editLabel" 
+              htmlFor="degree">
+                Degree
+            </label>
+            <input
+              type="text"
+              className="editInput"  
+              onChange={handleFieldChange}
+              id="degree"
+              value={school.degree}
             />
 
             <div className="dateFields">
@@ -103,6 +137,7 @@ const WorkHistory = props => {
                   className="editInput"  
                   onChange={handleFieldChange}
                   id="startMonth"
+                  value={school.startMonth}
                 />
               </div>
               <div className="start2">
@@ -116,11 +151,12 @@ const WorkHistory = props => {
                   className="editInput"  
                   onChange={handleFieldChange}
                   id="startYear"
+                  value={school.startYear}
                 />
               </div>
             </div>
 
-            <div className="dateFields">
+            <div className="dateFields" id="endDateFields">
               <div className="end1">
                 <label 
                   className="editLabel" 
@@ -132,6 +168,7 @@ const WorkHistory = props => {
                   className="editInput"  
                   onChange={handleFieldChange}
                   id="endMonth"
+                  value={school.endMonth}
                 />
               </div>
               <div className="end2">
@@ -145,6 +182,7 @@ const WorkHistory = props => {
                   className="editInput"  
                   onChange={handleFieldChange}
                   id="endYear"
+                  value={school.endYear}
                 />
               </div>
             </div>
@@ -154,29 +192,16 @@ const WorkHistory = props => {
               className="editInputs"  
               onChange={checkBoxValue}
               checked={isChecked}
-              // value={job.current}
               id="current"
+              value={school.current}
             />
             <label 
               className="editLabel" 
               htmlFor="current">
-                I am currently employed here.
+                I am currently a student here.
             </label>
             <br />
             <br />
-
-            <label 
-              className="editLabel" 
-              htmlFor="description">
-                Job Description *
-            </label>
-            <textarea 
-              type="text"
-              required
-              className="editInputTextarea"  
-              onChange={handleFieldChange}
-              id="description"
-            />
 
           </fieldset>
         </form>
@@ -187,7 +212,7 @@ const WorkHistory = props => {
           className="blackBtn"
           id="submitBtn"
           disabled={isLoading}
-          onClick={createJob}>
+          onClick={updateSchool}>
             Save
         </button> 
       </div>
@@ -195,4 +220,4 @@ const WorkHistory = props => {
   )   
 };
 
-export default WorkHistory
+export default SchoolForm

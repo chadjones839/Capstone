@@ -9,12 +9,12 @@ export default {
     return fetch(`${remoteURL}/workHistory`)
       .then(result => result.json())
   },
-  getJobsWithUsers(id) {
-    return fetch(`${remoteURL}/workHistory/${id}?_expand=users`)
+  getJobsForUser(id) {
+    return fetch(`${remoteURL}/workHistory?userId=${id}`)
       .then(result => result.json())
   },
-  deleteJob(userId) {
-    return fetch(`${remoteURL}/workHistory/${userId}`, {
+  deleteJob(id) {
+    return fetch(`${remoteURL}/workHistory/${id}`, {
       method: "DELETE"
     }).then(result => result.json())
   },
@@ -27,6 +27,15 @@ export default {
           body: JSON.stringify(newUser)
       }).then(result=>result.json())
   },
+  editJob(editedJob) {
+    return fetch(`${remoteURL}/workHistory/${editedJob.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(editedJob)
+    }).then(data => data.json());  
+  },
 
 
   getSkill(id) {
@@ -37,8 +46,8 @@ export default {
     return fetch(`${remoteURL}/skills`)
       .then(result => result.json())
   },
-  getSkillsWithUsers(id) {
-    return fetch(`${remoteURL}/skills/${id}?_expand=users`)
+  getSkillsForUser(id) {
+    return fetch(`${remoteURL}/skills?userId=${id}`)
       .then(result => result.json())
   },
   deleteSkill(userId) {
@@ -55,6 +64,15 @@ export default {
           body: JSON.stringify(newUser)
       }).then(result=>result.json())
   },
+  editSkill(editedSkill) {
+    return fetch(`${remoteURL}/skills/${editedSkill.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(editedSkill)
+    }).then(data => data.json());  
+  },
 
   getSchool(id) {
     return fetch(`${remoteURL}/schools/${id}`)
@@ -64,8 +82,8 @@ export default {
     return fetch(`${remoteURL}/schools`)
       .then(result => result.json())
   },
-  getSchoolsWithUsers(id) {
-    return fetch(`${remoteURL}/schools/${id}?_expand=user`)
+  getSchoolsForUser(id) {
+    return fetch(`${remoteURL}/schools?userId=${id}`)
       .then(result => result.json())
   },
   deleteSchool(userId) {
@@ -81,5 +99,14 @@ export default {
           },
           body: JSON.stringify(newUser)
       }).then(result=>result.json())
+  },
+  editSchool(editedSchool) {
+    return fetch(`${remoteURL}/schools/${editedSchool.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(editedSchool)
+    }).then(data => data.json());  
   }
 }

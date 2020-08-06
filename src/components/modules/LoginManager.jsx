@@ -25,5 +25,5 @@ export default {
         },
         body: JSON.stringify(editedUser)
     }).then(data => data.json());  
-    }
+}
 }
