@@ -292,11 +292,11 @@ const ApplicationViews = (props) => {
       />
       <Route
         exact
-        path="/user-resume/:resumeId(\d+)"
+        path="/user-resume/:userId(\d+)"
         render={props => {
           return <ViewResume 
             {...props} 
-            resumeId={props.match.params.resumeId} />
+            userId={props.match.params.userId} />
         }} 
       />
     </React.Fragment>

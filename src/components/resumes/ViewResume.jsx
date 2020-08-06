@@ -25,19 +25,39 @@ const ViewResume = props => {
   });
   
   const getUser = () => {
-    return UserManager.getUser(sessionUser.id)
+    if (sessionUser.accountType === "candidate") {
+      return UserManager.getUser(sessionUser.id)
+    }
+    else {
+      return UserManager.getUser(props.match.params.userId)
+    }
   }
 
   const getJobs = () => {
-    return ResumeManager.getJobsForUser(sessionUser.id)
+    if (sessionUser.accountType === "candidate") {
+      return ResumeManager.getJobsForUser(sessionUser.id)
+    }
+    else {
+      return ResumeManager.getJobsForUser(props.match.params.userId)
+    }
   }
 
   const getSkills = () => {
-    return ResumeManager.getSkillsForUser(sessionUser.id)
+    if (sessionUser.accountType === "candidate") {
+      return ResumeManager.getSkillsForUser(sessionUser.id)
+    }
+    else {
+      return ResumeManager.getSkillsForUser(props.match.params.userId)
+    }
   }
 
   const getSchools = () => {
-    return ResumeManager.getSchoolsForUser(sessionUser.id)
+    if (sessionUser.accountType === "candidate") {
+      return ResumeManager.getSchoolsForUser(sessionUser.id)
+    }
+    else {
+      return ResumeManager.getSchoolsForUser(props.match.params.userId)
+    }
   }
 
   useEffect(() => {
@@ -48,7 +68,7 @@ const ViewResume = props => {
         getSkills()
         .then((skillsResponse) => {
           getSchools()
-            .then((schoolResponse) => {
+          .then((schoolResponse) => {
             setSkills(skillsResponse)
             setUser(userResponse)
             setJobs(jobsResponse)
@@ -65,8 +85,10 @@ const ViewResume = props => {
         <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
       </div>
       <section className="profileHeader">
-        <div className="logoutButton">
-      
+        <div className="backBtnContainer">
+          <div className="backButton">
+            <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490014/icons/backarrow_lfdpzw.png" alt="back" />
+          </div>
         </div>
         <div className="userProfile__image">
           <div className="userImage__container">
@@ -96,15 +118,13 @@ const ViewResume = props => {
           </section>
           <h2 className="sectionTitle">Skills</h2>
           <section className="skills">
-            {(skill.userId === sessionUser.id)
-            ? <section className="skillsList">
-                <h2>{skill.skill1}</h2>
-                <h2>{skill.skill2}</h2>
-                <h2>{skill.skill3}</h2>
-                <h2>{skill.skill4}</h2>
-                <h2>{skill.skill5}</h2>
-              </section>
-              : null}
+            <section className="skillsList">
+              <h2>{skill.skill1}</h2>
+              <h2>{skill.skill2}</h2>
+              <h2>{skill.skill3}</h2>
+              <h2>{skill.skill4}</h2>
+              <h2>{skill.skill5}</h2>
+            </section>
           </section>
           <h2 className="sectionTitle">Schools</h2>
           <section className="schools">

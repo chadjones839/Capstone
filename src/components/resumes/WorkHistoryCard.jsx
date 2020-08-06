@@ -3,6 +3,7 @@ import ResumeManager from '../modules/ResumeManager';
 
 const WorkHistoryCard = props => {
 
+  const sessionUser = JSON.parse(sessionStorage.getItem("user"))
   const deleteJob = id => {
     if (window.confirm("Are you sure you want to delete this listing? This cannot be undone.")) {
       ResumeManager.deleteJob(id)
@@ -20,26 +21,28 @@ const WorkHistoryCard = props => {
           <div className="jobTitle">
             <h2>{props.job.jobTitle}</h2>
           </div>
-          <div className="jobDetailBtnContainer">
-            <div className="jobBtn__delete">
-              <button 
-                onClick={() => deleteJob(props.job.id)}
-                className="jobDetailDeleteBtn"
-                type="button"
-                >
-                  &#128465;
-              </button>
+          { (sessionUser.accountType === "candidate")
+          ?  <div className="jobDetailBtnContainer">
+              <div className="jobBtn__delete">
+                <button 
+                  onClick={() => deleteJob(props.job.id)}
+                  className="jobDetailDeleteBtn"
+                  type="button"
+                  >
+                    &#128465;
+                </button>
+              </div>
+              <div className="jobBtn__edit">
+                <button 
+                  onClick={() => props.history.push(`/work-history/${props.job.id}/edit`)}
+                  className="jobDetailEditBtn"
+                  type="button"
+                  >
+                    &#9998;
+                </button>
+              </div>
             </div>
-            <div className="jobBtn__edit">
-              <button 
-                onClick={() => props.history.push(`/work-history/${props.job.id}/edit`)}
-                className="jobDetailEditBtn"
-                type="button"
-                >
-                  &#9998;
-              </button>
-            </div>
-          </div>
+            : null }
         </div>
         <div className="bodyContainer">
           <h3>{props.job.company}</h3>
