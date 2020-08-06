@@ -17,5 +17,6 @@
 @import "./components/profile/styles/Profile.css";
 @import "./components/messages/styles/Message.css";
 @import "./components/jobs/styles/Jobs.css";
+@import "./components/resumes/styles/Resume.css";
 
 /****************/

@@ -16,12 +16,10 @@ const NavBar = props => {
         <li>
           {sessionUser.accountType === "employer"
           ? <Link className="nav-link" to="/jobs"> 
-              <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596585155/icons/suitcase_x8vwp8.png
-              " alt="jobs" /> 
+              <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596585155/icons/suitcase_x8vwp8.png" alt="jobs" /> 
           </Link>
           : <Link className="nav-link" to="/companies"> 
-          <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596585155/icons/suitcase_x8vwp8.png
-          " alt="jobs" /> 
+            <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596585155/icons/suitcase_x8vwp8.png" alt="jobs" /> 
       </Link> }
         </li>
         <li>
@@ -32,9 +30,13 @@ const NavBar = props => {
           </Link>
         </li>
         <li>
-          <Link className="nav-link" to="/resumes"> 
+        {sessionUser.accountType === "candidate"
+        ? <Link className="nav-link" to="/resume"> 
             <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596585153/icons/resume_pqehbk.png" alt="resume" />
           </Link>
+        : <Link className="nav-link" to="/candidates"> 
+            <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596585153/icons/resume_pqehbk.png" alt="resumes" />
+          </Link> }
         </li>
         <li>
           <Link className="nav-link" to="/chat"> 

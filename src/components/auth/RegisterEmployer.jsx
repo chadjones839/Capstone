@@ -18,7 +18,6 @@ const RegisterEmployer = props => {
     bio: ""
     })
 
-
   const setUser = props.setUser
   const [isLoading, setIsLoading]= useState(false);
 

@@ -25,6 +25,10 @@ import JobListingEdit from "./components/jobs/JobListingEdit.jsx";
 import JobForm from "./components/jobs/JobForm.jsx";
 import CandidateJobListings from "./components/jobs/CandidateJobListings.jsx";
 
+import UserResume from "./components/resumes/UserResume.jsx";
+import ResumeList from "./components/resumes/ResumeList.jsx";
+import WorkHistory from "./components/resumes/WorkHistoryForm.jsx";
+
 const ApplicationViews = (props) => {
 
   const sessionUser = JSON.parse(sessionStorage.getItem("user"));
@@ -210,6 +214,28 @@ const ApplicationViews = (props) => {
         path="/jobs/new"
         render={props => {
           return <JobForm
+            {...props} />
+        }} 
+      />
+      <Route 
+        exact
+        path="/resume" 
+        render={props => {
+          return <UserResume {...props} />
+        }} 
+      />
+      <Route 
+        exact
+        path="/candidates" 
+        render={props => {
+          return <ResumeList {...props} />
+        }} 
+      />
+      <Route
+        exact
+        path="/work-history/new"
+        render={props => {
+          return <WorkHistory
             {...props} />
         }} 
       />

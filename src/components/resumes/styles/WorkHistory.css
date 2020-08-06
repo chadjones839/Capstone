@@ -1,0 +1,14 @@
+.dateFields {
+  display: flex;
+  justify-content: space-between;
+}
+
+.start1,
+.end1 {
+  width: 60%;
+}
+
+.start2,
+.end2 {
+  width: 35%;
+}
