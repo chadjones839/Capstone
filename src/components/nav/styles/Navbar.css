@@ -6,10 +6,10 @@
 .navContainer {
   list-style-type: none;
   display: flex;
-  justify-content: space-evenly;
-  padding: 10px;
+  justify-content: center;
+  padding: 10px 20px;
   height: 6%;
-  width: 95%;
+  width: 90%;
   background: #FFFFFF;
   margin: 10px 0 0 0;
   position: fixed;
@@ -20,6 +20,7 @@
 .navContainer > li {
   display: flex;
   width: 30px;
+  padding: 0 25px;
   height: auto;
   justify-content: center;
   align-items: center;

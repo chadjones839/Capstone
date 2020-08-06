@@ -33,6 +33,9 @@ const Login = props => {
     .then(() => 
     props.history.push("/discovery")
     )
+    .then(() => 
+    window.location.reload(true)
+    )
   }
 
 

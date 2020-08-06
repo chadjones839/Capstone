@@ -24,6 +24,6 @@ export default {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(editedUser)
-    }).then(data => data.json());
-}
+    }).then(data => data.json());  
+    }
 }

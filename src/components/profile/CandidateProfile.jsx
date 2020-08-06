@@ -31,7 +31,7 @@ const CandidateProfile = props => {
     .then(usersFromAPI => {
       setUser(usersFromAPI)
     })
-  }, [user, sessionUser]);
+  }, [user]);
 
   return (
     <>

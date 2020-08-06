@@ -9,13 +9,21 @@ import Login from "./components/auth/Login.jsx";
 
 import EmployerDiscovery from "./components/discovery/EmployerDiscoveryList.jsx";
 import CandidateDiscovery from "./components/discovery/CandidateDiscoveryList.jsx";
+
 import EmployerProfile from "./components/profile/EmployerProfile.jsx";
 import EditEmployer from "./components/profile/EditEmployerProfile.jsx";
 import CandidateProfile from "./components/profile/CandidateProfile.jsx";
 import EditCandidate from "./components/profile/EditCandidateProfile.jsx";
 import UserDetail from "./components/profile/UserDetail.jsx";
+
 import Chat from "./components/chat/ChatList.jsx";
 import MessageList from "./components/messages/MessageList.jsx";
+
+import JobList from "./components/jobs/JobListingList.jsx";
+import JobDetail from "./components/jobs/JobDetail.jsx";
+import JobListingEdit from "./components/jobs/JobListingEdit.jsx";
+import JobForm from "./components/jobs/JobForm.jsx";
+import CandidateJobListings from "./components/jobs/CandidateJobListings.jsx";
 
 const ApplicationViews = (props) => {
 
@@ -154,6 +162,56 @@ const ApplicationViews = (props) => {
             return <Redirect to="/" />
           }
       }} 
+      />
+      <Route 
+        exact
+        path="/jobs" 
+        render={props => {
+            return <JobList 
+            {...props} />
+        }} 
+      />
+      <Route 
+        exact
+        path="/jobs/:userId(\d+)/listings" 
+        render={props => {
+            return <JobList 
+            userId={parseInt(props.match.params.userId)}
+            {...props} />
+        }} 
+      />
+      <Route 
+        exact
+        path="/companies" 
+        render={props => {
+          return <CandidateJobListings {...props} />
+        }} 
+      />
+      <Route
+        exact
+        path="/jobs/:jobId(\d+)"
+        render={props => {
+          return <JobDetail
+          jobId={parseInt(props.match.params.jobId)} 
+          {...props} />
+        }}
+      />
+      <Route
+        exact
+        path="/jobs/:jobId(\d+)/edit"
+        render={props => {
+          return <JobListingEdit 
+            {...props} 
+            jobId={props.match.params.jobId} />
+        }} 
+      />
+      <Route
+        exact
+        path="/jobs/new"
+        render={props => {
+          return <JobForm
+            {...props} />
+        }} 
       />
     </React.Fragment>
   )

@@ -23,8 +23,8 @@ const EmployerDiscovery = props => {
       <div className="statusBar">
         <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
       </div>
-      <main className="discoveryContainer">
         <h1 className="discoveryHeader">Discovery</h1>
+        <main className="discoveryContainer">
           {users.map(user =>
             <EmployerDiscoveryCard 
               key={user.id} 

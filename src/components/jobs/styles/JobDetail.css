@@ -1,0 +1,117 @@
+.listingHeader {
+  padding: 20px 0 10px 10px;
+  background: #FFFFFF;
+  position: -webkit-sticky;
+  position: sticky; top: 19px;
+  margin-bottom: 10px;
+  box-shadow: 0px 3px 5px -2px #333;
+}
+
+.detailedJobListing {
+  /* background: #f8f6f6; */
+  border-radius: 3px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  /* padding: 10px 10px; */
+  margin: 20px;
+}
+
+.jobDetailHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+.jobDetails {
+  padding: 5px 20px 20px;
+}
+
+.jobDetailBtnContainer {
+  display: flex; 
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 5px;
+  margin: 0px;
+ 
+}
+
+.jobSalary > h5,
+.jobRequirements > h5,
+.jobSummary > h5 {
+  margin: 20px 0 5px 0px;
+}
+
+.jobSalary > p,
+.jobRequirements > p,
+.jobSummary > p {
+  margin: 0px 0 5px 0px;
+}
+
+.jobListing__header {
+  display: flex;
+  flex-direction: row;
+}
+
+.jobImage > img {
+  width: 50px;
+  height: auto;
+  border-radius: 50%;;
+}
+
+.headerRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 0 0 10px;
+}
+
+.jobCompany > h3 {
+  margin: 0 0 3px 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.jobTitle > h2 {
+  font-family: 'Comfortaa', cursive;
+  margin-top: 5px;
+  padding-left: 5px;
+}
+
+.jobLocation > h4 {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.jobDetailDeleteBtn {
+  border-radius: 5px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0;
+  font-family: 'Inter' sans-serif;
+  font-weight: 400;
+  color: #FFFFFF;
+  font-size: 12px;
+  background: #373737;
+  /* padding: 5px 10px 5px 10px; */
+  width: 25px;
+  height: 25px;
+  border: solid #373737 1px;
+  text-decoration: none;
+}
+
+.jobDetailEditBtn {
+  border-radius: 5px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0;
+  font-family: 'Inter' sans-serif;
+  font-weight: 400;
+  color: #FFFFFF;
+  font-size: 12px;
+  background: #1074B3;
+  /* padding: 5px 10px 5px 10px; */
+  width: 25px;
+  height: 25px;
+  border: solid #1074B3 1px;
+  text-decoration: none;
+}

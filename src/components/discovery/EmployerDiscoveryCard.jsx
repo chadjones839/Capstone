@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import FriendManager from "../modules/FriendManager.jsx";
 import ChatManager from "../modules/ChatManager.jsx";
+import { useParams } from 'react-router-dom';
+import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 
 const EmployerDiscoveryCard = props => {
   

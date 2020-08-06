@@ -1,8 +1,9 @@
 import React from "react";
-// import { withRouter } from 'react-router-dom';
 import { Link } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = props => {
+
+  const sessionUser = JSON.parse(sessionStorage.getItem("user"));
 
   return (
     <nav>
@@ -13,10 +14,26 @@ const NavBar = () => {
           </Link>
         </li>
         <li>
+          {sessionUser.accountType === "employer"
+          ? <Link className="nav-link" to="/jobs"> 
+              <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596585155/icons/suitcase_x8vwp8.png
+              " alt="jobs" /> 
+          </Link>
+          : <Link className="nav-link" to="/companies"> 
+          <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596585155/icons/suitcase_x8vwp8.png
+          " alt="jobs" /> 
+      </Link> }
+        </li>
+        <li>
           <Link className="nav-link" to="/discovery"> 
             <button type="submit" className="discoveryNavButton">
               &#10009;
             </button> 
+          </Link>
+        </li>
+        <li>
+          <Link className="nav-link" to="/resumes"> 
+            <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596585153/icons/resume_pqehbk.png" alt="resume" />
           </Link>
         </li>
         <li>

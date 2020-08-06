@@ -1,0 +1,57 @@
+.jobListing__header > h2 {
+  font-family: 'Comfortaa', sans-serif;
+  margin-bottom: 10px;
+}
+
+.editJobListing {
+  margin: 10px 10px 0px 10px;
+}
+
+.editJobDetails {
+  padding: 5px 20px 0px;
+}
+.saveEditChanges {
+  margin: 0 30px;
+}
+
+.salaryFields {
+  display: flex;
+  justify-content: space-between;
+}
+
+.salaryEdit {
+  width: 60%;
+}
+
+.rateEdit {
+  width: 35%;
+}
+
+.editInputRate {
+  margin: 0;
+  /* margin-bottom: 10px; */
+  padding: 0.7rem 0.3rem;
+  color: inherit;
+  font-family: 'Roboto', sans-serif;
+  font-weight: inherit;
+  line-height: 1.8;
+  border: #000000 solid 1px;
+  border-radius: 0.4rem;
+  width: 90%
+}
+
+.editInputTextarea {
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 0.5rem 0.3rem;
+  width: 95%;
+  color: inherit;
+  font-family: 'Roboto', sans-serif;
+  font-weight: inherit;
+  line-height: 1.8;
+  border: #000000 solid 1px;
+  border-radius: 0.4rem;
+  resize: none;
+  height: 145px;
+}
+

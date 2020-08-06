@@ -24,8 +24,8 @@ const CandidateDiscovery = props => {
       <div className="statusBar">
         <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
       </div>
+      <h1 className="discoveryHeader">Discovery</h1>
       <main className="discoveryContainer">
-        <h1 className="discoveryHeader">Discovery</h1>
           {users.map(user => 
             <CandidateDiscoveryCard 
             key={user.id} 

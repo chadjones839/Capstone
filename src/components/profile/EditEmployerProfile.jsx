@@ -15,8 +15,6 @@ const EditEmployer = props => {
     password:"",
     accountType: "employer",
     image: "",
-    discoverEmployers: false,
-    discoverCandidates: true, 
     companyName: "",
     industry: "",
     userLocation: "",
