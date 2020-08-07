@@ -1,3 +1,39 @@
+.jobType__box {
+  width: 30%;
+  text-align: center;
+  margin: 10px 10px 0;
+  padding-top: 10px;
+}
+
+.job__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.jobType__pill {
+  border-radius: 16px;
+  padding: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+#Part-Time {
+  background: #1074B3;
+}
+
+#Full-Time {
+  background: #0d9c49;
+}
+
+#Temp {
+  background: #d3b11a;
+  color: #000000;
+}
+
 .listingHeader {
   padding: 20px 0 10px 10px;
   background: #FFFFFF;
@@ -8,10 +44,8 @@
 }
 
 .detailedJobListing {
-  /* background: #f8f6f6; */
   border-radius: 3px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  /* padding: 10px 10px; */
   margin: 20px;
 }
 
@@ -19,11 +53,11 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 8px;
+  padding: 8px 8px 0;
 }
 
 .jobDetails {
-  padding: 5px 20px 20px;
+  padding: 0px 20px 20px;
 }
 
 .jobDetailBtnContainer {
@@ -70,9 +104,9 @@
   font-family: 'Inter', sans-serif;
 }
 
-.jobTitle > h2 {
+.jobtitle > h2 {
   font-family: 'Comfortaa', cursive;
-  margin-top: 5px;
+  margin: 5px 0;
   padding-left: 5px;
 }
 
@@ -114,4 +148,18 @@
   height: 25px;
   border: solid #1074B3 1px;
   text-decoration: none;
+}
+.applyBtnContainer {
+  text-align: center;
+  margin-top: 30px
+}
+
+.applyBtn {
+  font-family: 'Pathway Gothic One', sans-serif;
+  font-size: 24px;
+  padding: 20px 10px 10px;
+  outline: none;
+  border: none;
+  background: none;
+  border-top: 1px #8d8c8c solid
 }

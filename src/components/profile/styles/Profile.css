@@ -1,2 +1,6 @@
 @import "./UserProfile.css";
 @import "./EditProfile.css";
+
+.editBtnContainer {
+  text-align: center;
+}

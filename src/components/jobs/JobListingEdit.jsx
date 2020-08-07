@@ -17,6 +17,10 @@ const JobListingEdit = props => {
     rate: "",
     requirements: "",
     jobSummary: "",
+    type: "",
+    keyword1: "",
+    keyword2: "",
+    keyword3: ""
   });
 
   const handleFieldChange = event => {
@@ -38,6 +42,10 @@ const JobListingEdit = props => {
         rate: job.rate,
         requirements: job.requirements,
         jobSummary: job.jobSummary,
+        type: job.type,
+        keyword1: job.keyword1,
+        keyword2: job.keyword2,
+        keyword3: job.keyword3
     };
 
     JobManager.editJob(editedJob)
@@ -82,6 +90,25 @@ const JobListingEdit = props => {
               id="jobTitle"
               value={job.jobTitle}
             />
+
+            <label 
+              className="editLabel" 
+              htmlFor="type">
+                Type
+            </label>
+            <select 
+              type="text"
+              required
+              className="editInput"  
+              onChange={handleFieldChange}
+              id="type"
+              value={job.type}
+            >
+              <option selected disabled hidden></option>
+              <option value="Full-Time">Full-Time</option>
+              <option value="Part-Time">Part-Time</option>
+              <option value="Temp">Temp</option>
+            </select>
             
             <label 
               className="editLabel" 
@@ -125,8 +152,8 @@ const JobListingEdit = props => {
                   id="rate"
                   value={job.rate}
                 >
-                  <option value="Annually">Annually</option>
-                  <option value="Hourly">Hourly</option>
+                  <option value="Sal">Annually</option>
+                  <option value="Hr">Hourly</option>
                 </select>
               </div>
             </div>
@@ -158,6 +185,32 @@ const JobListingEdit = props => {
               value={job.jobSummary}
             />
 
+            <label className="editLabel">3 Keywords that describe the job:</label>
+            <div className="keywords">
+              <input 
+                type="text"
+                className="editInput"  
+                onChange={handleFieldChange}
+                id="keyword1"
+                value={job.keyword1}
+              />
+              <input 
+                type="text"
+                className="editInput"  
+                onChange={handleFieldChange}
+                id="keyword2"
+                value={job.keyword2}
+              />
+              <input 
+                type="text"
+                className="editInput"  
+                onChange={handleFieldChange}
+                id="keyword3"
+                value={job.keyword3}
+              />
+            </div>
+
+
           </fieldset>
         </form>
       </section>
@@ -171,6 +224,7 @@ const JobListingEdit = props => {
             Save Changes
         </button> 
       </div>
+      <br />
     </React.Fragment>
   )   
 };

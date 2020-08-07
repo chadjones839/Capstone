@@ -27,10 +27,15 @@
   width: 35%;
 }
 
+#type {
+  width: 99%;
+}
+
 .editInputRate {
   margin: 0;
   /* margin-bottom: 10px; */
   padding: 0.7rem 0.3rem;
+  font-size: 15px;
   color: inherit;
   font-family: 'Roboto', sans-serif;
   font-weight: inherit;
@@ -53,5 +58,6 @@
   border-radius: 0.4rem;
   resize: none;
   height: 145px;
+  font-size: 15px;
 }
 

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import MessageManager from "../modules/MessageManager";
 import MessageCard from "../messages/MessageCard";
 import { Link } from "react-router-dom";
 
 const MessageList = props => {
-
+  
   const sessionUser = JSON.parse(sessionStorage.getItem("user"));
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false)
@@ -45,6 +45,7 @@ const MessageList = props => {
       setMessages(response)
     })
   }, [messages])
+
   
   return (
     <>
@@ -70,6 +71,11 @@ const MessageList = props => {
               message={message}
               {...props} />
           )}
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       </main> 
         <section className="messageInput">
           <div className="messageInput__compose">

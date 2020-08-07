@@ -21,6 +21,8 @@ const JobDetail = props => {
     salaryActual: "",
     requirements: "",
     jobSummary: "",
+    type: "",
+    rate: ""
   });
 
   useEffect(() => {
@@ -35,11 +37,12 @@ const JobDetail = props => {
           salaryActual: job.salaryActual,
           requirements: job.requirements,
           jobSummary: job.jobSummary,
+          type: job.type,
+          rate: job.rate
         });
         UserManager.getUser(job.userId)
         .then((response) => {
           setUser(response)
-          console.log('RESPONSE', response)
         })
       });
   }, [props.jobId]);
@@ -53,8 +56,6 @@ const JobDetail = props => {
 
   return (
     <React.Fragment>
-      
-      {console.log(job.userId)}
       <div className="statusBar">
         <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
       </div>
@@ -76,8 +77,15 @@ const JobDetail = props => {
         </div> 
       </div>
       <section className="detailedJobListing" id={job.id}>
+        <div className="jobType__box">
+          <div className="jobType__pill" id={job.type}>
+            <div className="jobType">
+              {job.type}
+            </div>
+          </div>
+        </div>
         <section className="jobDetailHeader">
-          <div className="jobTitle">
+          <div className="jobtitle">
             <h2>{job.jobTitle}</h2>
           </div>
           {sessionUser.accountType === "employer"
@@ -106,8 +114,7 @@ const JobDetail = props => {
         <section className="jobDetails">
           <div className="jobSalary">
             <h5>Est.Salary</h5>
-            <p>{job.salaryActual}</p>
-            <p>{job.salaryEstLow}{job.salaryEstHigh}</p>
+            <p>${job.salaryActual}/{job.rate}</p>
           </div>
           <div className="jobRequirements">
             <h5>Requirements</h5>
@@ -122,7 +129,7 @@ const JobDetail = props => {
               <div className="jobBtn__delete">
                 <button 
                   onClick={() => props.history.push("/apply-confirm")}
-                  className="loginBtn"
+                  className="applyBtn"
                   type="button"
                   >
                     Apply

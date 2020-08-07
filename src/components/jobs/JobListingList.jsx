@@ -33,7 +33,7 @@ const JobList = props => {
         setUser(userResponse)
       })
     })
-  }, [jobs]);
+  }, []);
 
   if (sessionUser.accountType === "employer") {
     return (
@@ -62,7 +62,7 @@ const JobList = props => {
             {sessionUser.userLocation}
             </div>
           </section>
-          <div className="editBtnContainer">
+          <div className="addListingContainer">
             <button 
               onClick={() => props.history.push(`/jobs/new`)}
               className="blackBtn"

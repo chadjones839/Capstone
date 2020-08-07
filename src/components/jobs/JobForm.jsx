@@ -3,16 +3,22 @@ import JobManager from '../modules/JobManager';
 
 const JobForm = props => {
 
+  const currentTimeStamp = new Date().getTime();
   const sessionUser = JSON.parse(sessionStorage.getItem("user"))
   const [isLoading, setIsLoading] = useState(false);
   const [job, setJob] = useState({
     userId: sessionUser.id,
+    postDate: currentTimeStamp, 
     jobTitle: "",
     jobLocation: "",
     salaryActual: "",
     rate: "",
     requirements: "",
     jobSummary: "",
+    type: "",
+    keyword1: "",
+    keyword2: "",
+    keyword3: ""
   });
 
   const handleFieldChange = evt => {
@@ -23,7 +29,7 @@ const JobForm = props => {
 
   const createListing = evt => {
     evt.preventDefault();
-    if (job.jobTitle === "" || job.jobLocation === "" || job.salaryActual === "" || job.rate === "" || job.requirements === "" || job.jobSummary === "") {
+    if (job.jobTitle === "" || job.type === "" || job.jobLocation === "" || job.salaryActual === "" || job.rate === "" || job.requirements === "" || job.jobSummary === "") {
       window.alert("Hold up boss, you're missing a field or two!");
     } else {
       setIsLoading(true);
@@ -58,6 +64,23 @@ const JobForm = props => {
               onChange={handleFieldChange}
               id="jobTitle"
             />
+
+            <label 
+              className="editLabel" 
+              htmlFor="type">
+                Type *
+            </label>
+            <select 
+              type="text"
+              className="editInput"  
+              onChange={handleFieldChange}
+              id="type"
+            >
+              <option selected disabled hidden></option>
+              <option value="Full-Time">Full-Time</option>
+              <option value="Part-Time">Part-Time</option>
+              <option value="Temp">Temp</option>
+            </select>
             
             <label 
               className="editLabel" 
@@ -99,8 +122,8 @@ const JobForm = props => {
                   id="rate"
                 >
                   <option selected disabled hidden></option>
-                  <option value="Annually">Annually</option>
-                  <option value="Hourly">Hourly</option>
+                  <option value="Annually">Sal</option>
+                  <option value="Hourly">Hr</option>
                 </select>
               </div>
             </div>
@@ -130,6 +153,28 @@ const JobForm = props => {
               id="jobSummary"
             />
 
+          <label className="editLabel">3 Keywords that describe the job:</label>
+            <div className="keywords">
+              <input 
+                type="text"
+                className="editInput"  
+                onChange={handleFieldChange}
+                id="keyword1"
+              />
+              <input 
+                type="text"
+                className="editInput"  
+                onChange={handleFieldChange}
+                id="keyword2"
+              />
+              <input 
+                type="text"
+                className="editInput"  
+                onChange={handleFieldChange}
+                id="keyword3"
+              />
+            </div>
+
           </fieldset>
         </form>
       </section>
@@ -143,6 +188,7 @@ const JobForm = props => {
             Post
         </button> 
       </div>
+      <br />
     </React.Fragment>
   )   
 };
