@@ -5,15 +5,19 @@ import React, { useState, useEffect } from 'react';
 import Navbar from "../nav/Navbar.jsx"
 import JobManager from "../modules/JobManager";
 import UserManager from "../modules/UserManager";
+import { timeSince } from '../modules/HelperFunctions';
 
 /*END IMPORTS*****************************************************************/
 
 const JobDetail = props => {
 
+  const currentTimeStamp = new Date().getTime();
   const sessionUser = JSON.parse(sessionStorage.getItem("user"))
+  
   const [user, setUser] = useState({})
   const [job, setJob] = useState({
     userId: "",
+    postDate: "",
     jobTitle: "",
     jobLocation: "",
     salaryEstLow: "",
@@ -25,11 +29,15 @@ const JobDetail = props => {
     rate: ""
   });
 
+  let time = job.postDate
+  let timeStamp = timeSince(currentTimeStamp, time)
+
   useEffect(() => {
     JobManager.getJob(props.jobId)
       .then(job => {
         setJob({
           userId: job.userId,
+          postDate: job.postDate,
           jobTitle: job.jobTitle,
           jobLocation: job.jobLocation,
           salaryEstLow: job.salaryEstLow,
@@ -62,9 +70,19 @@ const JobDetail = props => {
       <div className="listingHeader">
         <div className="jobListing__header">
           <div className="headerLeft">
-            <div className="jobImage">
-              <img src={user.image} alt={user.companyName} />
-            </div>
+          {sessionUser.accountType === "employer"
+            ? <div className="jobImage">
+                <img 
+                  src={user.image} 
+                  alt={user.companyName} 
+                  onClick={() => props.history.push("/jobs")}/>
+              </div>
+            : <div className="jobImage">
+              <img 
+                src={user.image} 
+                alt={user.companyName} 
+                onClick={() => props.history.push(`/jobs/${user.id}/listings`)}/>
+            </div> }
           </div>
           <div className="headerRight">
             <div className="jobCompany">
@@ -83,14 +101,9 @@ const JobDetail = props => {
               {job.type}
             </div>
           </div>
-        </div>
-        <section className="jobDetailHeader">
-          <div className="jobtitle">
-            <h2>{job.jobTitle}</h2>
-          </div>
           {sessionUser.accountType === "employer"
-          ?  <div className="jobDetailBtnContainer">
-              <div className="jobBtn__delete">
+          ? <div className="jobDetailBtnContainer">
+              <div className="jobBtn__Delete">
                 <button 
                   onClick={() => deleteListing(props.jobId)}
                   className="jobDetailDeleteBtn"
@@ -99,7 +112,7 @@ const JobDetail = props => {
                     &#128465;
                 </button>
               </div>
-              <div className="jobBtn__edit">
+              <div className="jobBtn__Edit">
                 <button 
                   onClick={() => props.history.push(`/jobs/${props.jobId}/edit`)}
                   className="jobDetailEditBtn"
@@ -110,7 +123,17 @@ const JobDetail = props => {
               </div>
             </div>
             : null}
+        </div>
+        <section className="jobDetailHeader">
+          <div className="jobtitle">
+            <h2>{job.jobTitle}</h2>
+          </div>
         </section>
+        <div className="details__postDate">
+          <div className="detailsPostDate__contents">
+            {timeStamp}
+          </div>
+        </div>
         <section className="jobDetails">
           <div className="jobSalary">
             <h5>Est.Salary</h5>

@@ -1,7 +1,8 @@
 .jobType__box {
-  width: 30%;
+  display: flex;
+  justify-content: space-between;
   text-align: center;
-  margin: 10px 10px 0;
+  margin: 10px 10px 20px;
   padding-top: 10px;
 }
 
@@ -60,13 +61,29 @@
   padding: 0px 20px 20px;
 }
 
+.details__postDate {
+  margin-left: 10px;
+}
+
+.detailsPostDate__contents {
+  font-family: 'Roboto', sans-serif;
+  color: red;
+  font-weight: 500;
+  padding: 5px 5px 0;
+  font-size: 12px;
+}
+
 .jobDetailBtnContainer {
   display: flex; 
   flex-direction: row;
   justify-content: flex-end;
-  padding: 5px;
+  padding: 0px;
   margin: 0px;
- 
+}
+
+.jobBtn__Edit,
+.jobBtn__Delete {
+  padding: 0 3px;
 }
 
 .jobSalary > h5,
@@ -118,37 +135,8 @@
   font-size: 14px;
 }
 
-.jobDetailDeleteBtn {
-  border-radius: 5px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  margin-bottom: 0;
-  font-family: 'Inter' sans-serif;
-  font-weight: 400;
-  color: #FFFFFF;
-  font-size: 12px;
-  background: #373737;
-  /* padding: 5px 10px 5px 10px; */
-  width: 25px;
-  height: 25px;
-  border: solid #373737 1px;
-  text-decoration: none;
-}
 
-.jobDetailEditBtn {
-  border-radius: 5px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  margin-bottom: 0;
-  font-family: 'Inter' sans-serif;
-  font-weight: 400;
-  color: #FFFFFF;
-  font-size: 12px;
-  background: #1074B3;
-  /* padding: 5px 10px 5px 10px; */
-  width: 25px;
-  height: 25px;
-  border: solid #1074B3 1px;
-  text-decoration: none;
-}
+
 .applyBtnContainer {
   text-align: center;
   margin-top: 30px

@@ -30,5 +30,14 @@ export default {
           },
           body: JSON.stringify(newUser)
       }).then(result=>result.json())
+  },
+  getRandomId() {
+    return fetch(`${remoteURL}/users`)
+      .then(result => result.json())
+      .then(users => {
+        const randomIndex = Math.floor(Math.random() * users.length);
+        const randomUser = users[randomIndex];
+        return randomUser.id;
+    });
   }
 }

@@ -9,12 +9,18 @@ const Home = props => {
       <div className="loginBoxContainer">
         <div className ="loginImages">
           <div className ="loginMain">
+            <div className="AppNameContainer">
+              <h1 className="AppName">JobCannon</h1> 
+            </div>
+            <div className="AppNameContainer2">
+              <h1 className="AppName2">JobCannon</h1> 
+            </div>
             <div className="backgroundImg">
               <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596503838/icons/background_kdv7df.jpg" alt="logo" />
             </div>
             <div className ="loginLogo">
               <div className="logoContainer">
-                <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/techtok_c7ptxj.png" alt="logo" />
+                <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596814802/icons/rat_fc1rs4.png" alt="logo" />
               </div>
             </div>
           </div>

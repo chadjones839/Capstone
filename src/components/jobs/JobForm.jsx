@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import JobManager from '../modules/JobManager';
 
+
 const JobForm = props => {
 
   const currentTimeStamp = new Date().getTime();
@@ -181,7 +182,7 @@ const JobForm = props => {
       <div className="saveEditChanges">
         <button
           type="button"
-          className="blackBtn"
+          className="blueBtn90"
           id="submitBtn"
           disabled={isLoading}
           onClick={createListing}>

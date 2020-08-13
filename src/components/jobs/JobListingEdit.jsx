@@ -11,6 +11,7 @@ const JobListingEdit = props => {
   const [isLoading, setIsLoading] = useState(false);
   const [job, setJob] = useState({
     userId: "",
+    postDate: "",
     jobTitle: "",
     jobLocation: "",
     salaryActual: "",
@@ -28,7 +29,7 @@ const JobListingEdit = props => {
     stateToChange[event.target.id] = event.target.value
     setJob(stateToChange)
   };
-  console.log(props.match.params.jobId)
+  
   const updateJob = event => {
     event.preventDefault();
     setIsLoading(true)
@@ -36,6 +37,7 @@ const JobListingEdit = props => {
     const editedJob = {
         id: props.match.params.jobId,
         userId: job.userId,
+        postDate: job.postDate,
         jobTitle: job.jobTitle,
         jobLocation: job.jobLocation,
         salaryActual: job.salaryActual,
@@ -217,7 +219,7 @@ const JobListingEdit = props => {
       <div className="saveEditChanges">
         <button
           type="button"
-          className="blackBtn"
+          className="blueBtn90"
           id="submitBtn"
           disabled={isLoading}
           onClick={updateJob}>

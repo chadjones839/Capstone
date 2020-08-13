@@ -117,7 +117,7 @@ const EditEmployer = props => {
             <div className="editBtnContainer">
               <button
                   type="button"
-                  className="blackBtn"
+                  className="blueBtn90"
                   id="submitBtn"
                   disabled={isLoading}
                   onClick={updateProfile}>

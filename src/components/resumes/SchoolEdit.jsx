@@ -76,19 +76,29 @@ const SchoolForm = props => {
       <div className="statusBar">
         <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
       </div>
-      <div className="listingHeader">
-        <div className="jobListing__header">
-          <h2>Add School</h2>
-        </div> 
+      <div className="resume__backButton">
+        <button 
+          type="submit" 
+          className="backBtn"
+          onClick={() => props.history.push("/resume")}>
+          <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490014/icons/backarrow_lfdpzw.png" className="backToResume" alt="back" />
+        </button>
       </div>
-      <section className="editJobListing">
+
+        <div className="editSchoolHeader">
+          <div className="schoolForm__header">
+            <h2>Edit School</h2>
+          </div> 
+        </div> 
+  
+      <section className="editSchool">
         <form className="editProfileForm">
           <fieldset className="editJobDetails">
             
             <label 
               className="editLabel" 
               htmlFor="schoolName">
-                School Name *
+                School Name <span className="asterisk">*</span>
             </label>
             <input 
               type="text"
@@ -98,24 +108,11 @@ const SchoolForm = props => {
               id="schoolName"
               value={school.schoolName}
             />
-            
-            <label 
-              className="editLabel" 
-              htmlFor="field">
-                Field
-            </label>
-            <input 
-              type="text"
-              className="editInput"  
-              onChange={handleFieldChange}
-              id="field"
-              value={school.field}
-            />
 
             <label 
               className="editLabel" 
-              htmlFor="degree">
-                Degree
+              htmlFor="schoolName">
+                School Name <span className="asterisk">*</span>
             </label>
             <input
               type="text"
@@ -125,30 +122,59 @@ const SchoolForm = props => {
               value={school.degree}
             />
 
+            <label 
+              className="editLabel" 
+              htmlFor="field">
+                Area of Study
+            </label>
+            <input 
+              type="text"
+              className="editInput"  
+              onChange={handleFieldChange}
+              id="field"
+              value={school.field}
+            />
+
             <div className="dateFields">
               <div className="start1">
                 <label 
                   className="editLabel" 
                   htmlFor="startMonth">
-                    Start Month *
+                    Start Month <span className="asterisk">*</span>
                 </label>
-                <input 
+                <select 
                   type="text"
-                  className="editInput"  
+                  className="editSelect"  
+                  max-length="9"
                   onChange={handleFieldChange}
                   id="startMonth"
-                  value={school.startMonth}
-                />
+                  value={school.startMonth}>
+                  <option value="January">January</option>
+                  <option value="Febuary">Febuary</option>
+                  <option value="March">March</option>
+                  <option value="April">April</option>
+                  <option value="May">May</option>
+                  <option value="June">June</option>
+                  <option value="July">July</option>
+                  <option value="August">August</option>
+                  <option value="September">September</option>
+                  <option value="October">October</option>
+                  <option value="November">November</option>
+                  <option value="December">December</option>
+                </select>
               </div>
               <div className="start2">
                 <label 
                   className="editLabel" 
                   htmlFor="startYear">
-                    Start Year *
+                    Start Year <span className="asterisk">*</span>
                 </label>
                 <input 
                   type="number"
                   className="editInput"  
+                  placeholder="4-digit" 
+                  min="1930"
+                  max="2020"
                   onChange={handleFieldChange}
                   id="startYear"
                   value={school.startYear}
@@ -156,20 +182,33 @@ const SchoolForm = props => {
               </div>
             </div>
 
-            <div className="dateFields" id="endDateFields">
+            <div className="schoolDateFields">
               <div className="end1">
                 <label 
                   className="editLabel" 
                   htmlFor="endMonth">
                     End Month
                 </label>
-                <input 
+                <select 
                   type="text"
-                  className="editInput"  
+                  className="editSelect"  
+                  max-length="9"
                   onChange={handleFieldChange}
                   id="endMonth"
-                  value={school.endMonth}
-                />
+                  value={school.endMonth}>
+                  <option value="January">January</option>
+                  <option value="Febuary">Febuary</option>
+                  <option value="March">March</option>
+                  <option value="April">April</option>
+                  <option value="May">May</option>
+                  <option value="June">June</option>
+                  <option value="July">July</option>
+                  <option value="August">August</option>
+                  <option value="September">September</option>
+                  <option value="October">October</option>
+                  <option value="November">November</option>
+                  <option value="December">December</option>
+                </select>
               </div>
               <div className="end2">
                 <label 
@@ -180,6 +219,9 @@ const SchoolForm = props => {
                 <input 
                   type="number"
                   className="editInput"  
+                  placeholder="4-digit" 
+                  min="1930"
+                  max="2035"
                   onChange={handleFieldChange}
                   id="endYear"
                   value={school.endYear}
@@ -209,11 +251,11 @@ const SchoolForm = props => {
       <div className="saveEditChanges">
         <button
           type="button"
-          className="blackBtn"
+          className="blueBtn__wide"
           id="submitBtn"
           disabled={isLoading}
           onClick={updateSchool}>
-            Save
+            Save Changes
         </button> 
       </div>
     </React.Fragment>

@@ -89,7 +89,7 @@ const SkillForm = props => {
       <div className="saveEditChanges">
         <button
           type="button"
-          className="blackBtn"
+          className="blueBtn90"
           id="submitBtn"
           disabled={isLoading}
           onClick={saveSkills}>

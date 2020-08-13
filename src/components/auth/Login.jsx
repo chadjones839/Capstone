@@ -7,9 +7,8 @@ const Login = props => {
 
   const [credentials, setCredentials] = useState({email: "", password: ""});
 
-  const setUser = props.setUser
+  // const setUser = props.setUser
   
-  // Update state whenever an input field is edited
   const handleFieldChange = (evt) => {
     const stateToChange = { ...credentials};
     stateToChange[evt.target.id] = evt.target.value;
@@ -26,7 +25,7 @@ const Login = props => {
         if (user.email === email && user.password === password) {
           sessionStorage.setItem('user', JSON.stringify(user))
           setCredentials(user);
-          setUser(user)
+          props.setUser(user)
         } 
       })
     })

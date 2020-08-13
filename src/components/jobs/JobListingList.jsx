@@ -65,7 +65,7 @@ const JobList = props => {
           <div className="addListingContainer">
             <button 
               onClick={() => props.history.push(`/jobs/new`)}
-              className="blackBtn"
+              className="blueBtn90"
               type="button"
               >
                 Add Listing

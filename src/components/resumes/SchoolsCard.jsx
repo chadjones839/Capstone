@@ -12,10 +12,16 @@ const SchoolsCard = props => {
       })
     }
   };
-
-
   return (
     <React.Fragment>
+      <div className="timelineContainer">
+        <div className="bar">|</div>
+        <div className="nextSchool">
+          {(props.school.current === false)
+          ? <h5>{props.school.startMonth}, {props.school.startYear} - {props.school.endMonth}, {props.school.endYear}</h5>
+          : <h5>{props.school.startMonth}, {props.school.startYear} - Present</h5>}
+        </div>
+      </div>
       <section className="experienceCard">
         <div className="titleContainer">
           <div className="jobTitle">
@@ -23,7 +29,7 @@ const SchoolsCard = props => {
           </div>
           { (sessionUser.accountType === "candidate")
           ? <div className="jobDetailBtnContainer">
-              <div className="jobBtn__delete">
+              <div className="jobBtn__Delete">
                 <button 
                   onClick={() => deleteSchool(props.school.id)}
                   className="jobDetailDeleteBtn"
@@ -32,7 +38,7 @@ const SchoolsCard = props => {
                     &#128465;
                 </button>
               </div>
-              <div className="jobBtn__edit">
+              <div className="jobBtn__Edit">
                 <button 
                   onClick={() => props.history.push(`/schools/${props.school.id}/edit`)}
                   className="jobDetailEditBtn"
@@ -44,11 +50,8 @@ const SchoolsCard = props => {
             </div>
           : null }
         </div>
-        <div className="bodyContainer">
-          <h3>{props.school.company}</h3>
-          {(props.school.current === false)
-          ? <h5>{props.school.startMonth}, {props.school.startYear} - {props.school.endMonth}, {props.school.endYear}</h5>
-          : <h5>{props.school.startMonth}, {props.school.startYear} - Present</h5>}
+        <div className="degreeContainer">
+          <h3>{props.school.field}, <span className="degreeType">{props.school.degree}</span></h3>
         </div>
       </section> 
 

@@ -78,7 +78,6 @@ const ViewResume = props => {
       })
     });
   }, []);
-  console.log(skill)
   return (
     <React.Fragment>
       <div className="statusBar">
@@ -86,9 +85,7 @@ const ViewResume = props => {
       </div>
       <section className="profileHeader">
         <div className="backBtnContainer">
-          <div className="backButton">
-            <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490014/icons/backarrow_lfdpzw.png" alt="back" />
-          </div>
+          
         </div>
         <div className="userProfile__image">
           <div className="userImage__container">
@@ -99,50 +96,58 @@ const ViewResume = props => {
         </div>
       </section>
       <section className="userProfile__details">
-          <div className="userProfile__name">
-            <h2>{user.firstName} {user.lastName}</h2>
-          </div>
-          <div className="userProfile__location">
-          {user.jobTitle}
-          </div>
-        </section>
-        <main className="resumeContainer">
-          <h2 className="sectionTitle">Work History</h2>
-          <section className="workHistory">
-            {jobs.map(job =>
-              <WorkHistoryCard
-                key={job.id} 
-                job={job}
-                {...props} />
-            )}
-          </section>
-          <h2 className="sectionTitle">Skills</h2>
-          <section className="skills">
-            <section className="skillsList">
-              <h2>{skill.skill1}</h2>
-              <h2>{skill.skill2}</h2>
-              <h2>{skill.skill3}</h2>
-              <h2>{skill.skill4}</h2>
-              <h2>{skill.skill5}</h2>
-            </section>
-          </section>
-          <h2 className="sectionTitle">Schools</h2>
-          <section className="schools">
-            {schools.map(school =>
-              <SchoolsCard
-                key={school.id} 
-                school={school}
-                {...props} />
-            )}
-          </section>
-        </main>
-        <div className="navpanel">
-          <Navbar />
+        <div className="userProfile__name">
+          <h2>{user.firstName} {user.lastName}</h2>
         </div>
-        <br />
-        <br />
-        <br />
-        <br /> 
+        <div className="userProfile__location">
+        {user.jobTitle}
+        </div>
+      </section>
+      <main className="resumeContainer">
+        <h2 className="viewSectionTitle"><span>Work History</span></h2>
+        <section className="workHistory">
+          {jobs.map(job =>
+            <WorkHistoryCard
+              key={job.id} 
+              job={job}
+              {...props} />
+          )}
+        </section>
+        <h2 className="viewSectionTitle"><span>Skills</span></h2>
+        <article className="skillSet">
+          <div className="viewSkillList">
+            <span>{skill.skill1}</span>
+            <span>{skill.skill2}</span>
+            <span>{skill.skill3}</span>
+            <span>{skill.skill4}</span>
+            <span>{skill.skill5}</span>
+            <span>{skill.skill6}</span>
+            <span>{skill.skill7}</span>
+            <span>{skill.skill8}</span>
+            <span>{skill.skill9}</span>
+            <span>{skill.skill10}</span>
+          </div>
+        </article>
+        <h2 className="viewSectionTitle"><span>Schools</span></h2>
+        <section className="schools">
+          {schools.map(school =>
+            <SchoolsCard
+              key={school.id} 
+              school={school}
+              {...props} />
+          )}
+        </section>
+      </main>
+      <div className="navpanel">
+        <Navbar />
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br /> 
     </React.Fragment>
   )   
 }

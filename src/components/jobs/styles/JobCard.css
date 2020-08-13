@@ -1,8 +1,23 @@
 .jobListing__container {
-  margin: 10px;
+  margin: 10px 10px 40px;
   padding: 20px 20px 10px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
+  font-family: 'Inter', sans-serif;
+}
+
+.jobListing__employerContainer {
+  margin: 10px 10px 40px;
+  padding: 0 0 0 0;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  font-family: 'Inter', sans-serif
+}
+
+.detailsContainer {
+  margin: 0;
+  padding: 20px 20px 10px;
+  border-radius: 5px 5px 0 0 ;
   font-family: 'Inter', sans-serif
 }
 
@@ -141,36 +156,21 @@
 .jobBtnContainer {
   display: flex; 
   flex-direction: row;
-  justify-content: space-between;
-  margin: 40px 0 10px;
+  justify-content: center;
+  margin: 0;
+  box-shadow: inset 0px 8px 15px rgba(0, 0, 0, 0.3);
 }
 
 .jobBtn__details,
 .jobBtn__edit,
 .jobBtn__delete {
-  padding: 2px;
+  padding: 10px 0;
   width: 100%;
+  text-align: center;
 }
 
-.jobDetailBtn,
-.jobEditBtn,
-.jobDeleteBtn {
-  border-radius: 5px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  margin-bottom: 0;
-  font-family: 'Inter' sans-serif;
-  font-weight: 400;
-  color: #373737;
-  font-size: 14px;
-  background: #FFFFFF;
-  padding: 5px 10px 5px 10px;
-  border: solid #373737 1px;
-  text-decoration: none;
-  width: 90px;
-}
-
-.jobDeleteBtn {
-  background: #9c0a0a;
-  border: #9c0a0a;
-  color: #FFFFFF;
+.jobEditBtn {
+  border-radius: 0;
+  border-left: 1px #373737 solid;
+  border-right: 1px #373737 solid;
 }

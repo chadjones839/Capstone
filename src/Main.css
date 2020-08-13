@@ -9,6 +9,8 @@
 
 /***CSS IMPORTS********************************************/
 
+@import "./Buttons.css";
+@import "./Fields.css";
 @import "./components/auth/styles/Home.css";
 @import "./components/auth/styles/Login.css";
 @import "./components/auth/styles/Register.css";

@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:900|Raleway:400,400i,700,700i);
+
 @import "../styles/UserResume.css";
 @import "../styles/WorkHistory.css";
 @import "../styles/SchoolForm.css";
@@ -7,4 +9,54 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.skillSet {
+  display: block;
+}
+
+.skillList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.skillList > span {
+  background: #1DBBD6;
+  border-radius: 16px;
+  font-size: 20px;
+  padding: 5px 10px;
+  margin: 10px 5px;
+  font-family: 'Inter', sans-serif;
+  
+}
+
+.viewSkillList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.viewSkillList > span {
+  background: #1DBBD6;
+  border-radius: 16px;
+  font-size: 20px;
+  padding: 5px 10px;
+  margin: 10px 5px;
+  font-family: 'Inter', sans-serif;
+  
+}
+
+.viewSectionTitle {
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 700;
+  letter-spacing:3px;
+  font-size: 32px;
+  padding: 5px 0;
+  margin: 40px 0 0;
+  text-align: center;
+  color: #000000;
+  border-radius: 5px;
+  width: 100%;
+  text-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+
 }

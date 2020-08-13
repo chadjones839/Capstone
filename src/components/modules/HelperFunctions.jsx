@@ -1,4 +1,4 @@
-function timeSince(current, previous) {
+export function timeSince(current, previous) {
 
   var msPerMinute = 60 * 1000;
   var msPerHour = msPerMinute * 60;
@@ -32,5 +32,3 @@ function timeSince(current, previous) {
       return Math.round(elapsed/msPerYear ) + ' years ago';   
   }
 }
-
-export default timeSince

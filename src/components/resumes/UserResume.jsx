@@ -58,7 +58,6 @@ const UserResume = props => {
       })
     });
   }, []);
-  console.log(skill)
   return (
     <React.Fragment>
       <div className="statusBar">
@@ -89,7 +88,7 @@ const UserResume = props => {
             <div className="editBtnContainer">
               <button 
                 onClick={() => props.history.push(`/user-resume/${user.id}`)}
-                className="viewResBtn"
+                className="blackBtn__wide"
                 type="button"
                 >
                   View Resume
@@ -139,13 +138,20 @@ const UserResume = props => {
                   Edit Skills
               </button>
             </div>
-            <section className="skillsList">
-              <h2>{skill.skill1}</h2>
-              <h2>{skill.skill2}</h2>
-              <h2>{skill.skill3}</h2>
-              <h2>{skill.skill4}</h2>
-              <h2>{skill.skill5}</h2>
-            </section></>}
+            <article className="skillSet">
+              <div className="skillList">
+                <span>{skill.skill1}</span>
+                <span>{skill.skill2}</span>
+                <span>{skill.skill3}</span>
+                <span>{skill.skill4}</span>
+                <span>{skill.skill5}</span>
+                <span>{skill.skill6}</span>
+                <span>{skill.skill7}</span>
+                <span>{skill.skill8}</span>
+                <span>{skill.skill9}</span>
+                <span>{skill.skill10}</span>
+              </div>
+            </article></>}
           </section>
 
           <h2 className="sectionTitle">Schools</h2>

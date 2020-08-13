@@ -101,6 +101,12 @@ const CandidateDiscoveryCard = props => {
             <br />
           </section>
           <section className="interestButtons">
+          <button 
+              type="submit" 
+              className="falseBtn" 
+              onClick={() => friendHandler(props.user.id)}>
+                Hard Pass
+            </button>
             <button 
               type="submit" 
               className="trueBtn" 

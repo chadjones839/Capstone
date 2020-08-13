@@ -23,25 +23,13 @@
   color: #b60b0b;
 }
 
-.editLabel {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
-  margin-top: 10px;
-  padding-top: 10px;
+.asterisk {
+  font-size: 13px;
+  color: red;
 }
 
-.editInput {
-  margin: 0;
-  margin-bottom: 10px;
-  padding: 0.5rem 0.3rem;
-  width: 95%;
-  color: inherit;
-  font-family: 'Roboto', sans-serif;
+option {
   font-size: 15px;
-  font-weight: inherit;
-  line-height: 1.8;
-  border: #000000 solid 1px;
-  border-radius: 0.4rem;
 }
 
 #uploadImage {

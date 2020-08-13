@@ -56,19 +56,29 @@ const WorkHistory = props => {
       <div className="statusBar">
         <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
       </div>
-      <div className="listingHeader">
-        <div className="jobListing__header">
-          <h2>Add Work History</h2>
-        </div> 
-      </div>
-      <section className="editJobListing">
+      <section className="formHeaderContainer">
+        <div className="resume__backButton">
+          <button 
+            type="submit" 
+            className="backBtn"
+            onClick={() => props.history.push("/resume")}>
+            <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490014/icons/backarrow_lfdpzw.png" className="backToResume" alt="back" />
+          </button>
+        </div>
+        <div className="addJobHistoryHeader">
+          <div className="jobHistory__header">
+            <h2>Add Work History</h2>
+          </div> 
+        </div>
+      </section>
+      <section className="createWorkHistory">
         <form className="editProfileForm">
           <fieldset className="editJobDetails">
             
             <label 
               className="editLabel" 
               htmlFor="jobTitle">
-                Job Title *
+                Job Title <span className="asterisk">*</span>
             </label>
             <input 
               type="text"
@@ -81,7 +91,7 @@ const WorkHistory = props => {
             <label 
               className="editLabel" 
               htmlFor="company">
-                Company *
+                Company <span className="asterisk">*</span>
             </label>
             <input 
               type="text"
@@ -96,24 +106,40 @@ const WorkHistory = props => {
                 <label 
                   className="editLabel" 
                   htmlFor="startMonth">
-                    Start Month *
+                    Start Month <span className="asterisk">*</span>
                 </label>
-                <input 
+                <select 
                   type="text"
-                  className="editInput"  
+                  className="editSelect"  
                   onChange={handleFieldChange}
-                  id="startMonth"
-                />
+                  id="startMonth">
+                  <option selected disabled hidden>- Select -</option>
+                  <option value="January">January</option>
+                  <option value="Febuary">Febuary</option>
+                  <option value="March">March</option>
+                  <option value="April">April</option>
+                  <option value="May">May</option>
+                  <option value="June">June</option>
+                  <option value="July">July</option>
+                  <option value="August">August</option>
+                  <option value="September">September</option>
+                  <option value="October">October</option>
+                  <option value="November">November</option>
+                  <option value="December">December</option>
+                </select>
               </div>
               <div className="start2">
                 <label 
                   className="editLabel" 
                   htmlFor="startYear">
-                    Start Year *
+                    Start Year <span className="asterisk">*</span>
                 </label>
                 <input 
                   type="number"
                   className="editInput"  
+                  placeholder="4-digit" 
+                  min="1930"
+                  max="2020"
                   onChange={handleFieldChange}
                   id="startYear"
                 />
@@ -127,12 +153,25 @@ const WorkHistory = props => {
                   htmlFor="endMonth">
                     End Month
                 </label>
-                <input 
+                <select 
                   type="text"
-                  className="editInput"  
+                  className="editSelect"  
                   onChange={handleFieldChange}
-                  id="endMonth"
-                />
+                  id="endMonth">
+                  <option selected disabled hidden>- Select -</option>
+                  <option value="January">January</option>
+                  <option value="Febuary">Febuary</option>
+                  <option value="March">March</option>
+                  <option value="April">April</option>
+                  <option value="May">May</option>
+                  <option value="June">June</option>
+                  <option value="July">July</option>
+                  <option value="August">August</option>
+                  <option value="September">September</option>
+                  <option value="October">October</option>
+                  <option value="November">November</option>
+                  <option value="December">December</option>
+                </select>
               </div>
               <div className="end2">
                 <label 
@@ -143,6 +182,9 @@ const WorkHistory = props => {
                 <input 
                   type="number"
                   className="editInput"  
+                  placeholder="4-digit" 
+                  min="1930"
+                  max="2035"
                   onChange={handleFieldChange}
                   id="endYear"
                 />
@@ -168,7 +210,7 @@ const WorkHistory = props => {
             <label 
               className="editLabel" 
               htmlFor="description">
-                Job Description *
+                Job Description <span className="asterisk">*</span>
             </label>
             <textarea 
               type="text"
@@ -184,13 +226,16 @@ const WorkHistory = props => {
       <div className="saveEditChanges">
         <button
           type="button"
-          className="blackBtn"
+          className="blueBtn__wide"
           id="submitBtn"
           disabled={isLoading}
           onClick={createJob}>
             Save
         </button> 
       </div>
+      <br />
+      <br />
+      <br />
     </React.Fragment>
   )   
 };

@@ -13,7 +13,6 @@ const SkillsEdit = props => {
     skill4: "",
     skill5: ""
   });
-  console.log(props.match.params.skillId)
   const handleFieldChange = evt => {
     const stateToChange = { ...skill };
     stateToChange[evt.target.id] = evt.target.value;
@@ -108,7 +107,7 @@ const SkillsEdit = props => {
       <div className="saveEditChanges">
         <button
           type="button"
-          className="blackBtn"
+          className="blueBtn90"
           id="submitBtn"
           disabled={isLoading}
           onClick={updateSkills}>

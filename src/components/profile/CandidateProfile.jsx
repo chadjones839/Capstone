@@ -69,7 +69,7 @@ const CandidateProfile = props => {
           <div className="editBtnContainer">
             <button 
               onClick={() => props.history.push(`/users/${user.id}/edit`)}
-              className="blackBtn"
+              className="blueBtn90"
               type="button"
               >
                 Edit Profile

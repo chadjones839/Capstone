@@ -101,10 +101,21 @@ const UserDetail = props => {
             <div className="editBtnContainer">
                 <button 
                   onClick={() => deleteMatch(user.id)}
-                  className="blackBtn"
+                  className="blueBtn90"
                   type="button"
                   >
                     Unmatch
+                </button>
+            </div>
+          </section>
+          <section className="sendMessageButton">
+            <div className="sendMessageButton__container">
+                <button 
+                  onClick={() => props.history.push(`/chats/${user.id}`)}
+                  className="blackBtn90"
+                  type="button"
+                  >
+                    Message
                 </button>
             </div>
           </section>
@@ -164,7 +175,7 @@ const UserDetail = props => {
           <div className="editBtnContainer">
             <button 
               onClick={() => deleteMatch(user.id)}
-              className="blackBtn"
+              className="blueBtn90"
               type="button"
               >
                 Unmatch
