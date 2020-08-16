@@ -20,3 +20,10 @@
   border-radius: 5px;
   padding: 10px;
 }
+
+.editSkills {
+  width: auto;
+  text-align: center;
+  justify-content: center;
+  padding: 10px;
+}

@@ -22,10 +22,17 @@ const EmployerDiscoveryCard = props => {
   });
  
   const halfFriend = friends.find(obj => {
-    if (props.user.id === obj.activeUserId && sessionUser.id === obj.userId && obj.mutualInterest === false) {
+    if ((props.user.id === obj.activeUserId && sessionUser.id === obj.userId && obj.mutualInterest === false) || (props.user.id === obj.activeUserId && sessionUser.id === obj.userId && obj.mutualInterest === null)) {
       return obj
     }
   });
+
+  const passHandler = (id) => {
+    newFriend.userId = sessionUser.id
+    newFriend.activeUserId = id
+    newFriend.mutualInterest = null
+    FriendManager.postFriend(newFriend)
+  }
 
   const friendHandler = () => { 
 
@@ -62,6 +69,14 @@ const EmployerDiscoveryCard = props => {
         window.location.reload(true);
         return friend
       })
+    }
+    else if (
+    friend.userId === props.user.id && 
+    friend.mutualInterest === null &&
+    friend.activeUserId === sessionUser.id ) {
+      createFriend(props.user.id)
+      setNewFriend()
+      return newFriend
     };     
   };
   
@@ -80,55 +95,54 @@ const EmployerDiscoveryCard = props => {
       .then((response) => {
         setFriends(response)
     })
-  }, [])
+  }, [friends])
 
-  if (props.user.accountType === "employer" && mapFriend) {
-    return null
-  }
-  else if (props.user.accountType === "employer" && halfFriend) {
-    return null
-  }
-  else if (props.user.accountType === "employer") {
-    return (
-      <React.Fragment>
-        <section className="employerCard">
-          <div className="employerCard__image">
-            <img src={props.user.image}  alt={props.user.companyName} className="employerCard__logo"/>
-          </div>
-          <div className="employerDetails">
-            <h2 className="employerCard__name">{props.user.companyName}</h2>
-            <h4 className="employerCard__industry">{props.user.industry}</h4>
-          </div>
-          <div className="employerCard__body">
-            {props.user.bio}
-          </div>
-          <br />
-        </section>
-        <section className="interestButtons">
-          {/* <div className="interestButtons__container"> */}
-            {/* <div className="interestBtn__false">
-              <button type="submit" className="falseBtn">
+  if (props.user.accountType === "employer") {
+    if (mapFriend) {
+      return null
+    }
+    else if (halfFriend) {
+      return null
+    }
+    else {
+      return (
+        <React.Fragment>
+          <section className="employerCard">
+            <div className="employerCard__image">
+              <img src={props.user.image}  alt={props.user.companyName} className="employerCard__logo"/>
+            </div>
+            <div className="employerDetails">
+              <h2 className="employerCard__name">{props.user.companyName}</h2>
+              <h4 className="employerCard__industry">{props.user.industry}</h4>
+            </div>
+            <div className="employerCard__body">
+              {props.user.bio}
+            </div>
+            <br />
+          </section>
+          <section className="interestButtons">
+          <button 
+              type="submit" 
+              className="falseBtn" 
+              onClick={() => passHandler(props.user.id)}>
                 Hard Pass
-              </button> 
-            </div> */}
-            {/* <div className="interestBtn__true"> */}
-              <button 
-                type="submit" 
-                className="trueBtn" 
-                onClick={() => friendHandler(props.user.id)}>
-                  Let's Talk
-              </button> 
-            {/* </div> */}
-          {/* </div> */}
-        </section>
-        <br />
-        <br />
-        <br />
-        <br />
-      </React.Fragment>
-    )
+            </button>
+            <button 
+              type="submit" 
+              className="trueBtn" 
+              onClick={() => friendHandler(props.user.id)}>
+                Let's Talk
+            </button> 
+          </section>
+          <br />
+          <br />
+          <br />
+          <br />
+        </React.Fragment>
+      )
+    }
   }
-  else {
+  else if (props.user.accountType === "candidate") {
     return null
   }
 };

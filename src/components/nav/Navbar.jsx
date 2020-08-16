@@ -23,10 +23,8 @@ const NavBar = props => {
       </Link> }
         </li>
         <li>
-          <Link className="nav-link" to="/discovery"> 
-            <button type="submit" className="discoveryNavButton">
-              &#10009;
-            </button> 
+          <Link className="center-nav-link" to="/discovery"> 
+            <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1597074911/icons/CannonBalls_hsp9tx.png" alt="resume" />
           </Link>
         </li>
         <li>

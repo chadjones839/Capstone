@@ -146,7 +146,7 @@ const WorkHistory = props => {
               </div>
             </div>
 
-            <div className="dateFields">
+            <div className="dateFields" id="endDateFields">
               <div className="end1">
                 <label 
                   className="editLabel" 
@@ -196,7 +196,7 @@ const WorkHistory = props => {
               className="editInputs"  
               onChange={checkBoxValue}
               checked={isChecked}
-              // value={job.current}
+
               id="current"
             />
             <label 

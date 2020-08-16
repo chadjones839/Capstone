@@ -129,7 +129,7 @@ const UserResume = props => {
                     + Add Skills
                 </button>
               </div>
-              : <><div className="addSkills">
+              : <><div className="editSkills">
               <button 
                 onClick={() => props.history.push(`/skills/${skill.id}/edit`)}
                 className="addButton"

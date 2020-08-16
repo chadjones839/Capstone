@@ -36,11 +36,21 @@ const SkillForm = props => {
       <div className="statusBar">
         <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
       </div>
-      <div className="listingHeader">
-        <div className="jobListing__header">
-          <h2>Add Skills</h2>
-        </div> 
-      </div>
+      <section className="formHeaderContainer">
+        <div className="resume__backButton">
+          <button 
+            type="submit" 
+            className="backBtn"
+            onClick={() => props.history.push("/resume")}>
+            <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490014/icons/backarrow_lfdpzw.png" className="backToResume" alt="back" />
+          </button>
+        </div>
+        <div className="addJobHistoryHeader">
+          <div className="jobHistory__header">
+            <h2>Add Skills</h2>
+          </div> 
+        </div>
+      </section>
       <section className="editJobListing">
         <form className="editProfileForm">
           <fieldset className="editJobDetails">
@@ -81,6 +91,36 @@ const SkillForm = props => {
               onChange={handleFieldChange}
               id="skill5"
             />
+            <input 
+              type="text"
+              className="editInput"  
+              onChange={handleFieldChange}
+              id="skill6"
+            />
+            <input 
+              type="text"
+              className="editInput"  
+              onChange={handleFieldChange}
+              id="skill7"
+            />
+            <input 
+              type="text"
+              className="editInput"  
+              onChange={handleFieldChange}
+              id="skill8"
+            />
+            <input 
+              type="text"
+              className="editInput"  
+              onChange={handleFieldChange}
+              id="skill9"
+            />
+            <input 
+              type="text"
+              className="editInput"  
+              onChange={handleFieldChange}
+              id="skill10"
+            />
             
 
           </fieldset>
@@ -89,7 +129,7 @@ const SkillForm = props => {
       <div className="saveEditChanges">
         <button
           type="button"
-          className="blueBtn90"
+          className="blueBtn__wide"
           id="submitBtn"
           disabled={isLoading}
           onClick={saveSkills}>

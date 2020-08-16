@@ -54,7 +54,9 @@ const ChatCard = props => {
   if (sessionUser.id === props.chat.userId) {
     return (
       <React.Fragment>
-        <section className="chatCard">
+        <section 
+          className="chatCard"
+          onClick={()=>props.history.push(`/chats/${props.chat.id}`)}>
           <div className="userImageContainer">
             
             <div className="userImage">
@@ -71,16 +73,6 @@ const ChatCard = props => {
             {message.content} 
             </p>
           </div>
-          <div className="chatButton">
-            <Link to={`/chats/${props.chat.id}`}>
-              <button 
-                type="submit" 
-                className="chatBtn"
-                >
-                  Chat
-              </button>
-            </Link> 
-          </div>
         </section>
       </React.Fragment>
     )
@@ -88,7 +80,9 @@ const ChatCard = props => {
   else if (sessionUser.id === props.chat.activeUserId) {
     return (
       <React.Fragment>
-        <section className="chatCard">
+        <section 
+          className="chatCard"
+          onClick={()=>props.history.push(`/chats/${props.chat.id}`)}>
           <div className="userImageContainer">
             <div className="userImage">
               <img src={props.chat.user.image} alt="Abstergo" />
@@ -102,17 +96,6 @@ const ChatCard = props => {
             <p className="messagePreview">
               {message.content}
             </p>
-          </div>
-          <div className="chatButton">
-            {/* <Link to={`/chats/${props.chat.id}` {...props}}> */}
-              <button 
-                type="submit" 
-                className="chatBtn"
-                onClick={()=> props.history.push(`/chats/${props.chat.id}`)}
-                >
-                  Chat
-              </button>
-            {/* </Link>   */}
           </div>
         </section>
       </React.Fragment>

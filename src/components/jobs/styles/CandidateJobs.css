@@ -58,8 +58,8 @@
   width: 100%;
 }
 
-.messageUserName > h4 {
-  margin: 0 0 0 10px;
+.jobsUserName > h4 {
+  margin: 0;
   font-family: "Roboto", sans-serif;
   font-weight: 600px;
   

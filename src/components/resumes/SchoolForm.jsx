@@ -21,10 +21,14 @@ const SchoolForm = props => {
   const checkBoxValue = evt => {
     if (!isChecked) {
       school.current= true
+      school.endMonth=""
+      school.endYear=""
+      document.querySelector("#endDateFields").style.display = "none"
       setIsChecked(true);
     }
     else {
       school.current = false
+      document.querySelector("#endDateFields").style.display = "flex"
       setIsChecked(false)
     }
   }
@@ -154,7 +158,7 @@ const SchoolForm = props => {
               </div>
             </div>
 
-            <div className="schoolDateFields">
+            <div className="schoolDateFields" id="endDateFields">
               <div className="end1">
                 <label 
                   className="editLabel" 

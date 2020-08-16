@@ -36,6 +36,11 @@
   margin: 5px 0 20px 0;
 }
 
+.industry {
+  font-weight: 400;
+  font-style: italic;
+}
+
 .employerCard__body {
   font-family: 'Roboto', sans-serif;
 }

@@ -41,7 +41,7 @@ const ChatCard = props => {
             </div>
           </div>
           <div className="messageDetailsContainer">
-            <div className="messageUserName">
+            <div className="jobsUserName">
               <h4>{user.companyName}</h4>
             </div>
           </div>
@@ -62,7 +62,7 @@ const ChatCard = props => {
             </div>
           </div>
           <div className="messageDetailsContainer">
-            <div className="messageUserName">
+            <div className="jobsUserName">
               <h4>{props.chat.user.companyName}</h4>
             </div>
           </div>

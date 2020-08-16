@@ -21,10 +21,17 @@ const CandidateDiscoveryCard = props => {
   });
   
   const halfFriend = friends.find(obj => {
-    if (props.user.id === obj.activeUserId && sessionUser.id === obj.userId && obj.mutualInterest === false) {
+    if ((props.user.id === obj.activeUserId && sessionUser.id === obj.userId && obj.mutualInterest === false) || (props.user.id === obj.activeUserId && sessionUser.id === obj.userId && obj.mutualInterest === null)) {
       return obj
     }
   });
+
+  const passHandler = (id) => {
+    newFriend.userId = sessionUser.id
+    newFriend.activeUserId = id
+    newFriend.mutualInterest = null
+    FriendManager.postFriend(newFriend)
+  }
 
   const friendHandler = () => { 
 
@@ -52,7 +59,7 @@ const CandidateDiscoveryCard = props => {
     }
     else if (
     friend.userId === props.user.id && 
-    friend.mutualInterest !== true &&
+    friend.mutualInterest === false &&
     friend.activeUserId === sessionUser.id ) {
       editedFriend.id = friend.id
       FriendManager.editFriend(editedFriend)
@@ -60,7 +67,15 @@ const CandidateDiscoveryCard = props => {
         ChatManager.postChat(newChat)
         return friend
       })
-    };     
+    }
+    else if (
+      friend.userId === props.user.id && 
+      friend.mutualInterest === null &&
+      friend.activeUserId === sessionUser.id ) {
+        createFriend(props.user.id)
+        setNewFriend()
+        return newFriend
+      };     
   };
   
   const createFriend = (id) => {
@@ -93,7 +108,7 @@ const CandidateDiscoveryCard = props => {
             </div>
             <div className="employerDetails">
               <h2 className="employerCard__name">{props.user.firstName}</h2>
-              <h4 className="employerCard__industry">{props.user.industry}</h4>
+              <h4 className="employerCard__industry">{props.user.jobTitle} | <span className="industry">{props.user.industry}</span></h4>
             </div>
             <div className="employerCard__body">
               {props.user.bio}
@@ -104,7 +119,7 @@ const CandidateDiscoveryCard = props => {
           <button 
               type="submit" 
               className="falseBtn" 
-              onClick={() => friendHandler(props.user.id)}>
+              onClick={() => passHandler(props.user.id)}>
                 Hard Pass
             </button>
             <button 
@@ -125,28 +140,7 @@ const CandidateDiscoveryCard = props => {
   else if (props.user.accountType === "employer") {
     return null
   }
-  else {
-    return (
-      <>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <div className="endOfList">
-          <div className="endOfList__message">
-            <h2>You have no one new to discover</h2>
-            <p className="subtitle">Try again later!</p>
-            <p className="subtext">Relax, guy. This isn't the end of the world. This just means that you've weeded out all the riff raff!</p>
-          </div>
-        </div>
-      </>
-      )
-  }
+  
 };
 
 

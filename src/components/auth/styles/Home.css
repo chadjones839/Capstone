@@ -9,21 +9,31 @@ html {
 }
 
 .loginBoxContainer {
-  padding: 0;
+  height: 812px;
+}
+
+.loginBox {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  position: relative;
+  top: -200px;
+  justify-content: center;
 }
 
 .loginImages {
   width: 100%;
+  height: 812px;
 }
 
 .loginMain {
   width: 100%;
-  height: 725px;
+  height: 812px;
 }
 
 .backgroundImg {
   width: 100%;
-  height: 730px;
+  height: 812px;
 }
 
 .backgroundImg > img {
@@ -37,76 +47,50 @@ html {
   display: flex;
   justify-content: center;
   position: relative;
-  top: -580px;
-  left: -5px;
+  top: -620px;
 }
 
 .logoContainer {
-  width: 70%;
+  width: 90%;
   height: auto;
 }
 
 .logoContainer > img {
-  width: 50%;
+  width: 100%;
   height: auto;
 }
 
-.AppNameContainer {
-	position: absolute;
-	top: -45px;
-	left: -18px;
-	right: 0;
-	bottom: 0;
-	width: 100%;
-	display: flex;
-	align-items: center;
-  justify-content: center;
-  text-align: center;
-  height: 770px;
-}
-
-.AppName {
-  font-family: 'Titillium Web', sans-serif;
-  width: 80%;
-	color: rgba(166, 46, 196);
-	font-size: calc(1em + 15vw) ;  
-	font-weight: 900;
-  text-shadow: 0px 8px 15px rgba(0, 0, 0, 0.8);
-}
-
-.AppNameContainer2 {
-	position: absolute;
-	top: -40px;
-	left: -15px;
-	right: 0;
-	bottom: 0;
-	width: 100%;
-	display: flex;
-	align-items: center;
-  justify-content: center;
-  text-align: center;
-  height: 770px;
-}
-
-.AppName2 {
-  font-family: 'Titillium Web', sans-serif;
-  width: 80%;
-	color: rgba(255, 255, 255, 0.7);
-	font-size: calc(1em + 15vw) ;  
-	font-weight: 900;
-  text-shadow: 0px 8px 15px rgba(0, 0, 0, 0.8);
-}
-
-.authButtons {
+/* .authButtons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
   height: 100%;
   padding-top: 15px;
+} */
+
+.authButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: auto;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 15px;
+  padding: 20px;
 }
 
 .loginButton {
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.registerButton {
+  width: 100%;
+}
+
+/* .loginButton {
   width: 45%;
   padding-left: 10px;
 }
@@ -115,4 +99,4 @@ html {
   width: 45%;
   text-align: right;
   padding-right: 10px;
-}
+} */

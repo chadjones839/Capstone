@@ -32,6 +32,12 @@
   list-style-type: none;
 }
 
+.center-nav-link > img {
+  width: 45px;
+  height: auto;
+  list-style-type: none;
+}
+
 .discoveryNavButton {
   font-size: 24px;
   text-decoration: none;

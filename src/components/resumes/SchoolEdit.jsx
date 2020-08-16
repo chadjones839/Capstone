@@ -182,7 +182,7 @@ const SchoolForm = props => {
               </div>
             </div>
 
-            <div className="schoolDateFields">
+            <div className="schoolDateFields" id="endDateFields">
               <div className="end1">
                 <label 
                   className="editLabel" 
