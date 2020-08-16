@@ -25,6 +25,14 @@ The main feature can be found on the `Discovery` page, which is where users are 
 - In the `Chat` feature, the active user can open the other user's profile by clicking on their profile icon next to their message. This displays that user's profile, and an "Unmatch" button that deletes the match and chat.
 - The `Profile` tab opens up the active user's profile with the ability to edit profile details (including profile picture upload) or delete the entire account.
 
+## Screenshots
+
+<img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1597609592/techtok/home-sample_zboksi.png" height="203" width="93">
+<img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1597609622/techtok/discovery-sample_fjfooo.png" height="203" width="93">
+<img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1597609653/techtok/profile-sample_cgosjc.png" height="203" width="93">
+<img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1597609578/techtok/chat-sample_q7wjro.png" height="203" width="93">
+<img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1597609608/techtok/resume-sample_cfitg4.png" height="203" width="93">
+<img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1597609563/techtok/jobs-sample_fyibaa.png" height="203" width="93">
 
 ## Installation
 
