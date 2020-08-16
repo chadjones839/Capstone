@@ -25,8 +25,6 @@ The main feature can be found on the `Discovery` page, which is where users are 
 - In the `Chat` feature, the active user can open the other user's profile by clicking on their profile icon next to their message. This displays that user's profile, and an "Unmatch" button that deletes the match and chat.
 - The `Profile` tab opens up the active user's profile with the ability to edit profile details (including profile picture upload) or delete the entire account.
 
-<img src="SmartPantry/wwwroot/Images/MyPantryCapture.PNG" height="170" width="280">      <img src="SmartPantry/wwwroot/Images/MyGroceryCapture.PNG" height="170" width="280">
-<img src="SmartPantry/wwwroot/Images/RecipesCapture.PNG" height="170" width="280px">
 
 ## Installation
 
