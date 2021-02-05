@@ -20,9 +20,9 @@ const WorkHistoryEdit = props => {
 
   const checkBoxValue = evt => {
     if (!isChecked) {
-      job.current= true
-      job.endMonth=""
-      job.endYear=""
+      job.current = true
+      job.endMonth = ""
+      job.endYear = ""
       document.querySelector("#endDateFields").style.display = "none"
       setIsChecked(true);
     }
@@ -43,42 +43,40 @@ const WorkHistoryEdit = props => {
     event.preventDefault();
     setIsLoading(true)
 
-  const editedJob = {
-    id: props.match.params.jobId,
-    userId: sessionUser.id,
-    jobTitle: job.jobTitle,
-    company: job.company,
-    startMonth: job.startMonth,
-    startYear: job.startYear,
-    endMonth: job.endMonth,
-    endYear: job.endYear,
-    current: job.current,
-    description: job.description
-  }
+    const editedJob = {
+      id: props.match.params.jobId,
+      userId: sessionUser.id,
+      jobTitle: job.jobTitle,
+      company: job.company,
+      startMonth: job.startMonth,
+      startYear: job.startYear,
+      endMonth: job.endMonth,
+      endYear: job.endYear,
+      current: job.current,
+      description: job.description
+    }
 
-  ResumeManager.editJob(editedJob)
-    .then(() => {
-      props.history.push("/resume")
-    })
+    ResumeManager.editJob(editedJob)
+      .then(() => {
+        props.history.push("/resume")
+      })
   }
 
   useEffect(() => {
     ResumeManager.getJob(props.match.params.jobId)
-    .then((job) => {
+      .then((job) => {
         setJob(job)
         setIsLoading(false)
-    } )    
-}, [props.match.params.jobId]);
+      })
+  }, [props.match.params.jobId]);
 
   return (
-    <React.Fragment>
-      <div className="statusBar">
-        <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
-      </div>
+    <div id="root-wrapper">
+
       <section className="formHeaderContainer">
         <div className="resume__backButton">
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className="backBtn"
             onClick={() => props.history.push("/resume")}>
             <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490014/icons/backarrow_lfdpzw.png" className="backToResume" alt="back" />
@@ -87,36 +85,36 @@ const WorkHistoryEdit = props => {
         <div className="editJobHistoryHeader">
           <div className="jobHistory__header">
             <h2>Edit Work History</h2>
-          </div> 
+          </div>
         </div>
       </section>
       <section className="editWorkHistory">
         <form className="editProfileForm">
           <fieldset className="editJobDetails">
-            
-            <label 
-              className="editLabel" 
+
+            <label
+              className="editLabel"
               htmlFor="jobTitle">
-                Job Title <span className="asterisk">*</span>
+              Job Title <span className="asterisk">*</span>
             </label>
-            <input 
+            <input
               type="text"
               required
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="jobTitle"
               value={job.jobTitle}
             />
-            
-            <label 
-              className="editLabel" 
+
+            <label
+              className="editLabel"
               htmlFor="company">
-                Company <span className="asterisk">*</span>
+              Company <span className="asterisk">*</span>
             </label>
-            <input 
+            <input
               type="text"
               required
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="company"
               value={job.company}
@@ -124,28 +122,28 @@ const WorkHistoryEdit = props => {
 
             <div className="dateFields">
               <div className="start1">
-                <label 
-                  className="editLabel" 
+                <label
+                  className="editLabel"
                   htmlFor="startMonth">
-                    Start Month <span className="asterisk">*</span>
+                  Start Month <span className="asterisk">*</span>
                 </label>
-                <input 
+                <input
                   type="text"
-                  className="editInput"  
+                  className="editInput"
                   onChange={handleFieldChange}
                   id="startMonth"
                   value={job.startMonth}
                 />
               </div>
               <div className="start2">
-                <label 
-                  className="editLabel" 
+                <label
+                  className="editLabel"
                   htmlFor="startYear">
-                    Start Year <span className="asterisk">*</span>
+                  Start Year <span className="asterisk">*</span>
                 </label>
-                <input 
+                <input
                   type="number"
-                  className="editInput"  
+                  className="editInput"
                   onChange={handleFieldChange}
                   id="startYear"
                   value={job.startYear}
@@ -155,28 +153,28 @@ const WorkHistoryEdit = props => {
 
             <div className="dateFields" id="endDateFields">
               <div className="end1">
-                <label 
-                  className="editLabel" 
+                <label
+                  className="editLabel"
                   htmlFor="endMonth">
-                    End Month
+                  End Month
                 </label>
-                <input 
+                <input
                   type="text"
-                  className="editInput"  
+                  className="editInput"
                   onChange={handleFieldChange}
                   id="endMonth"
                   value={job.endMonth}
                 />
               </div>
               <div className="end2">
-                <label 
-                  className="editLabel" 
+                <label
+                  className="editLabel"
                   htmlFor="endYear">
-                    End year
+                  End year
                 </label>
-                <input 
+                <input
                   type="number"
-                  className="editInput"  
+                  className="editInput"
                   onChange={handleFieldChange}
                   id="endYear"
                   value={job.endYear}
@@ -184,31 +182,31 @@ const WorkHistoryEdit = props => {
               </div>
             </div>
 
-            <input 
+            <input
               type="checkbox"
-              className="editInputs"  
+              className="editInputs"
               onChange={checkBoxValue}
               checked={isChecked}
               id="current"
               value={job.current}
             />
-            <label 
-              className="editLabel" 
+            <label
+              className="editLabel"
               htmlFor="current">
-                I am currently employed here.
+              I am currently employed here.
             </label>
             <br />
             <br />
 
-            <label 
-              className="editLabel" 
+            <label
+              className="editLabel"
               htmlFor="description">
-                Job Description <span className="asterisk">*</span>
+              Job Description <span className="asterisk">*</span>
             </label>
-            <textarea 
+            <textarea
               type="text"
               required
-              className="editInputTextarea"  
+              className="editInputTextarea"
               onChange={handleFieldChange}
               id="description"
               value={job.description}
@@ -224,14 +222,14 @@ const WorkHistoryEdit = props => {
           id="submitBtn"
           disabled={isLoading}
           onClick={updateJob}>
-            Save Changes
-        </button> 
+          Save Changes
+        </button>
       </div>
       <br />
       <br />
       <br />
-    </React.Fragment>
-  )   
+    </div>
+  )
 };
 
 export default WorkHistoryEdit

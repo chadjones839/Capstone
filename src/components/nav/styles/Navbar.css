@@ -1,6 +1,6 @@
-.navpanel {
-  background: #f1f1f1;
-  height: 50%;
+#navbar {
+  position: relative; 
+  bottom: 0px;
 }
 
 .navContainer {
@@ -9,10 +9,9 @@
   justify-content: center;
   padding: 10px 20px;
   height: 6%;
-  width: 90%;
+  width: 335px;
   background: #FFFFFF;
-  margin: 10px 0 0 0;
-  position: fixed;
+  margin: 0;
   bottom: 0;
   box-shadow: 0 -2px 5px -2px #333;
 }

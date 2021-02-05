@@ -17,7 +17,7 @@ const UserDetail = props => {
   const [friends, setFriends] = useState([]);
   let chat = {};
   let friend = {};
-  
+
   const getUsers = () => {
     return UserManager.getUser(props.match.params.userId)
   };
@@ -42,7 +42,7 @@ const UserDetail = props => {
       friend = obj
       return obj
     }
-  })  
+  })
 
   const deleteMatch = id => {
     if (window.confirm(`Are you sure you want to unmatch with ${user.companyName}${user.firstName}?`)) {
@@ -56,30 +56,27 @@ const UserDetail = props => {
 
   useEffect(() => {
     getUsers()
-    .then(userResponse => {
-      getFriends()
-      .then(friendResponse => {
-        getChats()
-        .then(chatResponse =>{
-          setChats(chatResponse)
-          setUser(userResponse)
-          setFriends(friendResponse)
-        })
+      .then(userResponse => {
+        getFriends()
+          .then(friendResponse => {
+            getChats()
+              .then(chatResponse => {
+                setChats(chatResponse)
+                setUser(userResponse)
+                setFriends(friendResponse)
+              })
+          })
+
       })
-      
-    })
   }, []);
 
   if (sessionUser.accountType === "candidate") {
     return (
-      <>
-        <div className="statusBar">
-          <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
-        </div>
+      <div id="root-wrapper">
         <main className="profileContainer">
           <section className="profileHeader">
             <div className="logoutButton">
-            
+
             </div>
             <div className="userProfile__image">
               <div className="userImage__container">
@@ -94,45 +91,103 @@ const UserDetail = props => {
               <h2>{user.companyName}</h2>
             </div>
             <div className="userProfile__location">
-            {user.userLocation}
+              {user.userLocation}
             </div>
           </section>
           <section className="editProfileButton">
             <div className="editBtnContainer">
-                <button 
-                  onClick={() => deleteMatch(user.id)}
-                  className="blueBtn90"
-                  type="button"
-                  >
-                    Unmatch
+              <button
+                onClick={() => deleteMatch(user.id)}
+                className="blueBtn90"
+                type="button"
+              >
+                Unmatch
                 </button>
             </div>
           </section>
           <section className="sendMessageButton">
             <div className="sendMessageButton__container">
-                <button 
-                  onClick={() => props.history.push(`/chats/${user.id}`)}
-                  className="blackBtn90"
-                  type="button"
-                  >
-                    Message
+              <button
+                onClick={() => props.history.push(`/chats/${user.id}`)}
+                className="blackBtn90"
+                type="button"
+              >
+                Message
                 </button>
             </div>
           </section>
           <section className="profileDetails">
             <dl>
               <dt>Company Name</dt>
-                <dd>{user.companyName}</dd>
+              <dd>{user.companyName}</dd>
               <dt>Industry</dt>
-                <dd>{user.industry}</dd>
+              <dd>{user.industry}</dd>
               <dt>Location</dt>
-                <dd>{user.userLocation}</dd>
+              <dd>{user.userLocation}</dd>
               <dt>Bio</dt>
-                <dd>{user.bio}</dd>
+              <dd>{user.bio}</dd>
             </dl>
           </section>
           <div className="deleteBtnContainer">
           </div>
+        </main>
+        <div className="navpanel">
+          <Navbar />
+        </div>
+      </div>
+    );
+  }
+  else if (sessionUser.accountType === "employer") {
+    return (
+      <div id="root-wrapper">
+        <main className="profileContainer">
+          <section className="profileHeader">
+            <div className="logoutButton">
+
+            </div>
+            <div className="userProfile__image">
+              <div className="userImage__container">
+                <img src={user.image} alt={user.firstName} />
+              </div>
+            </div>
+            <div className="userProfile__right">
+            </div>
+          </section>
+          <section className="userProfile__details">
+            <div className="userProfile__name">
+              <h2>{user.firstName}</h2>
+            </div>
+            <div className="userProfile__location">
+              {user.userLocation}
+            </div>
+          </section>
+          <section className="editProfileButton">
+            <div className="editBtnContainer">
+              <button
+                onClick={() => deleteMatch(user.id)}
+                className="blueBtn90"
+                type="button"
+              >
+                Unmatch
+            </button>
+            </div>
+          </section>
+          <section className="profileDetails">
+            <dl>
+              <dt>First Name</dt>
+              <dd>{user.firstName}</dd>
+              <dt>Last Name</dt>
+              <dd>{user.lastName}</dd>
+              <dt>Location</dt>
+              <dd>{user.userLocation}</dd>
+              <dt>Job Title</dt>
+              <dd>{user.jobTitle}</dd>
+              <dt>Industry</dt>
+              <dd>{user.industry}</dd>
+              <dt>Bio</dt>
+              <dd>{user.bio}</dd>
+            </dl>
+          </section>
           <br />
           <br />
           <br />
@@ -141,72 +196,7 @@ const UserDetail = props => {
         <div className="navpanel">
           <Navbar />
         </div>
-      </>
-    );
-  }
-  else if (sessionUser.accountType === "employer") {
-    return (
-      <>
-      <div className="statusBar">
-        <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
       </div>
-      <main className="profileContainer">
-        <section className="profileHeader">
-          <div className="logoutButton">
-            
-          </div>
-          <div className="userProfile__image">
-            <div className="userImage__container">
-              <img src={user.image} alt={user.firstName} />
-            </div>
-          </div>
-          <div className="userProfile__right">
-          </div>
-        </section>
-        <section className="userProfile__details">
-          <div className="userProfile__name">
-            <h2>{user.firstName}</h2>
-          </div>
-          <div className="userProfile__location">
-          {user.userLocation}
-          </div>
-        </section>
-        <section className="editProfileButton">
-          <div className="editBtnContainer">
-            <button 
-              onClick={() => deleteMatch(user.id)}
-              className="blueBtn90"
-              type="button"
-              >
-                Unmatch
-            </button>
-          </div>
-        </section>
-        <section className="profileDetails">
-          <dl>
-            <dt>First Name</dt>
-              <dd>{user.firstName}</dd>
-            <dt>Last Name</dt>
-              <dd>{user.lastName}</dd>
-            <dt>Location</dt>
-              <dd>{user.userLocation}</dd>
-            <dt>Job Title</dt>
-              <dd>{user.jobTitle}</dd>
-            <dt>Industry</dt>
-              <dd>{user.industry}</dd>
-            <dt>Bio</dt>
-              <dd>{user.bio}</dd>
-          </dl>
-        </section>
-        <br />
-        <br />
-        <br />
-        <br />
-      </main>
-      <div className="navpanel">
-        <Navbar />
-      </div>
-    </>
     )
   }
 };

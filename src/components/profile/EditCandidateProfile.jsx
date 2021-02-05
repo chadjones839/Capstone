@@ -87,7 +87,7 @@ const EditCandidate = props => {
   }, [props.match.params.userId]);
 
   return (
-    <React.Fragment>
+    <div id="root-wrapper">
       <div className="statusBar">
         <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status" />
       </div>
@@ -296,7 +296,7 @@ const EditCandidate = props => {
       <div className="navpanel">
         <Navbar />
       </div>
-    </React.Fragment>
+    </div>
   )
 }
 

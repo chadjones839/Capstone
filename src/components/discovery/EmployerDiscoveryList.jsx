@@ -6,36 +6,35 @@ import EmployerDiscoveryCard from "../discovery/EmployerDiscoveryCard";
 const EmployerDiscovery = props => {
 
   const [users, setUsers] = useState([]);
-  
+
   const getUsers = () => {
     return UserManager.getWithFriends()
   };
 
   useEffect(() => {
     getUsers()
-    .then((userResponse) => {
-      setUsers(userResponse)
-    })
+      .then((userResponse) => {
+        setUsers(userResponse)
+      })
   }, [])
 
   return (
-    <>
-      <div className="statusBar">
-        <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
-      </div>
-        <h1 className="discoveryHeader">Discovery</h1>
-        <main className="discoveryContainer">
-          {users.map(user =>
-            <EmployerDiscoveryCard 
-              key={user.id} 
-              user={user}
-              {...props} />
-          )}
+    <div id="root-wrapper">
+
+      <h1 className="discoveryHeader">Discovery</h1>
+      <main className="discoveryContainer">
+      <br/>
+        {users.map(user =>
+          <EmployerDiscoveryCard
+            key={user.id}
+            user={user}
+            {...props} />
+        )}
       </main>
       <div className="navpanel">
         <Navbar />
       </div>
-    </>
+    </div>
   );
 };
 

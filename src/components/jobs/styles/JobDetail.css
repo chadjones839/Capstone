@@ -42,12 +42,37 @@
   position: sticky; top: 19px;
   margin-bottom: 10px;
   box-shadow: 0px 3px 5px -2px #333;
+  display: flex;
+}
+
+.job__backButton {
+  padding-right: 10px;
+  position: relative;
+  bottom: 5px;
 }
 
 .detailedJobListing {
   border-radius: 3px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   margin: 20px;
+  height: 617px;
+  overflow-y: scroll;
+}
+
+.detailedJobListing::-webkit-scrollbar {
+  width: 5px;
+}
+
+.detailedJobListing::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+.detailedJobListing::-webkit-scrollbar-thumb {
+  background: rgb(190, 190, 190); 
+}
+
+.detailedJobListing::-webkit-scrollbar-thumb:hover {
+  background:rgb(138, 137, 137); 
 }
 
 .jobDetailHeader {
@@ -149,5 +174,6 @@
   outline: none;
   border: none;
   background: none;
-  border-top: 1px #8d8c8c solid
+  border-top: 1px #8d8c8c solid;
+  cursor: pointer;
 }

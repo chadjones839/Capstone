@@ -32,98 +32,97 @@ const SkillForm = props => {
   };
 
   return (
-    <React.Fragment>
-      <div className="statusBar">
-        <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
-      </div>
-      <section className="formHeaderContainer">
-        <div className="resume__backButton">
-          <button 
-            type="submit" 
+    <div id="root-wrapper">
+      <section className="skillFormHeaderContainer">
+        <div className="skill__backButton">
+          <button
+            type="submit"
             className="backBtn"
             onClick={() => props.history.push("/resume")}>
             <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490014/icons/backarrow_lfdpzw.png" className="backToResume" alt="back" />
           </button>
         </div>
-        <div className="addJobHistoryHeader">
+        <div className="addSkillHeader">
           <div className="jobHistory__header">
             <h2>Add Skills</h2>
-          </div> 
+          </div>
         </div>
       </section>
-      <section className="editJobListing">
+      <section className="skillsContainer">
         <form className="editProfileForm">
           <fieldset className="editJobDetails">
-            
-            <label 
-              className="editLabel" 
+
+            <label
+              className="editLabel"
               htmlFor="skills">
-                Add Skills
+              Add Skills
             </label>
-            <input 
+            <input
               type="text"
               required
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="skill1"
             />
-            <input 
+            <input
               type="text"
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="skill2"
             />
-            <input 
+            <input
               type="text"
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="skill3"
             />
-            <input 
+            <input
               type="text"
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="skill4"
             />
-            <input 
+            <input
               type="text"
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="skill5"
             />
-            <input 
+            <input
               type="text"
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="skill6"
             />
-            <input 
+            <input
               type="text"
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="skill7"
             />
-            <input 
+            <input
               type="text"
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="skill8"
             />
-            <input 
+            <input
               type="text"
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="skill9"
             />
-            <input 
+            <input
               type="text"
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="skill10"
             />
-            
 
           </fieldset>
+          <br/>
+          <br/>
+          <br/>
         </form>
       </section>
       <div className="saveEditChanges">
@@ -133,11 +132,11 @@ const SkillForm = props => {
           id="submitBtn"
           disabled={isLoading}
           onClick={saveSkills}>
-            Save
-        </button> 
+          Save
+        </button>
       </div>
-    </React.Fragment>
-  )   
+    </div>
+  )
 };
 
 export default SkillForm

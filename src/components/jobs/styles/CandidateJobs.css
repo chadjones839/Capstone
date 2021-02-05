@@ -1,12 +1,28 @@
-.statusBar{
-  position: -webkit-sticky;
-  position: sticky; top: 0px;
-}
+
 
 .jobsContainer {
   padding: 0px 10px 10px;
   display: grid;
   grid-template-columns: 2fr 50%;
+  grid-template-rows: 26% 26%;
+  height: 590px;
+  overflow-y: scroll;
+}
+
+.jobsContainer::-webkit-scrollbar {
+  width: 5px;
+}
+
+.jobsContainer::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+.jobsContainer::-webkit-scrollbar-thumb {
+  background: rgb(190, 190, 190); 
+}
+
+.jobsContainer::-webkit-scrollbar-thumb:hover {
+  background:rgb(138, 137, 137); 
 }
 
 .jobsHeader {

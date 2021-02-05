@@ -9,7 +9,7 @@ const JobForm = props => {
   const [isLoading, setIsLoading] = useState(false);
   const [job, setJob] = useState({
     userId: sessionUser.id,
-    postDate: currentTimeStamp, 
+    postDate: currentTimeStamp,
     jobTitle: "",
     jobLocation: "",
     salaryActual: "",
@@ -40,40 +40,38 @@ const JobForm = props => {
   };
 
   return (
-    <React.Fragment>
-      <div className="statusBar">
-        <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
-      </div>
+    <div id="root-wrapper">
+
       <div className="listingHeader">
         <div className="jobListing__header">
           <h2>New Job Listing</h2>
-        </div> 
+        </div>
       </div>
       <section className="editJobListing">
         <form className="editProfileForm">
           <fieldset className="editJobDetails">
-            
-            <label 
-              className="editLabel" 
+
+            <label
+              className="editLabel"
               htmlFor="jobTitle">
-                Job Title *
+              Job Title *
             </label>
-            <input 
+            <input
               type="text"
               required
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="jobTitle"
             />
 
-            <label 
-              className="editLabel" 
+            <label
+              className="editLabel"
               htmlFor="type">
-                Type *
+              Type *
             </label>
-            <select 
+            <select
               type="text"
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="type"
             >
@@ -82,43 +80,43 @@ const JobForm = props => {
               <option value="Part-Time">Part-Time</option>
               <option value="Temp">Temp</option>
             </select>
-            
-            <label 
-              className="editLabel" 
+
+            <label
+              className="editLabel"
               htmlFor="jobLocation">
-                Job Location *
+              Job Location *
             </label>
-            <input 
+            <input
               type="text"
               required
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="jobLocation"
             />
 
             <div className="salaryFields">
               <div className="salaryEdit">
-                <label 
-                  className="editLabel" 
+                <label
+                  className="editLabel"
                   htmlFor="salaryActual">
-                    Salary
+                  Salary
                 </label>
-                <input 
+                <input
                   type="text"
-                  className="editInput"  
+                  className="editInput"
                   onChange={handleFieldChange}
                   id="salaryActual"
                 />
               </div>
               <div className="rateEdit">
-                <label 
-                  className="editLabel" 
+                <label
+                  className="editLabel"
                   htmlFor="rate">
-                    Rate
+                  Rate
                 </label>
-                <select 
+                <select
                   type="text"
-                  className="editInputRate"  
+                  className="editInputRate"
                   onChange={handleFieldChange}
                   id="rate"
                 >
@@ -129,48 +127,48 @@ const JobForm = props => {
               </div>
             </div>
 
-            <label 
-              className="editLabel" 
+            <label
+              className="editLabel"
               htmlFor="requirements">
-                Requirements
+              Requirements
             </label>
-            <textarea 
+            <textarea
               type="text"
-              className="editInputTextarea"  
+              className="editInputTextarea"
               onChange={handleFieldChange}
               id="requirements"
             />
 
-            <label 
-              className="editLabel" 
+            <label
+              className="editLabel"
               htmlFor="jobSummary">
-                Job Summary *
+              Job Summary *
             </label>
-            <textarea 
+            <textarea
               type="text"
               required
-              className="editInputTextarea"  
+              className="editInputTextarea"
               onChange={handleFieldChange}
               id="jobSummary"
             />
 
-          <label className="editLabel">3 Keywords that describe the job:</label>
+            <label className="editLabel">3 Keywords that describe the job:</label>
             <div className="keywords">
-              <input 
+              <input
                 type="text"
-                className="editInput"  
+                className="editInput"
                 onChange={handleFieldChange}
                 id="keyword1"
               />
-              <input 
+              <input
                 type="text"
-                className="editInput"  
+                className="editInput"
                 onChange={handleFieldChange}
                 id="keyword2"
               />
-              <input 
+              <input
                 type="text"
-                className="editInput"  
+                className="editInput"
                 onChange={handleFieldChange}
                 id="keyword3"
               />
@@ -186,12 +184,12 @@ const JobForm = props => {
           id="submitBtn"
           disabled={isLoading}
           onClick={createListing}>
-            Post
-        </button> 
+          Post
+        </button>
       </div>
       <br />
-    </React.Fragment>
-  )   
+    </div>
+  )
 };
 
 export default JobForm

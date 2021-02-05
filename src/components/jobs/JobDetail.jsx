@@ -13,7 +13,7 @@ const JobDetail = props => {
 
   const currentTimeStamp = new Date().getTime();
   const sessionUser = JSON.parse(sessionStorage.getItem("user"))
-  
+
   const [user, setUser] = useState({})
   const [job, setJob] = useState({
     userId: "",
@@ -49,13 +49,13 @@ const JobDetail = props => {
           rate: job.rate
         });
         UserManager.getUser(job.userId)
-        .then((response) => {
-          setUser(response)
-        })
+          .then((response) => {
+            setUser(response)
+          })
       });
   }, [props.jobId]);
 
-  
+
   const deleteListing = id => {
     if (window.confirm("Are you sure you want to delete this listing? This cannot be undone.")) {
       JobManager.deleteJob(id)
@@ -63,26 +63,23 @@ const JobDetail = props => {
   };
 
   return (
-    <React.Fragment>
-      <div className="statusBar">
-        <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
-      </div>
+    <div id="root-wrapper">
       <div className="listingHeader">
         <div className="jobListing__header">
           <div className="headerLeft">
-          {sessionUser.accountType === "employer"
-            ? <div className="jobImage">
-                <img 
-                  src={user.image} 
-                  alt={user.companyName} 
-                  onClick={() => props.history.push("/jobs")}/>
+            {sessionUser.accountType === "employer"
+              ? <div className="jobImage">
+                <img
+                  src={user.image}
+                  alt={user.companyName}
+                  onClick={() => props.history.push("/jobs")} />
               </div>
-            : <div className="jobImage">
-              <img 
-                src={user.image} 
-                alt={user.companyName} 
-                onClick={() => props.history.push(`/jobs/${user.id}/listings`)}/>
-            </div> }
+              : <div className="jobImage">
+                <img
+                  src={user.image}
+                  alt={user.companyName}
+                  onClick={() => props.history.push(`/jobs/${user.id}/listings`)} />
+              </div>}
           </div>
           <div className="headerRight">
             <div className="jobCompany">
@@ -92,7 +89,7 @@ const JobDetail = props => {
               <h4>{job.jobLocation}</h4>
             </div>
           </div>
-        </div> 
+        </div>
       </div>
       <section className="detailedJobListing" id={job.id}>
         <div className="jobType__box">
@@ -102,23 +99,23 @@ const JobDetail = props => {
             </div>
           </div>
           {sessionUser.accountType === "employer"
-          ? <div className="jobDetailBtnContainer">
+            ? <div className="jobDetailBtnContainer">
               <div className="jobBtn__Delete">
-                <button 
+                <button
                   onClick={() => deleteListing(props.jobId)}
                   className="jobDetailDeleteBtn"
                   type="button"
-                  >
-                    &#128465;
+                >
+                  &#128465;
                 </button>
               </div>
               <div className="jobBtn__Edit">
-                <button 
+                <button
                   onClick={() => props.history.push(`/jobs/${props.jobId}/edit`)}
                   className="jobDetailEditBtn"
                   type="button"
-                  >
-                    &#9998;
+                >
+                  &#9998;
                 </button>
               </div>
             </div>
@@ -148,18 +145,18 @@ const JobDetail = props => {
             <p>{job.jobSummary}</p>
           </div>
           {sessionUser.accountType === "candidate"
-          ? <div className="applyBtnContainer">
+            ? <div className="applyBtnContainer">
               <div className="jobBtn__delete">
-                <button 
+                <button
                   onClick={() => props.history.push("/apply-confirm")}
                   className="applyBtn"
                   type="button"
-                  >
-                    Apply
+                >
+                  Apply
                 </button>
               </div>
             </div>
-            : null }
+            : null}
         </section>
       </section>
       <div className="navpanel">
@@ -169,8 +166,8 @@ const JobDetail = props => {
       <br />
       <br />
       <br />
-    </React.Fragment>
-  )   
+    </div>
+  )
 };
 
 export default JobDetail;

@@ -84,10 +84,7 @@ const EditEmployer = props => {
   }, [props.match.params.userId]);
 
   return (
-    <React.Fragment>
-      <div className="statusBar">
-        <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status" />
-      </div>
+    <div id="root-wrapper">
       <main className="profileContainer">
         <section className="profileHeader">
           <div className="logoutButton">
@@ -257,15 +254,11 @@ const EditEmployer = props => {
             />
           </fieldset>
         </form>
-        <br />
-        <br />
-        <br />
-        <br />
       </main>
       <div className="navpanel">
         <Navbar />
       </div>
-    </React.Fragment>
+    </div>
   )
 }
 

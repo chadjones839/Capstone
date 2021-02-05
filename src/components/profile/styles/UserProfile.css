@@ -2,13 +2,27 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500&display=swap');
 
-.statusBar{
-  position: -webkit-sticky;
-  position: sticky; top: 0px;
-}
 
 .profileContainer {
-  padding: 10px
+  padding: 10px;
+  height: 723px;
+  overflow-y: scroll;
+}
+
+.profileContainer::-webkit-scrollbar {
+  width: 5px;
+}
+
+.profileContainer::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+.profileContainer::-webkit-scrollbar-thumb {
+  background: rgb(190, 190, 190); 
+}
+
+.profileContainer::-webkit-scrollbar-thumb:hover {
+  background:rgb(138, 137, 137); 
 }
 
 .profileHeader {
