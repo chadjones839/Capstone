@@ -21,9 +21,9 @@ const ViewResume = props => {
 
   skills.find(obj => {
     skill = obj
-      return obj
+    return obj
   });
-  
+
   const getUser = () => {
     if (sessionUser.accountType === "candidate") {
       return UserManager.getUser(sessionUser.id)
@@ -62,94 +62,88 @@ const ViewResume = props => {
 
   useEffect(() => {
     getUser()
-    .then((userResponse) => {
-      getJobs()
-      .then((jobsResponse) => {
-        getSkills()
-        .then((skillsResponse) => {
-          getSchools()
-          .then((schoolResponse) => {
-            setSkills(skillsResponse)
-            setUser(userResponse)
-            setJobs(jobsResponse)
-            setSchools(schoolResponse)
+      .then((userResponse) => {
+        getJobs()
+          .then((jobsResponse) => {
+            getSkills()
+              .then((skillsResponse) => {
+                getSchools()
+                  .then((schoolResponse) => {
+                    setSkills(skillsResponse)
+                    setUser(userResponse)
+                    setJobs(jobsResponse)
+                    setSchools(schoolResponse)
+                  })
+              })
           })
-        })
-      })
-    });
+      });
   }, []);
   return (
-    <React.Fragment>
-      <div className="statusBar">
-        <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
+    <div id="root-wrapper">
+      <div className="userResumeContainer">
+        <section className="profileHeader">
+          <div className="backBtnContainer">
+
+          </div>
+          <div className="userProfile__image">
+            <div className="userImage__container">
+              <img src={user.image} alt={user.firstName} />
+            </div>
+          </div>
+          <div className="userProfile__right">
+          </div>
+        </section>
+        <section className="userProfile__details">
+          <div className="userProfile__name">
+            <h2>{user.firstName} {user.lastName}</h2>
+          </div>
+          <div className="userProfile__location">
+            {user.jobTitle}
+          </div>
+        </section>
+        <main className="resumeContainer">
+          <h2 className="viewSectionTitle"><span>Work History</span></h2>
+          <section className="workHistory">
+            {jobs.map(job =>
+              <WorkHistoryCard
+                key={job.id}
+                job={job}
+                {...props} />
+            )}
+          </section>
+          <h2 className="viewSectionTitle"><span>Skills</span></h2>
+          <article className="skillSet">
+            <div className="viewSkillList">
+              <span>{skill.skill1}</span>
+              <span>{skill.skill2}</span>
+              <span>{skill.skill3}</span>
+              <span>{skill.skill4}</span>
+              <span>{skill.skill5}</span>
+              <span>{skill.skill6}</span>
+              <span>{skill.skill7}</span>
+              <span>{skill.skill8}</span>
+              <span>{skill.skill9}</span>
+              <span>{skill.skill10}</span>
+            </div>
+          </article>
+          <h2 className="viewSectionTitle"><span>Schools</span></h2>
+          <section className="schools">
+            {schools.map(school =>
+              <SchoolsCard
+                key={school.id}
+                school={school}
+                {...props} />
+            )}
+          </section>
+        </main>
+        <br />
+        <br />
       </div>
-      <section className="profileHeader">
-        <div className="backBtnContainer">
-          
-        </div>
-        <div className="userProfile__image">
-          <div className="userImage__container">
-            <img src={user.image} alt={user.firstName} />
-          </div>
-        </div>
-        <div className="userProfile__right">
-        </div>
-      </section>
-      <section className="userProfile__details">
-        <div className="userProfile__name">
-          <h2>{user.firstName} {user.lastName}</h2>
-        </div>
-        <div className="userProfile__location">
-        {user.jobTitle}
-        </div>
-      </section>
-      <main className="resumeContainer">
-        <h2 className="viewSectionTitle"><span>Work History</span></h2>
-        <section className="workHistory">
-          {jobs.map(job =>
-            <WorkHistoryCard
-              key={job.id} 
-              job={job}
-              {...props} />
-          )}
-        </section>
-        <h2 className="viewSectionTitle"><span>Skills</span></h2>
-        <article className="skillSet">
-          <div className="viewSkillList">
-            <span>{skill.skill1}</span>
-            <span>{skill.skill2}</span>
-            <span>{skill.skill3}</span>
-            <span>{skill.skill4}</span>
-            <span>{skill.skill5}</span>
-            <span>{skill.skill6}</span>
-            <span>{skill.skill7}</span>
-            <span>{skill.skill8}</span>
-            <span>{skill.skill9}</span>
-            <span>{skill.skill10}</span>
-          </div>
-        </article>
-        <h2 className="viewSectionTitle"><span>Schools</span></h2>
-        <section className="schools">
-          {schools.map(school =>
-            <SchoolsCard
-              key={school.id} 
-              school={school}
-              {...props} />
-          )}
-        </section>
-      </main>
       <div className="navpanel">
         <Navbar />
       </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br /> 
-    </React.Fragment>
-  )   
+    </div>
+  )
 }
 
 export default ViewResume

@@ -1,18 +1,33 @@
-.statusBar{
-  position: -webkit-sticky;
-  position: sticky; top: 0px;
+.discoveryContainer {
+  padding: 0px 10px 10px;
+  height: 667px; 
+  overflow-y: scroll;
 }
 
-.discoveryContainer {
-  padding: 0px 10px 10px 
+.discoveryContainer::-webkit-scrollbar {
+  width: 5px;
 }
+
+.discoveryContainer::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+.discoveryContainer::-webkit-scrollbar-thumb {
+  background: rgb(190, 190, 190); 
+}
+
+.discoveryContainer::-webkit-scrollbar-thumb:hover {
+  background:rgb(138, 137, 137); 
+}
+
 .discoveryHeader {
   font-family: 'Comfortaa', cursive;
   padding: 20px 0 10px 10px;
   background: #FFFFFF;
   position: -webkit-sticky;
-  position: sticky; top: 19px;
-  margin-bottom: 10px;
+  position: sticky; top: 0px;
+  margin: 0px;
+  border-radius: 5px 5px 0 0;
   box-shadow: 0px 3px 5px -2px #333;
 }
 

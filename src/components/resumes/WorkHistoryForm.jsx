@@ -20,9 +20,9 @@ const WorkHistory = props => {
 
   const checkBoxValue = evt => {
     if (!isChecked) {
-      job.current= true
-      job.endMonth=""
-      job.endYear=""
+      job.current = true
+      job.endMonth = ""
+      job.endYear = ""
       document.querySelector("#endDateFields").style.display = "none"
       setIsChecked(true);
     }
@@ -52,14 +52,12 @@ const WorkHistory = props => {
   };
 
   return (
-    <React.Fragment>
-      <div className="statusBar">
-        <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
-      </div>
+    <div id="root-wrapper">
+      
       <section className="formHeaderContainer">
         <div className="resume__backButton">
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className="backBtn"
             onClick={() => props.history.push("/resume")}>
             <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490014/icons/backarrow_lfdpzw.png" className="backToResume" alt="back" />
@@ -68,49 +66,49 @@ const WorkHistory = props => {
         <div className="addJobHistoryHeader">
           <div className="jobHistory__header">
             <h2>Add Work History</h2>
-          </div> 
+          </div>
         </div>
       </section>
       <section className="createWorkHistory">
         <form className="editProfileForm">
           <fieldset className="editJobDetails">
-            
-            <label 
-              className="editLabel" 
+
+            <label
+              className="editLabel"
               htmlFor="jobTitle">
-                Job Title <span className="asterisk">*</span>
+              Job Title <span className="asterisk">*</span>
             </label>
-            <input 
+            <input
               type="text"
               required
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="jobTitle"
             />
-            
-            <label 
-              className="editLabel" 
+
+            <label
+              className="editLabel"
               htmlFor="company">
-                Company <span className="asterisk">*</span>
+              Company <span className="asterisk">*</span>
             </label>
-            <input 
+            <input
               type="text"
               required
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="company"
             />
 
             <div className="dateFields">
               <div className="start1">
-                <label 
-                  className="editLabel" 
+                <label
+                  className="editLabel"
                   htmlFor="startMonth">
-                    Start Month <span className="asterisk">*</span>
+                  Start Month <span className="asterisk">*</span>
                 </label>
-                <select 
+                <select
                   type="text"
-                  className="editSelect"  
+                  className="editSelect"
                   onChange={handleFieldChange}
                   id="startMonth">
                   <option selected disabled hidden>- Select -</option>
@@ -129,15 +127,15 @@ const WorkHistory = props => {
                 </select>
               </div>
               <div className="start2">
-                <label 
-                  className="editLabel" 
+                <label
+                  className="editLabel"
                   htmlFor="startYear">
-                    Start Year <span className="asterisk">*</span>
+                  Start Year <span className="asterisk">*</span>
                 </label>
-                <input 
+                <input
                   type="number"
-                  className="editInput"  
-                  placeholder="4-digit" 
+                  className="editInput"
+                  placeholder="4-digit"
                   min="1930"
                   max="2020"
                   onChange={handleFieldChange}
@@ -148,14 +146,14 @@ const WorkHistory = props => {
 
             <div className="dateFields" id="endDateFields">
               <div className="end1">
-                <label 
-                  className="editLabel" 
+                <label
+                  className="editLabel"
                   htmlFor="endMonth">
-                    End Month
+                  End Month
                 </label>
-                <select 
+                <select
                   type="text"
-                  className="editSelect"  
+                  className="editSelect"
                   onChange={handleFieldChange}
                   id="endMonth">
                   <option selected disabled hidden>- Select -</option>
@@ -174,15 +172,15 @@ const WorkHistory = props => {
                 </select>
               </div>
               <div className="end2">
-                <label 
-                  className="editLabel" 
+                <label
+                  className="editLabel"
                   htmlFor="endYear">
-                    End year
+                  End year
                 </label>
-                <input 
+                <input
                   type="number"
-                  className="editInput"  
-                  placeholder="4-digit" 
+                  className="editInput"
+                  placeholder="4-digit"
                   min="1930"
                   max="2035"
                   onChange={handleFieldChange}
@@ -191,31 +189,31 @@ const WorkHistory = props => {
               </div>
             </div>
 
-            <input 
+            <input
               type="checkbox"
-              className="editInputs"  
+              className="editInputs"
               onChange={checkBoxValue}
               checked={isChecked}
 
               id="current"
             />
-            <label 
-              className="editLabel" 
+            <label
+              className="editLabel"
               htmlFor="current">
-                I am currently employed here.
+              I am currently employed here.
             </label>
             <br />
             <br />
 
-            <label 
-              className="editLabel" 
+            <label
+              className="editLabel"
               htmlFor="description">
-                Job Description <span className="asterisk">*</span>
+              Job Description <span className="asterisk">*</span>
             </label>
-            <textarea 
+            <textarea
               type="text"
               required
-              className="editInputTextarea"  
+              className="editInputTextarea"
               onChange={handleFieldChange}
               id="description"
             />
@@ -230,14 +228,14 @@ const WorkHistory = props => {
           id="submitBtn"
           disabled={isLoading}
           onClick={createJob}>
-            Save
-        </button> 
+          Save
+        </button>
       </div>
       <br />
       <br />
       <br />
-    </React.Fragment>
-  )   
+    </div>
+  )
 };
 
 export default WorkHistory

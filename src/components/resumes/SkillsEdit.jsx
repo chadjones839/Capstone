@@ -41,117 +41,115 @@ const SkillsEdit = props => {
       skill10: skill.skill10,
       id: props.match.params.skillId
     };
-    
+
     ResumeManager.editSkill(editedSkill)
       .then(() => props.history.push("/resume"));
   };
 
   useEffect(() => {
     ResumeManager.getSkill(props.match.params.skillId)
-    .then((skill) => {
+      .then((skill) => {
         setSkill(skill)
         setIsLoading(false)
-    } )    
-}, [props.match.params.skillId]);
+      })
+  }, [props.match.params.skillId]);
 
   return (
-    <React.Fragment>
-      <div className="statusBar">
-        <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
-      </div>
-      <section className="formHeaderContainer">
-        <div className="resume__backButton">
-          <button 
-            type="submit" 
+    <div id="root-wrapper">
+      <section className="skillFormHeaderContainer">
+        <div className="skill__backButton">
+          <button
+            type="submit"
             className="backBtn"
             onClick={() => props.history.push("/resume")}>
             <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490014/icons/backarrow_lfdpzw.png" className="backToResume" alt="back" />
           </button>
         </div>
-        <div className="addJobHistoryHeader">
+        <div className="addSkillHeader">
           <div className="jobHistory__header">
-            <h2>Edit Your Skills</h2>
-          </div> 
+            <h2>Add Skills</h2>
+          </div>
         </div>
       </section>
-      <section className="editJobListing">
+      <section className="skillsContainer">
         <form className="editProfileForm">
           <fieldset className="editJobDetails">
-    
-            <input 
+
+            <input
               type="text"
               required
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="skill1"
               value={skill.skill1}
             />
-            <input 
+            <input
               type="text"
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="skill2"
               value={skill.skill2}
             />
-            <input 
+            <input
               type="text"
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="skill3"
               value={skill.skill3}
             />
-            <input 
+            <input
               type="text"
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="skill4"
               value={skill.skill4}
             />
-            <input 
+            <input
               type="text"
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="skill5"
               value={skill.skill5}
             />
-            <input 
+            <input
               type="text"
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="skill6"
               value={skill.skill6}
             />
-            <input 
+            <input
               type="text"
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="skill7"
               value={skill.skill7}
             />
-            <input 
+            <input
               type="text"
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="skill8"
               value={skill.skill8}
             />
-            <input 
+            <input
               type="text"
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="skill9"
               value={skill.skill9}
             />
-            <input 
+            <input
               type="text"
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="skill10"
               value={skill.skill10}
             />
-            
-
           </fieldset>
+          <br/>
+          <br/>
+          <br/>
         </form>
       </section>
       <div className="saveEditChanges">
@@ -161,11 +159,11 @@ const SkillsEdit = props => {
           id="submitBtn"
           disabled={isLoading}
           onClick={updateSkills}>
-            Save Changes
-        </button> 
+          Save Changes
+        </button>
       </div>
-    </React.Fragment>
-  )   
+    </div>
+  )
 };
 
 export default SkillsEdit

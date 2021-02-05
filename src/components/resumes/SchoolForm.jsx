@@ -20,9 +20,9 @@ const SchoolForm = props => {
 
   const checkBoxValue = evt => {
     if (!isChecked) {
-      school.current= true
-      school.endMonth=""
-      school.endYear=""
+      school.current = true
+      school.endMonth = ""
+      school.endYear = ""
       document.querySelector("#endDateFields").style.display = "none"
       setIsChecked(true);
     }
@@ -52,77 +52,75 @@ const SchoolForm = props => {
   };
 
   return (
-    <React.Fragment>
-      <div className="statusBar">
-        <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
-      </div>
+    <div id="root-wrapper">
+
       <div className="resume__backButton">
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           className="backBtn"
           onClick={() => props.history.push("/resume")}>
           <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490014/icons/backarrow_lfdpzw.png" className="backToResume" alt="back" />
         </button>
       </div>
 
-        <div className="addSchoolHeader">
-          <div className="schoolForm__header">
-            <h2>Add School</h2>
-          </div> 
+      <div className="addSchoolHeader">
+        <div className="schoolForm__header">
+          <h2>Add School</h2>
         </div>
+      </div>
 
       <section className="createSchool">
         <form className="editProfileForm">
           <fieldset className="editJobDetails">
-            
-            <label 
-              className="editLabel" 
+
+            <label
+              className="editLabel"
               htmlFor="schoolName">
-                School Name <span className="asterisk">*</span>
+              School Name <span className="asterisk">*</span>
             </label>
-            <input 
+            <input
               type="text"
               required
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="schoolName"
             />
 
-            <label 
-              className="editLabel" 
+            <label
+              className="editLabel"
               htmlFor="degree">
-                Degree
+              Degree
             </label>
             <input
               type="text"
-              className="editInput" 
-              placeholder="ex. B.S." 
+              className="editInput"
+              placeholder="ex. B.S."
               onChange={handleFieldChange}
               id="degree" />
 
-            <label 
-              className="editLabel" 
+            <label
+              className="editLabel"
               htmlFor="field">
-                Area of Study
+              Area of Study
             </label>
-            <input 
+            <input
               type="text"
               className="editInput"
-              placeholder="ex. Bird Law"   
+              placeholder="ex. Bird Law"
               onChange={handleFieldChange}
               id="field"
             />
 
             <div className="dateFields">
               <div className="start1">
-                <label 
-                  className="editLabel" 
+                <label
+                  className="editLabel"
                   htmlFor="startMonth">
-                    Start Month <span className="asterisk">*</span>
+                  Start Month <span className="asterisk">*</span>
                 </label>
-                <select 
+                <select
                   type="text"
-                  className="editSelect"  
+                  className="editSelect"
                   onChange={handleFieldChange}
                   id="startMonth">
                   <option selected disabled hidden>- Select -</option>
@@ -141,15 +139,15 @@ const SchoolForm = props => {
                 </select>
               </div>
               <div className="start2">
-                <label 
-                  className="editLabel" 
+                <label
+                  className="editLabel"
                   htmlFor="startYear">
-                    Start Year <span className="asterisk">*</span>
+                  Start Year <span className="asterisk">*</span>
                 </label>
-                <input 
+                <input
                   type="number"
-                  className="editInput"  
-                  placeholder="4-digit" 
+                  className="editInput"
+                  placeholder="4-digit"
                   min="1930"
                   max="2020"
                   onChange={handleFieldChange}
@@ -160,14 +158,14 @@ const SchoolForm = props => {
 
             <div className="schoolDateFields" id="endDateFields">
               <div className="end1">
-                <label 
-                  className="editLabel" 
+                <label
+                  className="editLabel"
                   htmlFor="endMonth">
-                    End Month
+                  End Month
                 </label>
-                <select 
+                <select
                   type="text"
-                  className="editSelect"  
+                  className="editSelect"
                   onChange={handleFieldChange}
                   id="endMonth">
                   <option selected disabled hidden>- Select -</option>
@@ -186,15 +184,15 @@ const SchoolForm = props => {
                 </select>
               </div>
               <div className="end2">
-                <label 
-                  className="editLabel" 
+                <label
+                  className="editLabel"
                   htmlFor="endYear">
-                    End year
+                  End year
                 </label>
-                <input 
+                <input
                   type="number"
-                  className="editInput"  
-                  placeholder="4-digit" 
+                  className="editInput"
+                  placeholder="4-digit"
                   min="1930"
                   max="2035"
                   onChange={handleFieldChange}
@@ -203,17 +201,17 @@ const SchoolForm = props => {
               </div>
             </div>
 
-            <input 
+            <input
               type="checkbox"
-              className="editCheckbox"  
+              className="editCheckbox"
               onChange={checkBoxValue}
               checked={isChecked}
               id="current"
             />
-            <label 
-              className="editCheckboxLabel" 
+            <label
+              className="editCheckboxLabel"
               htmlFor="current">
-                I am currently a student here.
+              I am currently a student here.
             </label>
             <br />
             <br />
@@ -228,11 +226,11 @@ const SchoolForm = props => {
           id="submitBtn"
           disabled={isLoading}
           onClick={createSchool}>
-            Save
-        </button> 
+          Save
+        </button>
       </div>
-    </React.Fragment>
-  )   
+    </div>
+  )
 };
 
 export default SchoolForm

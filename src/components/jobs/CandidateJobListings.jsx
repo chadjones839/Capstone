@@ -6,45 +6,43 @@ import CandidateJobCard from "../jobs/CandidateJobCard";
 
 const CandidateJobListings = props => {
 
-  const [chats, setChats] = useState([]); 
-  
-  const getChats =() => {
+  const [chats, setChats] = useState([]);
+
+  const getChats = () => {
     return ChatManager.getWithUsers()
   }
 
   useEffect(() => {
     getChats()
-    .then((chatResponse) => {
-      setChats(chatResponse)
-    })
+      .then((chatResponse) => {
+        setChats(chatResponse)
+      })
   }, []);
 
   return (
-    <React.Fragment>
-      <div className="statusBar">
-          <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
+    <div id="root-wrapper">
+
+      <div className="jobsHeader">
+        <h3>Job Listings</h3>
       </div>
-        <div className="jobsHeader">
-          <h3>Job Listings</h3>
-        </div>
-        <h3 className="chooseJobs">Views listings for:</h3>
-        <br />
-        <br />
-        <main className="jobsContainer">
-          
-        {chats.map(chat => 
-          <CandidateJobCard 
-            key={chat.id} 
+      <h3 className="chooseJobs">Views listings for:</h3>
+      <br />
+      <br />
+      <main className="jobsContainer">
+
+        {chats.map(chat =>
+          <CandidateJobCard
+            key={chat.id}
             chat={chat}
             {...props}
           />
-        )} 
+        )}
 
       </main>
       <div className="navpanel">
         <Navbar />
       </div>
-    </React.Fragment>
+    </div>
   )
 }
 

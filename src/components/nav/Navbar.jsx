@@ -6,7 +6,7 @@ const NavBar = props => {
   const sessionUser = JSON.parse(sessionStorage.getItem("user"));
 
   return (
-    <nav>
+    <nav id="navbar">
       <ul className="navContainer">
         <li>
           <Link className="nav-link" to="/profile"> 

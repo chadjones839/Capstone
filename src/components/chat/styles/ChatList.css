@@ -1,7 +1,4 @@
-.statusBar{
-  position: -webkit-sticky;
-  position: sticky; top: 0px;
-}
+
 
 .chatHeader {
   font-family: 'Roboto', cursive;
@@ -11,8 +8,9 @@
   text-align: center;
   background: #ffffff;
   position: -webkit-sticky;
-  position: sticky; top: 19px;
-  margin-bottom: 15px;
+  position: sticky; top: 0px;
+  border-radius: 5px 5px 0 0;
+  
 }
 
 .chatCard {
@@ -20,8 +18,9 @@
   flex-direction: row;
   padding-bottom: 15px;
   justify-content: center;
-  margin: 0 5px 15px 5px;
+  margin: 15px 5px 0px 5px;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .chatHeader > h3 {

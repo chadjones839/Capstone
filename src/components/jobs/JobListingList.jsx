@@ -37,10 +37,7 @@ const JobList = props => {
 
   if (sessionUser.accountType === "employer") {
     return (
-      <>
-        <div className="statusBar">
-          <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
-        </div>
+      <div id="root-wrapper">
         <main className="profileContainer">
           <section className="profileHeader">
             <div className="logoutButton">
@@ -85,15 +82,12 @@ const JobList = props => {
         <br />
         <br />
         <br />
-      </>
+      </div>
     );
   }
   else if (sessionUser.accountType === "candidate") {
     return (
-      <>
-        <div className="statusBar">
-          <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
-        </div>
+      <div id="root-wrapper">
         <main className="profileContainer">
           <section className="profileHeader">
             <div className="logoutButton">
@@ -129,7 +123,7 @@ const JobList = props => {
         <br />
         <br />
         <br />
-      </>
+      </div>
     );
   }
   };

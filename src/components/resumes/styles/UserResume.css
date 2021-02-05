@@ -1,3 +1,24 @@
+.userResumeContainer {
+  height: 742px;
+  overflow-y: scroll;
+}
+
+.userResumeContainer::-webkit-scrollbar {
+  width: 5px;
+}
+
+.userResumeContainer::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+.userResumeContainer::-webkit-scrollbar-thumb {
+  background: rgb(190, 190, 190); 
+}
+
+.userResumeContainer::-webkit-scrollbar-thumb:hover {
+  background:rgb(138, 137, 137); 
+}
+
 .resumeContainer {
   margin: 0 15px;
 }

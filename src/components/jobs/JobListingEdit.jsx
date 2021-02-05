@@ -25,83 +25,89 @@ const JobListingEdit = props => {
   });
 
   const handleFieldChange = event => {
-    const stateToChange = {...job};
+    const stateToChange = { ...job };
     stateToChange[event.target.id] = event.target.value
     setJob(stateToChange)
   };
-  
+
   const updateJob = event => {
     event.preventDefault();
     setIsLoading(true)
 
     const editedJob = {
-        id: props.match.params.jobId,
-        userId: job.userId,
-        postDate: job.postDate,
-        jobTitle: job.jobTitle,
-        jobLocation: job.jobLocation,
-        salaryActual: job.salaryActual,
-        rate: job.rate,
-        requirements: job.requirements,
-        jobSummary: job.jobSummary,
-        type: job.type,
-        keyword1: job.keyword1,
-        keyword2: job.keyword2,
-        keyword3: job.keyword3
+      id: props.match.params.jobId,
+      userId: job.userId,
+      postDate: job.postDate,
+      jobTitle: job.jobTitle,
+      jobLocation: job.jobLocation,
+      salaryActual: job.salaryActual,
+      rate: job.rate,
+      requirements: job.requirements,
+      jobSummary: job.jobSummary,
+      type: job.type,
+      keyword1: job.keyword1,
+      keyword2: job.keyword2,
+      keyword3: job.keyword3
     };
 
     JobManager.editJob(editedJob)
-    .then(() => {
+      .then(() => {
         props.history.push(`/jobs/${props.match.params.jobId}`)
-    })
+      })
 
   }
-      
+
   useEffect(() => {
     JobManager.getJob(props.match.params.jobId)
-    .then((job) => {
+      .then((job) => {
         setJob(job)
         setIsLoading(false)
-    } )    
+      })
   }, [props.match.params.jobId]);
 
   return (
-    <React.Fragment>
-      <div className="statusBar">
-        <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
-      </div>
+    <div id="root-wrapper">
+
       <div className="listingHeader">
+        <div className="job__backButton">
+          <button
+            type="submit"
+            className="backBtn"
+            onClick={() => props.history.push(`/jobs/${job.id}`)}>
+            <img src="https://res.cloudinary.com/dhduglm4j/image/upload/v1596490014/icons/backarrow_lfdpzw.png" className="backToResume" alt="back" />
+          </button>
+        </div>
         <div className="jobListing__header">
           <h2>Edit Listing</h2>
-        </div> 
+        </div>
       </div>
       <section className="editJobListing" id={job.id}>
         <form className="editProfileForm">
           <fieldset className="editJobDetails">
-            
-            <label 
-              className="editLabel" 
+
+            <label
+              className="editLabel"
               htmlFor="jobTitle">
-                Job Title *
+              Job Title *
             </label>
-            <input 
+            <input
               type="text"
               required
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="jobTitle"
               value={job.jobTitle}
             />
 
-            <label 
-              className="editLabel" 
+            <label
+              className="editLabel"
               htmlFor="type">
-                Type
+              Type
             </label>
-            <select 
+            <select
               type="text"
               required
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="type"
               value={job.type}
@@ -111,16 +117,16 @@ const JobListingEdit = props => {
               <option value="Part-Time">Part-Time</option>
               <option value="Temp">Temp</option>
             </select>
-            
-            <label 
-              className="editLabel" 
+
+            <label
+              className="editLabel"
               htmlFor="jobLocation">
-                Job Location *
+              Job Location *
             </label>
-            <input 
+            <input
               type="text"
               required
-              className="editInput"  
+              className="editInput"
               onChange={handleFieldChange}
               id="jobLocation"
               value={job.jobLocation}
@@ -128,28 +134,28 @@ const JobListingEdit = props => {
 
             <div className="salaryFields">
               <div className="salaryEdit">
-                <label 
-                  className="editLabel" 
+                <label
+                  className="editLabel"
                   htmlFor="salaryActual">
-                    Salary
+                  Salary
                 </label>
-                <input 
+                <input
                   type="text"
-                  className="editInput"  
+                  className="editInput"
                   onChange={handleFieldChange}
                   id="salaryActual"
                   value={job.salaryActual}
                 />
               </div>
               <div className="rateEdit">
-                <label 
-                  className="editLabel" 
+                <label
+                  className="editLabel"
                   htmlFor="rate">
-                    Rate
+                  Rate
                 </label>
-                <select 
+                <select
                   type="text"
-                  className="editInputRate"  
+                  className="editInputRate"
                   onChange={handleFieldChange}
                   id="rate"
                   value={job.rate}
@@ -160,28 +166,28 @@ const JobListingEdit = props => {
               </div>
             </div>
 
-            <label 
-              className="editLabel" 
+            <label
+              className="editLabel"
               htmlFor="requirements">
-                Requirements
+              Requirements
             </label>
-            <textarea 
+            <textarea
               type="text"
-              className="editInputTextarea"  
+              className="editInputTextarea"
               onChange={handleFieldChange}
               id="requirements"
               value={job.requirements}
             />
 
-            <label 
-              className="editLabel" 
+            <label
+              className="editLabel"
               htmlFor="jobSummary">
-                Job Summary *
+              Job Summary *
             </label>
-            <textarea 
+            <textarea
               type="text"
               required
-              className="editInputTextarea"  
+              className="editInputTextarea"
               onChange={handleFieldChange}
               id="jobSummary"
               value={job.jobSummary}
@@ -189,30 +195,31 @@ const JobListingEdit = props => {
 
             <label className="editLabel">3 Keywords that describe the job:</label>
             <div className="keywords">
-              <input 
+              <input
                 type="text"
-                className="editInput"  
+                className="editInput"
                 onChange={handleFieldChange}
                 id="keyword1"
                 value={job.keyword1}
               />
-              <input 
+              <input
                 type="text"
-                className="editInput"  
+                className="editInput"
                 onChange={handleFieldChange}
                 id="keyword2"
                 value={job.keyword2}
               />
-              <input 
+              <input
                 type="text"
-                className="editInput"  
+                className="editInput"
                 onChange={handleFieldChange}
                 id="keyword3"
                 value={job.keyword3}
               />
             </div>
-
-
+            <br/>
+            <br/>
+            <br/>
           </fieldset>
         </form>
       </section>
@@ -223,12 +230,12 @@ const JobListingEdit = props => {
           id="submitBtn"
           disabled={isLoading}
           onClick={updateJob}>
-            Save Changes
-        </button> 
+          Save Changes
+        </button>
       </div>
       <br />
-    </React.Fragment>
-  )   
+    </div>
+  )
 };
 
 export default JobListingEdit;

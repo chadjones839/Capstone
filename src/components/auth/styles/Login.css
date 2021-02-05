@@ -39,15 +39,15 @@ body {
 }
 
 .container-login-form-btn {
-  width: 94%;
-  position: fixed;
-  bottom: 30px;
+  width: 100%;
+  position: relative;
+  bottom: -40px;
 }
 
 .createAccountBtn {
-  width: 90%;
-  position: fixed;
-  bottom: 30px;
+  width: 100%;
+  position: relative;
+  bottom: -30px;
 }
 
 .loginForm {

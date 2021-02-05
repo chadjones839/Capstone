@@ -28,16 +28,17 @@
 .messageInput {
   display: flex;
   flex-direction: row;
-  width: 100%;
-  position: -webkit-sticky;
-  position: fixed; bottom: 0px;
+  width: 375px;
+  height: 75px;
+  position: relative; 
+  bottom: 0px;
   background: white;
 }
 
 .messageInput__compose {
   width: 90%;
   margin-left: 0;
-  padding-top: 20px;
+  padding-top: 0px;
   background: white;
 }
 
@@ -47,11 +48,17 @@
   flex-direction: column;
   justify-content: center;
   margin-right: 5px;
+  position: relative;
+  bottom: 7px;
 }
 
 .messageForm__fieldset {
-  padding: 10px 0;
+  padding: 0;
   border: none;
+}
+
+.messageForm__form {
+  border-radius: 0 0 5px 5px;
 }
 
 .messageForm__content {
@@ -65,6 +72,13 @@
   font-family: 'Roboto';
   border: none;
   outline: none;
+  position: relative;
+  bottom: -23px;
+}
+
+.messageForm__submit {
+  position: relative;
+  bottom: -5px;
 }
 
 #msgSend {

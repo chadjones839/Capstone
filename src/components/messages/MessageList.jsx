@@ -48,10 +48,7 @@ const MessageList = props => {
 
   
   return (
-    <>
-      <div className="statusBar">
-          <img src="http://res.cloudinary.com/dhduglm4j/image/upload/v1596490037/icons/statusbar_ix00oi.png" alt="status"/>
-      </div>
+    <div id="root-wrapper">
         <div className="chatHeader">
           <Link className="nav-link" to="/chat">
             <div className="backButton">
@@ -70,44 +67,38 @@ const MessageList = props => {
               key={message.id} 
               message={message}
               {...props} />
-          )}
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+          )}      
       </main> 
-        <section className="messageInput">
-          <div className="messageInput__compose">
-            <form className="messageForm__form">
-              <fieldset className="messageForm__fieldset">
-                <textarea
-                  className="messageForm__content" 
-                  name="content"  
-                  type="text"
-                  required
-                  onChange={handleFieldChange}
-                  id="content"
-                  placeholder="Say something..."
-                  autoFocus
-                  spellCheck={true}
-                  />
-              </fieldset>
-            </form>
-          </div>
-          <div className="messageForm__button">
-            <button
-              className="messageForm__submit"
-              type="button"
-              id="msgSend"
-              disabled={isLoading}
-              onClick={postNewMessage}>
-              &#10148;
-            </button>                       
-          </div>
-        </section>
-         
-    </>
+      <section className="messageInput">
+        <div className="messageInput__compose">
+          <form className="messageForm__form">
+            <fieldset className="messageForm__fieldset">
+              <textarea
+                className="messageForm__content" 
+                name="content"  
+                type="text"
+                required
+                onChange={handleFieldChange}
+                id="content"
+                placeholder="Say something..."
+                autoFocus
+                spellCheck={true}
+                />
+            </fieldset>
+          </form>
+        </div>
+        <div className="messageForm__button">
+          <button
+            className="messageForm__submit"
+            type="button"
+            id="msgSend"
+            disabled={isLoading}
+            onClick={postNewMessage}>
+            &#10148;
+          </button>                       
+        </div>
+      </section>      
+    </div>
   );
 };
 
