@@ -4,7 +4,7 @@ import "./Main.css";
 
 /*END IMPORTS*****************************************************************/
 
-const TechTok = () => {
+const JobCannon = () => {
 
   const isAuthenticated = () => sessionStorage.getItem("user") !== null;
 
@@ -22,4 +22,4 @@ const TechTok = () => {
   );
 };
 
-export default TechTok;
+export default JobCannon;

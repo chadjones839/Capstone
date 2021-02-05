@@ -213,6 +213,18 @@
       "activeUserId": 1,
       "mutualInterest": false,
       "id": 5
+    },
+    {
+      "userId": 1,
+      "activeUserId": 7,
+      "mutualInterest": null,
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "activeUserId": 8,
+      "mutualInterest": false,
+      "id": 7
     }
   ],
   "chats": [

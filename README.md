@@ -33,12 +33,13 @@ The main feature can be found on the `Discovery` page, which is where users are 
 
 ## Installation
 
-In your terminal run git clone SSH KEY
-cd into the JobCannon folder
-In your terminal, run `npx create-react-app .` to install React library
-Then run `npm install --save react-router-dom`
-After installations, run `npm start` to host app on localhost:3000
-Then start a json server on port 5002 for sample.json
+- In your terminal run git clone SSH KEY
+- cd into the JobCannon folder
+- In your terminal, run `npx create-react-app .` to install React library
+- Then run `npm install --save react-router-dom`
+- After installations, run `npm start` to host app on localhost:3000
+- In browser, open dev tools and view in iPhone X format. (currently only supported for this device's dimensions)
+- Then start a json server on port 5002 for sample.json
 
 ## Usage
 

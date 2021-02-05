@@ -35,28 +35,34 @@ const CandidateDiscoveryCard = props => {
 
   const friendHandler = () => { 
 
+    // Used to update the friends table to set mutualInterest to "true" when there is an exisiting match in the database.
     const editedFriend = {
       userId: props.user.id,
       activeUserId: sessionUser.id,
       mutualInterest: true
     };
 
+    // Variable holds key/value pairs for the users in a chat after a match is made
     const newChat = {
       activeUserId: sessionUser.id,
       userId: props.user.id
     };
 
+    // When the current user clicks "Let's Chat", the friendHandler function first looks for an existing match in the database where the clicked cards's user Id matches the userId key AND the activeUserId matches the sessionUser's Id.
     const friend = friends.find(friend => {
       if (props.user.id === friend.userId && sessionUser.id === friend.activeUserId) {
+        // if an object is found, it returns the friend object.
         return friend
       }
     });
-      
+    
+    // If no friend object is found with the specified conditionals, the friend is undefined, and a new friend is created with the mutualInterest set as "false"
     if (friend === undefined) {
       createFriend(props.user.id)
       setNewFriend()
       return newFriend
     }
+    //If a friend object is found, and the mutual interest is set to "false", then the friend object is edited using the 'editedFriend' variable model, which updates to true
     else if (
     friend.userId === props.user.id && 
     friend.mutualInterest === false &&
@@ -64,10 +70,12 @@ const CandidateDiscoveryCard = props => {
       editedFriend.id = friend.id
       FriendManager.editFriend(editedFriend)
       .then(()=> {
+        // When the friend is updated with a mutualInterest of "true", then a new chat is also created using the 'newChat' variable model, giving the two users the option to have a private chat with one another.
         ChatManager.postChat(newChat)
         return friend
       })
     }
+    // A user can click 'Hard Pass' if they aren't interested in the user card, which runs the passHandler function. The passHandler function creates an object with both userId's stored and a mutualInterest value "null" (for the purpose of filtering out  passed users from the discovery list). This conditional creates a new friend object and removes that card from their list.
     else if (
       friend.userId === props.user.id && 
       friend.mutualInterest === null &&
